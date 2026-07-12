@@ -165,7 +165,7 @@ tr:last-child td{border-bottom:none}
     <div class="alt-info"><div class="alt-label">ALTERNATIVE · FRANCE</div><div class="alt-name">French Riviera</div></div>
   </div>
   <div class="alt-card" onclick="openDetail('italianriviera')">
-    <img class="alt-photo" src="https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=300&q=80&auto=format&fit=crop" alt="Italian Riviera">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-PQdRJfkGsQw?w=300&q=80&auto=format&fit=crop" alt="Italian Riviera" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop'">
     <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Italian Riviera</div></div>
   </div>
 </div>
@@ -479,7 +479,7 @@ const collages={
   naples:['https://images.unsplash.com/photo-1529260830199-42c24126f198?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=500&q=85','https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=85'],
   amalfi:['https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85'],
   frenchriviera:['https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=700&q=85','https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=500&q=85','https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=500&q=85','https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=500&q=85'],
-  italianriviera:['https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=700&q=85','https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=500&q=85','https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=500&q=85','https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&q=85']
+  italianriviera:['https://images.unsplash.com/photo-PQdRJfkGsQw?w=700&q=85','https://images.unsplash.com/photo-cYrMQA7a3Wc?w=500&q=85','https://images.unsplash.com/photo-DsS4q5L9llo?w=500&q=85','https://images.unsplash.com/photo-1B3FnDHu2Uk?w=500&q=85']
 };
 
 const details = {
@@ -703,6 +703,8 @@ const stops = [
 const altStops = [
   {lat:40.8518, lng:14.2681, label:'Naples', sub:'alternative — city + Pompeii', color:'#e34948'},
   {lat:40.6340, lng:14.6027, label:'Amalfi Coast (Positano)', sub:'alternative — coast + hiking', color:'#e34948'},
+  {lat:43.7102, lng:7.2620, label:'French Riviera (Nice)', sub:'alternative — fly into Nice (NCE), reroutes via France', color:'#7f77dd'},
+  {lat:44.1069, lng:9.7178, label:'Italian Riviera (Cinque Terre)', sub:'alternative — fly into Genoa (GOA) or Pisa (PSA)', color:'#7f77dd'},
 ];
 
 const flightCoords = [[41.9028,12.4964],[37.9838,23.7275],[35.5138,24.0180],[37.9838,23.7275]];
