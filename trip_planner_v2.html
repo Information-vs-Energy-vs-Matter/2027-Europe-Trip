@@ -115,7 +115,7 @@ tr:last-child td{border-bottom:none}
 <div class="sec">Satellite route map</div>
 <div id="map"></div>
 <p class="map-note">
-  Real satellite imagery · numbered stops in sequence · dashed = flight, solid = drive
+  Real satellite imagery · numbered stops in sequence · dashed = flight, solid = drive · <strong>tap any marker</strong> for Street View + 3D Earth links
   &nbsp;·&nbsp;
   <a href="https://www.google.com/maps/search/Rome+Italy/@41.9,12.5,8z" target="_blank">Rome ↗</a>
   &nbsp;·&nbsp;
@@ -778,11 +778,25 @@ function makeIcon(num, color) {
 function makeAltIcon(color) {
   return L.divIcon({className:'', html:`<div style="background:#fff;width:26px;height:26px;border-radius:50%;border:2.5px solid ${color};box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;color:${color}">A</div>`, iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-16]});
 }
+
+// Google's free public URL scheme (no API key needed) -- opens the real
+// Google Street View / Google Earth 3D view in a new tab. This page can't
+// embed Street View inline without a paid Google Maps API key, so these
+// links are the practical way to get 3D buildings + street-level look-around.
+function viewLinks(lat, lng){
+  const streetView = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
+  const earth3d = `https://earth.google.com/web/@${lat},${lng},50a,800d,45y,0h,60t,0r`;
+  return `<div style="margin-top:6px;display:flex;gap:6px">
+    <a href="${streetView}" target="_blank" style="font-size:11px;color:#185fa5;text-decoration:none;border:1px solid #d0d7de;border-radius:4px;padding:2px 8px">🚶 Street View</a>
+    <a href="${earth3d}" target="_blank" style="font-size:11px;color:#185fa5;text-decoration:none;border:1px solid #d0d7de;border-radius:4px;padding:2px 8px">🌍 3D Earth</a>
+  </div>`;
+}
+
 stops.forEach(s=>{
-  L.marker([s.lat,s.lng], {icon:makeIcon(s.num,s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#52514e">${s.sub}</span>`);
+  L.marker([s.lat,s.lng], {icon:makeIcon(s.num,s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#52514e">${s.sub}</span>${viewLinks(s.lat,s.lng)}`, {minWidth:180});
 });
 altStops.forEach(s=>{
-  L.marker([s.lat,s.lng], {icon:makeAltIcon(s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#e34948">${s.sub}</span>`);
+  L.marker([s.lat,s.lng], {icon:makeAltIcon(s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#e34948">${s.sub}</span>${viewLinks(s.lat,s.lng)}`, {minWidth:180});
 });
 
 const legend = L.control({position:'bottomleft'});
