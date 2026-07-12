@@ -183,6 +183,8 @@ tr:last-child td{border-bottom:none}
   <button class="tab" onclick="showTab('airports',this)">Airports</button>
   <button class="tab" onclick="showTab('time',this)">Time budget</button>
   <button class="tab" onclick="showTab('gantt',this)">Gantt chart</button>
+  <button class="tab" onclick="showTab('cashflow',this)">Cash timeline</button>
+  <button class="tab" onclick="showTab('burn',this)">Trip burn rate</button>
 </div>
 
 <div class="tab-panel active" id="tab-crew">
@@ -421,6 +423,49 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
         <tr><td><span class="badge b-blue">Transatlantic back</span></td><td>Day 16</td><td class="num">—</td><td class="muted">Athens → RDU, overnight flight</td></tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-cashflow">
+  <div class="card">
+    <p style="font-size:12px;color:#52514e;margin-bottom:10px">Every number here comes from <code style="background:#f1efea;padding:1px 5px;border-radius:3px;font-size:11px">trip_model.py</code> in the repo — a Python script, not hand-typed values. Change an assumption (food cost, milestone timing, party size) and rerun it to update this chart. Full source citations are in the script's SOURCES registry.</p>
+    <div style="position:relative;height:320px;margin-bottom:12px">
+      <canvas id="cashChart" role="img" aria-label="Line chart showing cumulative cash required from 10 weeks before departure through the end of the trip, low and high estimate bands"></canvas>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#52514e">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#185fa5"></span>Cumulative (low estimate)</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#a32d2d"></span>Cumulative (high estimate)</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:0">
+    <p style="font-size:12px;font-weight:700;margin-bottom:8px">Pre-trip payment milestones (family of 4)</p>
+    <table>
+      <thead><tr><th>When</th><th>What</th><th class="num">Amount</th><th class="num">Running total</th></tr></thead>
+      <tbody id="cashflow-rows"></tbody>
+    </table>
+  </div>
+  <div class="note">Trip day 0 = departure day. Everything left of day 0 is money committed before you leave; everything right of it is the in-trip burn (next tab), continuing on the same cumulative line.</div>
+</div>
+
+<div class="tab-panel" id="tab-burn">
+  <div class="card">
+    <p style="font-size:12px;color:#52514e;margin-bottom:10px">Daily out-of-pocket spend during the 16-day trip, split by destination so you can see which stops actually cost more per day. Pre-booked tickets (Colosseum, Acropolis) are excluded here since that cash already left your account before departure — see Cash timeline.</p>
+    <div style="position:relative;height:320px;margin-bottom:12px">
+      <canvas id="burnChart" role="img" aria-label="Stacked bar chart of daily in-trip spending low and high estimates by day, colored by destination"></canvas>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#52514e">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#e34948"></span>Rome</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#1baf7a"></span>Peloponnese / Crete</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#888780"></span>Athens</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#2a78d6"></span>Transit days</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:0">
+    <table>
+      <thead><tr><th>Day</th><th>Where</th><th class="num">Food</th><th class="num">One-time costs</th><th class="num">Day total</th></tr></thead>
+      <tbody id="burn-rows"></tbody>
+    </table>
+    <p class="muted" style="margin-top:8px">Ranges are low–high estimates per day; "one-time costs" = car rental, gas, airport transfers, Samaria Gorge trail fee (paid cash on-site).</p>
   </div>
 </div>
 </div><!-- /wrap -->
@@ -783,6 +828,111 @@ function buildGantt(){
   document.getElementById('ganttChart').innerHTML = html;
 }
 buildGantt();
+
+const destColorMap = {
+  rome: '#e34948',
+  pelo: '#1baf7a', crete: '#1baf7a',
+  athens: '#888780',
+  transfer_pelo: '#1baf7a', transfer_crete: '#1baf7a', transfer_athens: '#888780',
+  travel_out: '#2a78d6', travel_back: '#2a78d6'
+};
+const destLabelMap = {
+  rome: 'Rome', pelo: 'Peloponnese', crete: 'Crete', athens: 'Athens',
+  transfer_pelo: 'Peloponnese (arrival)', transfer_crete: 'Crete (arrival)',
+  transfer_athens: 'Athens (arrival)', travel_out: 'Transit', travel_back: 'Transit'
+};
+
+fetch('trip_data.json')
+  .then(r => r.json())
+  .then(data => {
+    renderCashChart(data);
+    renderBurnChart(data);
+  })
+  .catch(err => {
+    document.getElementById('tab-cashflow').innerHTML = '<div class="card"><p style="color:#a32d2d;font-size:13px">Could not load trip_data.json — make sure it sits next to this HTML file in the same folder. Run trip_model.py to regenerate it.</p></div>';
+    document.getElementById('tab-burn').innerHTML = '<div class="card"><p style="color:#a32d2d;font-size:13px">Could not load trip_data.json.</p></div>';
+    console.error(err);
+  });
+
+function renderCashChart(data){
+  const pretrip = data.pretrip_timeline;
+  const intrip = data.intrip_burn;
+
+  const labels = [];
+  const lowSeries = [];
+  const highSeries = [];
+
+  pretrip.forEach(m => {
+    labels.push('-' + m.weeks_before + 'wk');
+    lowSeries.push(m.cumulative_low);
+    highSeries.push(m.cumulative_high);
+  });
+  labels.push('Day 0 (depart)');
+  lowSeries.push(pretrip[pretrip.length-1].cumulative_low);
+  highSeries.push(pretrip[pretrip.length-1].cumulative_high);
+
+  intrip.forEach(d => {
+    labels.push('Day ' + d.day);
+    lowSeries.push(d.cumulative_low);
+    highSeries.push(d.cumulative_high);
+  });
+
+  new Chart(document.getElementById('cashChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {label:'Low estimate', data: lowSeries, borderColor:'#185fa5', backgroundColor:'rgba(24,95,165,0.08)', fill:true, tension:0.15, pointRadius:2},
+        {label:'High estimate', data: highSeries, borderColor:'#a32d2d', backgroundColor:'rgba(163,45,45,0.06)', fill:true, tension:0.15, pointRadius:2}
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{title:{display:true,text:'cumulative $ (family of 4)'}, ticks:{callback:v=>'$'+v.toLocaleString()}},
+        x:{ticks:{maxRotation:60,minRotation:60,autoSkip:false,font:{size:9}}}
+      }
+    }
+  });
+
+  const tb = document.getElementById('cashflow-rows');
+  pretrip.forEach(m => {
+    tb.innerHTML += `<tr><td>${m.weeks_before} wks before</td><td class="muted">${m.item}</td><td class="num">$${m.amount_low.toLocaleString()}–$${m.amount_high.toLocaleString()}</td><td class="num" style="font-weight:600">$${m.cumulative_low.toLocaleString()}–$${m.cumulative_high.toLocaleString()}</td></tr>`;
+  });
+}
+
+function renderBurnChart(data){
+  const intrip = data.intrip_burn;
+  const labels = intrip.map(d => 'D'+d.day);
+  const totalsLow = intrip.map(d => d.day_total_low);
+  const totalsHigh = intrip.map(d => d.day_total_high);
+  const colors = intrip.map(d => destColorMap[d.dest]);
+
+  new Chart(document.getElementById('burnChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {label:'High estimate', data: totalsHigh, backgroundColor: colors.map(c=>c+'55'), borderColor: colors, borderWidth:1},
+        {label:'Low estimate', data: totalsLow, backgroundColor: colors, borderColor: colors, borderWidth:1}
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{title:{display:true,text:'$ per day (family of 4)'}, ticks:{callback:v=>'$'+v}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+
+  const tb = document.getElementById('burn-rows');
+  intrip.forEach(d => {
+    tb.innerHTML += `<tr><td>${d.day}</td><td class="muted">${destLabelMap[d.dest]}</td><td class="num">$${d.food_low}–$${d.food_high}</td><td class="num">$${d.lump_low}–$${d.lump_high}</td><td class="num" style="font-weight:600">$${d.day_total_low}–$${d.day_total_high}</td></tr>`;
+  });
+}
 </script>
 </body>
 </html>
