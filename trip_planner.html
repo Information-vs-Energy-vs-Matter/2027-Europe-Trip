@@ -3,53 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italy + Greece Trip Planner 2025</title>
+<title>Italy + Greece Trip Planner 2027</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f1;color:#1a1a18;padding:16px}
-.wrap{max-width:740px;margin:0 auto}
+.wrap{max-width:760px;margin:0 auto}
 h1{font-size:22px;font-weight:700;color:#1a1a18;margin:1.2rem 0 3px}
 .sub{font-size:13px;color:#52514e;margin-bottom:1.25rem}
 .sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888780;margin:1.4rem 0 .6rem}
 .card{background:#fff;border:1px solid #e5e4dd;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
 
-/* MAP */
 #map{width:100%;height:380px;border-radius:12px;border:1px solid #e5e4dd;margin-bottom:.4rem}
 .map-note{font-size:11px;color:#888780;margin-bottom:1.2rem}
 .map-note a{color:#185fa5;text-decoration:none}
 
-/* CUSTOM MARKER */
-.marker-pin{width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
-.marker-num{transform:rotate(45deg);font-size:13px;font-weight:700;color:#fff;line-height:1}
-
-/* CITY PHOTO GRID */
 .city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem}
-.city-card{border-radius:10px;overflow:hidden;border:1px solid #e5e4dd;background:#fff;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.city-card{border-radius:10px;overflow:hidden;border:1px solid #e5e4dd;background:#fff;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative}
 .city-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .city-photo{width:100%;height:88px;object-fit:cover;display:block;background:#ddd}
 .city-info{padding:6px 8px}
 .city-num{font-size:10px;font-weight:700;color:#185fa5;letter-spacing:.04em}
 .city-name{font-size:13px;font-weight:700;color:#1a1a18}
 .city-nights{font-size:11px;color:#52514e}
+.city-tap-hint{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;padding:2px 6px;border-radius:4px}
 
-/* LIGHTBOX */
-.lb{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:10px;cursor:pointer}
+.alt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem}
+.alt-card{border-radius:10px;overflow:hidden;border:1.5px dashed #e34948;background:#fff;cursor:pointer}
+.alt-photo{width:100%;height:80px;object-fit:cover;display:block;background:#ddd}
+.alt-info{padding:6px 8px}
+.alt-label{font-size:9px;font-weight:700;color:#e34948;letter-spacing:.04em}
+.alt-name{font-size:12.5px;font-weight:700;color:#1a1a18}
+
+/* DETAIL OVERLAY - full page deep dive */
+.detail{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#f5f4f1;z-index:9999;overflow-y:auto}
+.detail.open{display:block}
+.detail-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e4dd;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.detail-title{font-size:17px;font-weight:700}
+.detail-close{background:#f1efea;border:1px solid #e5e4dd;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;color:#1a1a18}
+.detail-body{max-width:720px;margin:0 auto;padding:16px}
+.detail-collage{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:280px;border-radius:12px;overflow:hidden;margin-bottom:1rem}
+.detail-collage img{width:100%;height:100%;object-fit:cover}
+.detail-collage img:first-child{grid-row:1/3}
+.detail-sec-title{font-size:14px;font-weight:700;margin:1.25rem 0 .5rem;display:flex;align-items:center;gap:6px}
+.attraction-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #f0efe8}
+.attraction-row:last-child{border-bottom:none}
+.attraction-name{font-size:13px;font-weight:600;color:#1a1a18}
+.attraction-desc{font-size:12px;color:#52514e;margin-top:2px}
+.attraction-cost{font-size:12.5px;font-weight:600;color:#185fa5;white-space:nowrap;text-align:right}
+.deep-note{font-size:12px;color:#52514e;line-height:1.6;margin-bottom:.5rem}
+
+.lb{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:10000;align-items:center;justify-content:center;flex-direction:column;gap:10px;cursor:pointer}
 .lb.open{display:flex}
 .lb-title{color:#fff;font-size:15px;font-weight:700}
 .lb-sub{color:rgba(255,255,255,.6);font-size:12px}
 .lb-collage{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:88%;max-height:70vh}
 .lb-collage img{width:100%;height:155px;object-fit:cover;border-radius:8px}
 
-/* TABS */
-.tabs{display:flex;gap:3px;margin-bottom:.75rem;background:#ebebE6;padding:3px;border-radius:9px}
-.tab{flex:1;padding:7px 2px;border-radius:7px;border:none;background:transparent;font-size:12px;font-weight:600;color:#52514e;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tabs{display:flex;gap:3px;margin-bottom:.75rem;background:#ebebE6;padding:3px;border-radius:9px;flex-wrap:wrap}
+.tab{flex:1;padding:7px 4px;border-radius:7px;border:none;background:transparent;font-size:11.5px;font-weight:600;color:#52514e;cursor:pointer;transition:all .15s;white-space:nowrap;min-width:70px}
 .tab.active{background:#fff;color:#1a1a18;box-shadow:0 1px 4px rgba(0,0,0,.1)}
-
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
-/* TABLES */
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 th{text-align:left;font-size:10px;font-weight:700;color:#888780;padding:5px 8px;border-bottom:1px solid #eee;letter-spacing:.03em;white-space:nowrap}
 td{padding:6px 8px;border-bottom:1px solid #f5f4f0;color:#1a1a18;vertical-align:middle}
@@ -65,18 +81,25 @@ tr:last-child td{border-bottom:none}
 .subtotal{background:#f8f7f4}
 .total-row td{background:#eaf3de;font-weight:700;font-size:13.5px;color:#3b6d11}
 
-/* SCORE BARS */
 .bar-wrap{display:flex;align-items:center;gap:5px}
 .bar{height:8px;border-radius:4px;flex-shrink:0;min-width:4px}
 .bar-v{font-size:11px;color:#52514e;min-width:14px;text-align:right}
 
-/* NOTE */
 .note{font-size:12px;color:#52514e;background:#fdf8ec;border:1px solid #f0d080;border-radius:8px;padding:9px 12px;margin-top:8px;line-height:1.5}
+
+.crew-box{background:#1a1a18;color:#f0efe8;border-radius:10px;padding:14px 16px;font-size:12.5px;line-height:1.75;white-space:pre-wrap;font-family:ui-monospace,monospace;margin-bottom:.75rem;overflow-x:auto}
+.copy-btn{background:#185fa5;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;width:100%}
+.copy-btn:active{background:#0c447c}
+.copy-btn.copied{background:#3b6d11}
 
 @media(max-width:520px){
   .city-grid{grid-template-columns:repeat(2,1fr)}
+  .alt-grid{grid-template-columns:1fr}
   .lb-collage{grid-template-columns:1fr}
   .lb-collage img{height:130px}
+  .detail-collage{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+  .detail-collage img:first-child{grid-row:auto;height:180px}
+  .detail-collage img{height:110px}
   table{font-size:11px}
   th,td{padding:5px 5px}
 }
@@ -87,11 +110,10 @@ tr:last-child td{border-bottom:none}
 <h1>Italy + Greece — 2-week trip planner</h1>
 <p class="sub">RDU → Rome → Peloponnese → Crete → Athens → RDU &nbsp;·&nbsp; 6 people &nbsp;·&nbsp; Mid-June–Late July &nbsp;·&nbsp; $10–15K/family of 4</p>
 
-<!-- LEAFLET SATELLITE MAP -->
 <div class="sec">Satellite route map</div>
 <div id="map"></div>
 <p class="map-note">
-  Real satellite imagery · numbered stops in sequence · dashed lines show flight legs, solid lines show ground travel
+  Real satellite imagery · numbered stops in sequence · dashed = flight, solid = drive
   &nbsp;·&nbsp;
   <a href="https://www.google.com/maps/search/Rome+Italy/@41.9,12.5,8z" target="_blank">Rome ↗</a>
   &nbsp;·&nbsp;
@@ -102,47 +124,106 @@ tr:last-child td{border-bottom:none}
   <a href="https://www.google.com/maps/search/Athens+Greece/@37.98,23.73,11z" target="_blank">Athens ↗</a>
 </p>
 
-<!-- CITY CARDS -->
-<div class="sec">Destinations — tap any photo for collage</div>
+<div class="sec">Destinations — tap for full deep dive</div>
 <div class="city-grid">
-  <div class="city-card" onclick="openLb('rome')">
-    <img class="city-photo" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=300&q=80&auto=format&fit=crop" alt="Rome Colosseum" onerror="this.src='https://images.unsplash.com/photo-1529260830199-42c24126f198?w=300&q=80'">
+  <div class="city-card" onclick="openDetail('rome')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=300&q=80&auto=format&fit=crop" alt="Rome">
+    <div class="city-tap-hint">tap for details</div>
     <div class="city-info"><div class="city-num">STOP 1 · ITALY</div><div class="city-name">Rome</div><div class="city-nights">3 nights · FCO</div></div>
   </div>
-  <div class="city-card" onclick="openLb('pelo')">
-    <img class="city-photo" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop" alt="Peloponnese Greece" onerror="this.src='https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=300&q=80'">
+  <div class="city-card" onclick="openDetail('pelo')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop" alt="Peloponnese">
+    <div class="city-tap-hint">tap for details</div>
     <div class="city-info"><div class="city-num">STOP 2 · GREECE</div><div class="city-name">Peloponnese</div><div class="city-nights">4 nights · drive</div></div>
   </div>
-  <div class="city-card" onclick="openLb('crete')">
-    <img class="city-photo" src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=300&q=80&auto=format&fit=crop" alt="Crete Greece" onerror="this.src='https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=300&q=80'">
+  <div class="city-card" onclick="openDetail('crete')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=300&q=80&auto=format&fit=crop" alt="Crete">
+    <div class="city-tap-hint">tap for details</div>
     <div class="city-info"><div class="city-num">STOP 3 · GREECE</div><div class="city-name">Crete</div><div class="city-nights">5 nights · CHQ</div></div>
   </div>
-  <div class="city-card" onclick="openLb('athens')">
-    <img class="city-photo" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&q=80&auto=format&fit=crop" alt="Athens Acropolis" onerror="this.src='https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=300&q=80'">
+  <div class="city-card" onclick="openDetail('athens')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&q=80&auto=format&fit=crop" alt="Athens">
+    <div class="city-tap-hint">tap for details</div>
     <div class="city-info"><div class="city-num">STOP 4 · GREECE</div><div class="city-name">Athens</div><div class="city-nights">2 nights · ATH</div></div>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
+<div class="sec">Alternative stops — instead of Rome</div>
+<div class="alt-grid">
+  <div class="alt-card" onclick="openDetail('naples')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=300&q=80&auto=format&fit=crop" alt="Naples">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Naples</div></div>
+  </div>
+  <div class="alt-card" onclick="openDetail('amalfi')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=300&q=80&auto=format&fit=crop" alt="Amalfi Coast">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Amalfi Coast</div></div>
+  </div>
+</div>
+<p style="font-size:11px;color:#888780;margin-bottom:1rem">Naples and the Amalfi Coast are different stops — Naples is a big historic city (Pompeii, street food), Amalfi Coast is cliffside towns south of Naples (Positano, Ravello, Path of the Gods hike). Could combine both or pick one.</p>
+
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-title" id="lb-title"></div>
   <div class="lb-collage" id="lb-collage"></div>
   <div class="lb-sub">tap anywhere to close</div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
-  <button class="tab active" onclick="showTab('scores',this)">Scores</button>
+  <button class="tab active" onclick="showTab('crew',this)">Crew input</button>
+  <button class="tab" onclick="showTab('scores',this)">Scores</button>
   <button class="tab" onclick="showTab('costs',this)">Costs</button>
   <button class="tab" onclick="showTab('flights',this)">Flights & drives</button>
   <button class="tab" onclick="showTab('airports',this)">Airports</button>
 </div>
 
-<!-- SCORES -->
-<div class="tab-panel active" id="tab-scores">
+<div class="tab-panel active" id="tab-crew">
+  <div class="card">
+    <p style="font-size:12px;color:#52514e;margin-bottom:10px">Copy this into Signal to gather more input from the crew — everyone can react, edit, or add to it.</p>
+    <div class="crew-box" id="crew-text">OUR TRIP OBJECTIVES — REACT / ADD BELOW
+
+GROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers
+WINDOW: Mid-June to late July
+BUDGET: $10-15K per family of 4 (2 adults + 2 teens)
+
+1. EXPLORATION INDEX
+Places none of us have been. Greece = high (first time). Rome = mixed (1 adult has been).
+
+2. HISTORY & CULTURE INDEX
+Real ruins, castles, archaeological sites — walk through the story, not just photos.
+
+3. OUTDOOR / ACTIVE INDEX
+Hiking, swimming, physical challenge. Teens want to move.
+
+4. MEDITERRANEAN COAST INDEX
+Turquoise water, beaches, cliffs — core pull of the whole trip.
+
+5. FOOD INDEX
+Eat like locals — markets, tavernas, street food. No tourist traps.
+
+6. COST EFFICIENCY INDEX
+Max experience per dollar. Rural Greece beats Rome badly here.
+
+7. TRAVEL SIMPLICITY INDEX
+Minimize painful transit — long waits and rushed city-to-city moves drain the trip.
+
+8. GROUP HARMONY INDEX
+Teens engaged + adults not bored. Mix of challenge and depth.
+
+OPEN QUESTIONS FOR THE GROUP:
+- Rome vs Naples vs Amalfi Coast for the Italy stop?
+- Comfortable with narrow mountain driving in the Peloponnese?
+- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?
+- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?
+- Exact dates — mid-June (cooler, cheaper) vs July (hotter, pricier)?
+
+Reply with your top 3 priorities from the list above, or add anything missing.</div>
+    <button class="copy-btn" onclick="copyCrewText(this)">Copy to clipboard</button>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-scores">
   <div class="card">
     <table>
-      <thead><tr><th style="width:30%">Objective (1–5)</th><th>Rome</th><th>Pelopon.</th><th>Crete</th><th>Naples/Amalfi<br><span style="font-weight:400;font-size:9px">(alt. to Rome)</span></th></tr></thead>
+      <thead><tr><th style="width:26%">Objective (1–5)</th><th>Rome</th><th>Pelopon.</th><th>Crete</th><th>Naples</th><th>Amalfi</th></tr></thead>
       <tbody id="score-rows"></tbody>
     </table>
   </div>
@@ -151,11 +232,10 @@ tr:last-child td{border-bottom:none}
       <thead><tr><th>Destination</th><th class="num">Total /40</th><th>Verdict</th></tr></thead>
       <tbody id="total-rows"></tbody>
     </table>
-    <p class="muted" style="margin-top:8px">8 objectives × 5 max = 40 · scores reflect your priorities: exploration, active/hiking, coast, food, cost, teen engagement</p>
+    <p class="muted" style="margin-top:8px">8 objectives × 5 max = 40</p>
   </div>
 </div>
 
-<!-- COSTS -->
 <div class="tab-panel" id="tab-costs">
   <div class="card">
     <p class="muted" style="margin-bottom:10px">Per family of 4 · estimates · book 8+ weeks ahead for low end · all USD</p>
@@ -167,15 +247,15 @@ tr:last-child td{border-bottom:none}
         <tr><td>Athens↔Crete (ATH↔CHQ, both legs)</td><td class="num">$320</td><td class="num">$520</td><td class="muted">~60 flights/week July</td></tr>
         <tr class="subtotal"><td style="font-weight:700">Flights subtotal</td><td class="num" style="font-weight:700">$4,020</td><td class="num" style="font-weight:700">$6,420</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Airbnb Rome, 3 nts (2-bed, Trastevere)</td><td class="num">$750</td><td class="num">$1,200</td><td class="muted">2 rooms = snoring solved ✓</td></tr>
-        <tr><td>Airbnb Peloponnese, 4 nts (near Nafplio)</td><td class="num">$400</td><td class="num">$720</td><td class="muted">House w/ garden</td></tr>
-        <tr><td>Airbnb Crete, 5 nts (near Chania)</td><td class="num">$600</td><td class="num">$1,000</td><td></td></tr>
+        <tr><td>Airbnb Rome, 3 nts (2-bed Trastevere)</td><td class="num">$750</td><td class="num">$1,200</td><td class="muted">2 rooms = snoring solved ✓</td></tr>
+        <tr><td>Airbnb Peloponnese, 4 nts (Nafplio)</td><td class="num">$400</td><td class="num">$720</td><td class="muted">House w/ garden</td></tr>
+        <tr><td>Airbnb Crete, 5 nts (Chania)</td><td class="num">$600</td><td class="num">$1,000</td><td></td></tr>
         <tr><td>Airbnb Athens, 2 nts (Monastiraki)</td><td class="num">$300</td><td class="num">$500</td><td></td></tr>
         <tr class="subtotal"><td style="font-weight:700">Accommodation subtotal</td><td class="num" style="font-weight:700">$2,050</td><td class="num" style="font-weight:700">$3,420</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
         <tr><td>Car rental ~8 days (Pelopon. + Crete)</td><td class="num">$300</td><td class="num">$500</td><td class="muted">Book ahead — July sells out</td></tr>
         <tr><td>Gas + tolls</td><td class="num">$150</td><td class="num">$200</td><td></td></tr>
-        <tr><td>Airport transfers (trains + taxis, all legs)</td><td class="num">$290</td><td class="num">$400</td><td class="muted">4 airports × 4 people</td></tr>
+        <tr><td>Airport transfers (all legs)</td><td class="num">$290</td><td class="num">$400</td><td class="muted">4 airports × 4 people</td></tr>
         <tr class="subtotal"><td style="font-weight:700">Ground transport subtotal</td><td class="num" style="font-weight:700">$740</td><td class="num" style="font-weight:700">$1,100</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
         <tr><td>Food — Rome (3 days · $80–120/day)</td><td class="num">$240</td><td class="num">$360</td><td class="muted">Most expensive stop</td></tr>
@@ -188,17 +268,16 @@ tr:last-child td{border-bottom:none}
         <tr class="total-row"><td>TOTAL (family of 4)</td><td class="num">$8,220</td><td class="num">$13,100</td><td style="font-size:11px">Within $10–15K target ✓</td></tr>
       </tbody>
     </table>
-    <div class="note">⚠️ Ryanair bag fees: +$30–50/bag/leg. For 2-week luggage × 4 people, budget an extra $300–500 if using budget carriers for intra-Europe legs. Factor this when comparing Ryanair vs Aegean pricing.</div>
+    <div class="note">⚠️ Ryanair bag fees: +$30–50/bag/leg. For 2-week luggage × 4 people, budget an extra $300–500 if using budget carriers for intra-Europe legs.</div>
   </div>
 </div>
 
-<!-- FLIGHTS -->
 <div class="tab-panel" id="tab-flights">
   <div class="card">
     <table>
       <thead><tr><th>#</th><th>Route</th><th class="num">Flight time</th><th class="num">Per person est.</th><th>Weekly freq.</th><th>Airlines</th></tr></thead>
       <tbody>
-        <tr><td><span class="badge b-blue">1</span></td><td>RDU → Rome FCO</td><td class="num">~12 hr<br><span class="muted">1 stop required</span></td><td class="num">$875–1,375<br><span class="muted">roundtrip split</span></td><td class="muted">Daily (via JFK/ATL)</td><td class="muted">Delta, United, Lufthansa, Icelandair</td></tr>
+        <tr><td><span class="badge b-blue">1</span></td><td>RDU → Rome FCO</td><td class="num">~12 hr<br><span class="muted">1 stop req'd</span></td><td class="num">$875–1,375<br><span class="muted">roundtrip split</span></td><td class="muted">Daily (via JFK/ATL)</td><td class="muted">Delta, United, Lufthansa, Icelandair</td></tr>
         <tr><td><span class="badge b-blue">2</span></td><td>Rome FCO → Athens ATH</td><td class="num">2 hr nonstop</td><td class="num">$50–130<br><span class="muted">one-way</span></td><td class="muted">~43×/week (July)</td><td class="muted">Ryanair, ITA, Aegean</td></tr>
         <tr><td><span class="badge b-blue">3</span></td><td>Athens ATH → Chania CHQ</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Aegean (37/wk), Sky Express, Ryanair</td></tr>
         <tr><td><span class="badge b-blue">4</span></td><td>Chania CHQ → Athens ATH</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Same as above</td></tr>
@@ -215,16 +294,17 @@ tr:last-child td{border-bottom:none}
         <tr><td>Nafplio → Mycenae ruins</td><td class="num">30 min</td><td class="muted">Day trip</td></tr>
         <tr><td>Nafplio → Epidaurus theater</td><td class="num">40 min</td><td class="muted">Day trip</td></tr>
         <tr><td>Nafplio → Mani Peninsula</td><td class="num">2.5 hr</td><td class="muted">Narrow mountain roads</td></tr>
-        <tr><td>Chania → Samaria Gorge trailhead</td><td class="num">45 min</td><td class="muted">Start by 6am — intense heat by 10am</td></tr>
-        <tr><td>Chania → Elafonisi Beach</td><td class="num">1.5 hr</td><td class="muted">Scenic winding road; arrive early</td></tr>
+        <tr><td>Chania → Samaria Gorge trailhead</td><td class="num">45 min</td><td class="muted">Start by 6am — heat by 10am</td></tr>
+        <tr><td>Chania → Elafonisi Beach</td><td class="num">1.5 hr</td><td class="muted">Scenic winding road</td></tr>
         <tr><td>Chania → Balos Lagoon</td><td class="num">1 hr + 4km dirt</td><td class="muted">Or €20 boat from Kissamos</td></tr>
-        <tr><td>Chania → Knossos (Minoan palace)</td><td class="num">2.5 hr</td><td class="muted">Worth a full day trip east</td></tr>
+        <tr><td>Chania → Knossos (Minoan palace)</td><td class="num">2.5 hr</td><td class="muted">Full day trip east</td></tr>
+        <tr><td>Naples → Path of the Gods trailhead</td><td class="num">~1 hr</td><td class="muted">Bus or drive to Bomerano</td></tr>
+        <tr><td>Naples → Positano (Amalfi Coast)</td><td class="num">~1.5 hr</td><td class="muted">Ferry is faster than driving in summer</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- AIRPORTS -->
 <div class="tab-panel" id="tab-airports">
   <div class="card">
     <table>
@@ -257,9 +337,17 @@ tr:last-child td{border-bottom:none}
 
 </div><!-- /wrap -->
 
+<!-- FULL PAGE DETAIL OVERLAYS -->
+<div class="detail" id="detail">
+  <div class="detail-header">
+    <div class="detail-title" id="detail-title"></div>
+    <button class="detail-close" onclick="closeDetail()">Close ✕</button>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// TAB SWITCHING
 function showTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
@@ -267,121 +355,222 @@ function showTab(id,btn){
   btn.classList.add('active');
 }
 
-// LIGHTBOX
-const collages={
-  rome:['https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=85','https://images.unsplash.com/photo-1529260830199-42c24126f198?w=600&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600&q=85','https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600&q=85'],
-  pelo:['https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=85'],
-  crete:['https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=600&q=85','https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=600&q=85','https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=600&q=85','https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=85'],
-  athens:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=85','https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=600&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=85','https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=600&q=85']
-};
-const lbTitles={rome:'Rome & Lazio, Italy — 3 nights',pelo:'Peloponnese, Greece — 4 nights',crete:'Crete (Chania region) — 5 nights',athens:'Athens, Greece — 2 nights'};
-function openLb(k){
-  document.getElementById('lb-title').textContent=lbTitles[k];
-  document.getElementById('lb-collage').innerHTML=collages[k].map(u=>`<img src="${u}" loading="lazy" onerror="this.style.display='none'" alt="">`).join('');
-  document.getElementById('lb').classList.add('open');
+function copyCrewText(btn){
+  const text = document.getElementById('crew-text').textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy to clipboard'; btn.classList.remove('copied');}, 2000);
+  });
 }
+
+const collages={
+  rome:['https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=700&q=85','https://images.unsplash.com/photo-1529260830199-42c24126f198?w=500&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=500&q=85','https://images.unsplash.com/photo-1525874684015-58379d421a52?w=500&q=85'],
+  pelo:['https://images.unsplash.com/photo-1533105079780-92b9be482077?w=700&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=500&q=85'],
+  crete:['https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=700&q=85','https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=500&q=85','https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=500&q=85','https://images.unsplash.com/photo-1548574505-5e239809ee19?w=500&q=85'],
+  athens:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=700&q=85','https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=500&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=500&q=85','https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=500&q=85'],
+  naples:['https://images.unsplash.com/photo-1529260830199-42c24126f198?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=500&q=85','https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=85'],
+  amalfi:['https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85']
+};
+
+const details = {
+  rome: {
+    title: 'Rome & Lazio, Italy — 3 nights',
+    subtitle: 'High-energy history + world-class pasta',
+    overview: 'Rome is dense, ancient, and loud in the best way. No city on earth packs this much world-class history into a walkable center. July is peak crowd season — pre-booking everything is mandatory, and early mornings (7-9am) beat the heat and the lines.',
+    attractions: [
+      {name:'Colosseum + Arena Floor', desc:'Skip-the-line entry; night tours available', cost:'$25–35/person'},
+      {name:'Roman Forum + Palatine Hill', desc:'Same ticket as Colosseum — ancient downtown Rome', cost:'included above'},
+      {name:'Vatican Museums + Sistine Chapel', desc:'Book ahead — lines are brutal in July', cost:'$30–35/person'},
+      {name:'Domus Aurea', desc:'Nero\'s buried underground palace, VR tour included — teens love this', cost:'$16–20/person'},
+      {name:'Gladiator school', desc:'Armor, sword techniques, real historical reenactment company', cost:'$60–100/person'},
+      {name:'Pizza or pasta making class in Trastevere', desc:'Hands-on, you eat what you make', cost:'$50–75/person'},
+      {name:'Catacombs of San Callisto', desc:'Underground Christian cemetery on the Appian Way', cost:'$12–15/person'},
+      {name:'Capuchin Crypt', desc:'4,000 monks\' bones arranged as art — weird, unforgettable for teens', cost:'$10/person'},
+      {name:'Janiculum Hill sunset walk', desc:'Best free panoramic view of Rome', cost:'free'}
+    ],
+    food: 'Cacio e Pepe, supplì (fried rice balls, $1–2 street food), Roman pizza al taglio by weight ($4–6), traditional flat-top gelato. Trastevere is cheaper and better than tourist-piazza restaurants.',
+    costNote: 'Rome is the most expensive stop on the trip. Budget $80–120/day for a family of 4 on food alone. Pre-book everything for July — walk-up lines run 2–3 hours.'
+  },
+  pelo: {
+    title: 'Peloponnese, Greece — 4 nights',
+    subtitle: 'Mountains, castles, and dramatically lower costs',
+    overview: 'This is Greece before the crowds — real ruins in real landscape. Base in Nafplio, a Venetian harbor town 2 hours from Athens airport. You\'ll need a rental car; the driving through olive groves and mountain villages is part of the experience.',
+    attractions: [
+      {name:'Palamidi Fortress', desc:'999 steps straight up; 360° view over the Argolic Gulf', cost:'$5–8/person'},
+      {name:'Ancient Mycenae', desc:'Bronze Age citadel, Lion Gate, Tomb of Agamemnon (1350 BC)', cost:'$8–12/person'},
+      {name:'Epidaurus theater', desc:'Perfect acoustics, still hosts performances June–August', cost:'$8–12/person'},
+      {name:'Ancient Corinth + Canal', desc:'Massive engineering feat; bungee jump option on the bridge', cost:'$8–10/person'},
+      {name:'Lousios Gorge hike', desc:'10km through forest and river, monasteries on cliff faces', cost:'free'},
+      {name:'Mani Peninsula', desc:'Wild, remote, stone tower villages, almost no tourists', cost:'free to explore'},
+      {name:'Diros Caves', desc:'Underground lake boat tour through stalagmite chambers', cost:'$15–18/person'},
+      {name:'Voidokilia Beach', desc:'Horseshoe bay, considered one of Greece\'s best, uncrowded', cost:'free'},
+      {name:'Mystras Byzantine ruins', desc:'Ruined city on a mountain, UNESCO site', cost:'$8/person'}
+    ],
+    food: 'Fresh grilled octopus by the harbor ($10–15/plate), horta (wild greens, $4–6), slow-cooked lamb in mountain tavernas, Nemea region wine. This is rural Greece — a fraction of Rome or Athens prices.',
+    costNote: 'The cheapest and highest-value stop on the trip. Taverna dinners run $10–20/person. Car rental for the whole Peloponnese + Crete leg: ~$300–500 total.'
+  },
+  crete: {
+    title: 'Crete (Chania region), Greece — 5 nights',
+    subtitle: 'Epic hiking meets Mediterranean coastline',
+    overview: 'Crete is its own world — mountains that drop straight into turquoise sea, the best hiking in Greece, and food that\'s a level above the mainland. Significantly cheaper than Santorini or Mykonos. Fly into Chania (CHQ) from Athens.',
+    attractions: [
+      {name:'Samaria Gorge hike', desc:'16km downhill through the White Mountains to the Libyan Sea — full day, intense in July heat, start 6am', cost:'$6/person entry'},
+      {name:'Imbros Gorge', desc:'Easier 8km alternative, good warm-up hike for teens', cost:'$4/person'},
+      {name:'Balos Lagoon', desc:'Shallow turquoise lagoon + pink-tinged sandbar — go before noon', cost:'$20/person boat from Kissamos'},
+      {name:'Elafonisi Beach', desc:'Pink-tinged sand, one of Greece\'s most beautiful beaches', cost:'free'},
+      {name:'Chania Old Town', desc:'Venetian harbor, lighthouse, narrow alleys — best wandering in Crete', cost:'free'},
+      {name:'Knossos Minoan palace', desc:'Europe\'s oldest civilization site (1700 BC), near Heraklion', cost:'$18–20/person'},
+      {name:'Aptera ruins', desc:'Minoan/Roman ruins near Chania, far fewer crowds than Knossos', cost:'$6/person'},
+      {name:'Seitan Limania cove', desc:'Dramatic cliff cove, 20 min hike down', cost:'free'}
+    ],
+    food: 'Dakos (barley rusk, tomato, feta — $4–7), bougatsa pastry ($2–3), apaki smoked pork ($10–15/plate), free house raki after every meal. Cretan cuisine is a level above mainland Greece.',
+    costNote: 'Very affordable — taverna dinners $8–15/person. Car rental in Chania: $25–50/day, book ahead for July.'
+  },
+  athens: {
+    title: 'Athens, Greece — 2 nights',
+    subtitle: 'Vibrant departure hub with mythology at every turn',
+    overview: 'Worth 2 full days if you have them, but even 1 night lets you see the Acropolis. More expensive than the Peloponnese or Crete, still cheaper than Rome.',
+    attractions: [
+      {name:'Acropolis + Parthenon', desc:'Arrive at 8am opening to beat the July heat and crowds', cost:'$22–25/person'},
+      {name:'Acropolis Museum', desc:'World-class, air-conditioned — a good midday retreat', cost:'$10–13/person'},
+      {name:'Plaka neighborhood', desc:'Old city below the Acropolis, restaurants and wandering', cost:'free'},
+      {name:'Monastiraki flea market', desc:'Street food, rooftop bars with Acropolis views', cost:'free to browse'},
+      {name:'Changing of the Guard', desc:'Hourly military ceremony at Syntagma Square', cost:'free'}
+    ],
+    food: 'Souvlaki wraps ($2.50–4), spanakopita from bakeries ($2–3), loukoumades fried dough with honey ($3–5). Rooftop dinner with Acropolis view: ~$30–40/person as a splurge.',
+    costNote: 'Budget $20–30/person/day for food — pricier than rural Greece, still well under Rome.'
+  },
+  naples: {
+    title: 'Naples, Italy — alternative to Rome',
+    subtitle: 'Raw, gritty, and unforgettable — Italy\'s most authentic big city',
+    overview: 'Naples doesn\'t have Rome\'s polish, and that\'s the appeal — this is real Italy, chaotic and alive. Home to the best pizza in the world (it was literally invented here) and the gateway to Pompeii, arguably better preserved than the Roman Forum. Naples itself is a city stop; you\'d combine it with the Amalfi Coast or Path of the Gods hike for the outdoor/coastal component.',
+    attractions: [
+      {name:'Pompeii ruins', desc:'Ancient Roman city frozen by Vesuvius eruption — extraordinarily preserved', cost:'$20–22/person'},
+      {name:'Herculaneum', desc:'Smaller, less crowded, better-preserved sister site to Pompeii', cost:'$15/person'},
+      {name:'Naples historic center (UNESCO)', desc:'Underground Naples tour through ancient Greek-Roman tunnels', cost:'$12–15/person'},
+      {name:'Mount Vesuvius hike', desc:'Hike to the crater rim of the volcano that buried Pompeii', cost:'$12/person + transport'},
+      {name:'National Archaeological Museum', desc:'Best collection of artifacts from Pompeii and Herculaneum', cost:'$16/person'},
+      {name:'Pizza in the Spanish Quarter', desc:'The birthplace of pizza — L\'Antica Pizzeria da Michele and others', cost:'$6–10/pizza'}
+    ],
+    food: 'Neapolitan pizza (thin, charred crust — the original), sfogliatella pastry, fried street food (cuoppo), espresso standing at the bar like locals do. Cheaper than Rome across the board.',
+    costNote: 'Lower cost than Rome. Grittier, less touristy in most areas outside the historic center — worth prepping teens that it feels different from postcard Italy.'
+  },
+  amalfi: {
+    title: 'Amalfi Coast, Italy — alternative to Rome',
+    subtitle: 'Cliffside towns, hiking trails, and Mediterranean drama',
+    overview: 'A separate destination from Naples — about an hour south along a coastline of Positano, Amalfi, and Ravello perched on cliffs above the sea. This is the coastal/hiking alternative if the group wants Mediterranean drama over Roman history. Best paired with a Naples arrival since there\'s no direct airport.',
+    attractions: [
+      {name:'Path of the Gods hike', desc:'7.8km cliffside trail Bomerano to Nocelle/Positano — the signature hike, 3hrs, moderate difficulty', cost:'free (or $40-60/person guided)'},
+      {name:'Positano', desc:'The iconic cliffside town — steep streets, boutique shopping, beach', cost:'free to wander'},
+      {name:'Ravello + Villa Cimbrone gardens', desc:'Infinity Terrace views over the whole coast', cost:'$11/person garden entry'},
+      {name:'Amalfi town + Cathedral', desc:'Historic core of the coast, paper mill museum in a cave', cost:'$8/person museum'},
+      {name:'Kayaking in Positano', desc:'1 hour, budget-friendly, great for teens', cost:'$25–35/person'},
+      {name:'Boat tour of the coast', desc:'See the cliffs from the water, avoid the infamous coastal road traffic', cost:'$60–90/person'},
+      {name:'Ferry between towns', desc:'Amalfi ↔ Positano ↔ Salerno — often faster than driving', cost:'$10–20/person/leg'}
+    ],
+    food: 'Fresh seafood, lemon everything (the coast is famous for enormous lemons — granita, limoncello), pasta alla Nerano. More expensive than Naples, still far below Rome prices for similar quality.',
+    costNote: 'Positano and Ravello are pricier tourist towns — Amalfi town and Praiano are more budget-friendly bases. The coastal road (Amalfi Drive) has notorious summer traffic; ferries or early departures help.'
+  }
+};
+
+function openDetail(key){
+  const d = details[key];
+  document.getElementById('detail-title').textContent = d.title;
+  const imgs = collages[key];
+  let attractionsHtml = d.attractions.map(a=>`
+    <div class="attraction-row">
+      <div>
+        <div class="attraction-name">${a.name}</div>
+        <div class="attraction-desc">${a.desc}</div>
+      </div>
+      <div class="attraction-cost">${a.cost}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('detail-body').innerHTML = `
+    <div class="detail-collage">
+      <img src="${imgs[0]}" alt="">
+      <img src="${imgs[1]}" alt="">
+      <img src="${imgs[2]}" alt="">
+    </div>
+    <p style="font-size:13px;color:#52514e;font-weight:600;margin-bottom:4px">${d.subtitle}</p>
+    <p class="deep-note">${d.overview}</p>
+    <div class="detail-sec-title">Attractions & activities</div>
+    <div class="card">${attractionsHtml}</div>
+    <div class="detail-sec-title">Food</div>
+    <p class="deep-note">${d.food}</p>
+    <div class="detail-sec-title">Cost notes</div>
+    <p class="deep-note">${d.costNote}</p>
+  `;
+  document.getElementById('detail').classList.add('open');
+  window.scrollTo(0,0);
+}
+function closeDetail(){ document.getElementById('detail').classList.remove('open'); }
+
 function closeLb(){document.getElementById('lb').classList.remove('open');}
 
-// SCORE TABLE
 const scores=[
-  {obj:'Exploration',rome:3,pelo:5,crete:5,naples:5},
-  {obj:'History & culture',rome:5,pelo:5,crete:4,naples:4},
-  {obj:'Outdoor / hiking',rome:2,pelo:4,crete:5,naples:4},
-  {obj:'Mediterranean coast',rome:2,pelo:4,crete:5,naples:5},
-  {obj:'Food quality',rome:5,pelo:4,crete:5,naples:5},
-  {obj:'Cost efficiency',rome:2,pelo:5,crete:5,naples:3},
-  {obj:'Travel simplicity',rome:3,pelo:3,crete:4,naples:3},
-  {obj:'Teen engagement',rome:3,pelo:5,crete:5,naples:4},
+  {obj:'Exploration',rome:3,pelo:5,crete:5,naples:5,amalfi:5},
+  {obj:'History & culture',rome:5,pelo:5,crete:4,naples:5,amalfi:3},
+  {obj:'Outdoor / hiking',rome:2,pelo:4,crete:5,naples:3,amalfi:5},
+  {obj:'Mediterranean coast',rome:2,pelo:4,crete:5,naples:3,amalfi:5},
+  {obj:'Food quality',rome:5,pelo:4,crete:5,naples:5,amalfi:4},
+  {obj:'Cost efficiency',rome:2,pelo:5,crete:5,naples:4,amalfi:2},
+  {obj:'Travel simplicity',rome:3,pelo:3,crete:4,naples:3,amalfi:2},
+  {obj:'Teen engagement',rome:3,pelo:5,crete:5,naples:4,amalfi:4},
 ];
-function bar(v,c){return`<div class="bar-wrap"><div class="bar" style="width:${Math.round(v/5*64)}px;background:${c}"></div><span class="bar-v">${v}</span></div>`;}
+function bar(v,c){return`<div class="bar-wrap"><div class="bar" style="width:${Math.round(v/5*44)}px;background:${c}"></div><span class="bar-v">${v}</span></div>`;}
 const sb=document.getElementById('score-rows');
-scores.forEach(r=>{sb.innerHTML+=`<tr><td>${r.obj}</td><td>${bar(r.rome,'#e34948')}</td><td>${bar(r.pelo,'#1baf7a')}</td><td>${bar(r.crete,'#1baf7a')}</td><td>${bar(r.naples,'#eda100')}</td></tr>`;});
+scores.forEach(r=>{sb.innerHTML+=`<tr><td>${r.obj}</td><td>${bar(r.rome,'#e34948')}</td><td>${bar(r.pelo,'#1baf7a')}</td><td>${bar(r.crete,'#1baf7a')}</td><td>${bar(r.naples,'#eda100')}</td><td>${bar(r.amalfi,'#eda100')}</td></tr>`;});
 
 const totals=[
   {name:'🏖️ Crete',t:38,badge:'b-green',v:'Best overall match'},
   {name:'🗺️ Peloponnese',t:35,badge:'b-green',v:'Excellent across the board'},
-  {name:'🌊 Naples/Amalfi',t:33,badge:'b-amber',v:'Strong Rome alternative'},
+  {name:'🌊 Amalfi Coast',t:30,badge:'b-amber',v:'Strong coastal/hiking alt to Rome'},
+  {name:'🍕 Naples',t:32,badge:'b-amber',v:'Strong history alt to Rome'},
   {name:'🏛️ Athens',t:27,badge:'b-gray',v:'Great 2-day bookend'},
   {name:'🏟️ Rome',t:25,badge:'b-amber',v:'History 5/5 — crowds + cost drag it'},
 ];
 const tb=document.getElementById('total-rows');
 totals.forEach(r=>{tb.innerHTML+=`<tr><td>${r.name}</td><td class="num" style="font-weight:700">${r.t}/40</td><td><span class="badge ${r.badge}">${r.v}</span></td></tr>`;});
 
-// LEAFLET SATELLITE MAP
 const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([38.5, 18], 5);
-
-// Esri World Imagery (satellite, free, no key)
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  attribution:'Esri, Maxar, Earthstar Geographics',
-  maxZoom:18
+  attribution:'Esri, Maxar, Earthstar Geographics', maxZoom:18
 }).addTo(map);
-
-// Esri labels overlay so cities are visible on satellite
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
-  attribution:'',
-  maxZoom:18,
-  opacity:0.7
+  attribution:'', maxZoom:18, opacity:0.7
 }).addTo(map);
 
-// Stop coordinates
 const stops = [
   {num:1, lat:41.9028, lng:12.4964, label:'Rome, Italy', sub:'3 nights · FCO', color:'#2a78d6'},
   {num:2, lat:37.5679, lng:22.8027, label:'Peloponnese (Nafplio)', sub:'4 nights · drive from ATH', color:'#1baf7a'},
   {num:3, lat:35.5138, lng:24.0180, label:'Crete (Chania)', sub:'5 nights · CHQ', color:'#1baf7a'},
   {num:4, lat:37.9838, lng:23.7275, label:'Athens', sub:'2 nights · ATH', color:'#8b5cf6'},
 ];
-
-// Alternative: Naples
 const altStops = [
-  {lat:40.8518, lng:14.2681, label:'Naples/Amalfi', sub:'(alternative to Rome)', color:'#e34948'},
+  {lat:40.8518, lng:14.2681, label:'Naples', sub:'alternative — city + Pompeii', color:'#e34948'},
+  {lat:40.6340, lng:14.6027, label:'Amalfi Coast (Positano)', sub:'alternative — coast + hiking', color:'#e34948'},
 ];
 
-// Draw flight route lines (dashed = air)
-const flightCoords = [
-  [41.9028, 12.4964], // Rome
-  [37.9838, 23.7275], // Athens
-  [35.5138, 24.0180], // Chania
-  [37.9838, 23.7275], // Athens (return)
-];
+const flightCoords = [[41.9028,12.4964],[37.9838,23.7275],[35.5138,24.0180],[37.9838,23.7275]];
 L.polyline(flightCoords, {color:'#2a78d6', weight:2, dashArray:'8 5', opacity:0.8}).addTo(map);
+L.polyline([[37.9838,23.7275],[37.5679,22.8027]], {color:'#1baf7a', weight:2.5, opacity:0.9}).addTo(map);
 
-// Drive line: Athens → Nafplio (solid)
-L.polyline([[37.9838, 23.7275],[37.5679, 22.8027]], {color:'#1baf7a', weight:2.5, opacity:0.9}).addTo(map);
-
-// Custom numbered marker icon
 function makeIcon(num, color) {
-  return L.divIcon({
-    className: '',
-    html: `<div style="background:${color};width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:13px;font-weight:700;color:#fff">${num}</div>`,
-    iconSize:[30,30],
-    iconAnchor:[15,15],
-    popupAnchor:[0,-18]
-  });
+  return L.divIcon({className:'', html:`<div style="background:${color};width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:13px;font-weight:700;color:#fff">${num}</div>`, iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-18]});
 }
-
-function makeAltIcon(letter, color) {
-  return L.divIcon({
-    className: '',
-    html: `<div style="background:#fff;width:26px;height:26px;border-radius:50%;border:2.5px solid ${color};box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;color:${color}">A</div>`,
-    iconSize:[26,26],
-    iconAnchor:[13,13],
-    popupAnchor:[0,-16]
-  });
+function makeAltIcon(color) {
+  return L.divIcon({className:'', html:`<div style="background:#fff;width:26px;height:26px;border-radius:50%;border:2.5px solid ${color};box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;color:${color}">A</div>`, iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-16]});
 }
-
 stops.forEach(s=>{
-  L.marker([s.lat,s.lng], {icon:makeIcon(s.num,s.color)})
-    .addTo(map)
-    .bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#52514e">${s.sub}</span>`);
+  L.marker([s.lat,s.lng], {icon:makeIcon(s.num,s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#52514e">${s.sub}</span>`);
 });
-
 altStops.forEach(s=>{
-  L.marker([s.lat,s.lng], {icon:makeAltIcon('A',s.color)})
-    .addTo(map)
-    .bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#e34948">${s.sub}</span>`);
+  L.marker([s.lat,s.lng], {icon:makeAltIcon(s.color)}).addTo(map).bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#e34948">${s.sub}</span>`);
 });
 
-// Legend
 const legend = L.control({position:'bottomleft'});
 legend.onAdd = function(){
   const d = L.DomUtil.create('div','');
