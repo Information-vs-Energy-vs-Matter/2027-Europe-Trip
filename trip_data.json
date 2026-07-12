@@ -1,0 +1,691 @@
+{
+  "party_size": 4,
+  "pretrip_timeline": [
+    {
+      "day_offset": -70,
+      "weeks_before": 10,
+      "item": "Transatlantic flights (RDU <-> Rome / Athens)",
+      "amount_low": 3500,
+      "amount_high": 5500,
+      "cumulative_low": 3500.0,
+      "cumulative_high": 5500.0,
+      "source": "flights_transatlantic"
+    },
+    {
+      "day_offset": -56,
+      "weeks_before": 8,
+      "item": "Intra-Europe flights (Rome-Athens, Athens<->Crete)",
+      "amount_low": 520,
+      "amount_high": 920,
+      "cumulative_low": 4020.0,
+      "cumulative_high": 6420.0,
+      "source": "flights_intra_europe"
+    },
+    {
+      "day_offset": -42,
+      "weeks_before": 6,
+      "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
+      "amount_low": 2050,
+      "amount_high": 3420,
+      "cumulative_low": 6070.0,
+      "cumulative_high": 9840.0,
+      "source": "accommodation"
+    },
+    {
+      "day_offset": -21,
+      "weeks_before": 3,
+      "item": "Pre-bookable activities & entry tickets (Colosseum, Vatican, etc.)",
+      "amount_low": 600,
+      "amount_high": 900,
+      "cumulative_low": 6670.0,
+      "cumulative_high": 10740.0,
+      "source": "rome_activities"
+    }
+  ],
+  "intrip_burn": [
+    {
+      "day": 1,
+      "label": "Depart RDU (overnight flight)",
+      "dest": "travel_out",
+      "food_low": 30.0,
+      "food_high": 40,
+      "lump_low": 60,
+      "lump_high": 90,
+      "lump_items": [
+        "Airport transfer (arrival Rome)"
+      ],
+      "day_total_low": 90.0,
+      "day_total_high": 130,
+      "cumulative_low": 6760.0,
+      "cumulative_high": 10870.0
+    },
+    {
+      "day": 2,
+      "label": "Arrive Rome, settle in",
+      "dest": "rome",
+      "food_low": 80,
+      "food_high": 120,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 80,
+      "day_total_high": 120,
+      "cumulative_low": 6840.0,
+      "cumulative_high": 10990.0
+    },
+    {
+      "day": 3,
+      "label": "Rome full day",
+      "dest": "rome",
+      "food_low": 80,
+      "food_high": 120,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 80,
+      "day_total_high": 120,
+      "cumulative_low": 6920.0,
+      "cumulative_high": 11110.0
+    },
+    {
+      "day": 4,
+      "label": "Rome full day (last night)",
+      "dest": "rome",
+      "food_low": 80,
+      "food_high": 120,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 80,
+      "day_total_high": 120,
+      "cumulative_low": 7000.0,
+      "cumulative_high": 11230.0
+    },
+    {
+      "day": 5,
+      "label": "Rome -> Peloponnese (flight + drive)",
+      "dest": "transfer_pelo",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 435,
+      "lump_high": 690,
+      "lump_items": [
+        "Car rental (full charge at Peloponnese pickup)",
+        "Gas + tolls (Peloponnese driving)",
+        "Airport transfer (Peloponnese leg)"
+      ],
+      "day_total_low": 485.0,
+      "day_total_high": 770,
+      "cumulative_low": 7485.0,
+      "cumulative_high": 12000.0
+    },
+    {
+      "day": 6,
+      "label": "Peloponnese full day",
+      "dest": "pelo",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 7535.0,
+      "cumulative_high": 12080.0
+    },
+    {
+      "day": 7,
+      "label": "Peloponnese full day",
+      "dest": "pelo",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 7585.0,
+      "cumulative_high": 12160.0
+    },
+    {
+      "day": 8,
+      "label": "Peloponnese full day (last night)",
+      "dest": "pelo",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 7635.0,
+      "cumulative_high": 12240.0
+    },
+    {
+      "day": 9,
+      "label": "Peloponnese -> Crete (drive + flight)",
+      "dest": "transfer_crete",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 60,
+      "lump_high": 90,
+      "lump_items": [
+        "Airport transfer (Crete leg)"
+      ],
+      "day_total_low": 110.0,
+      "day_total_high": 170,
+      "cumulative_low": 7745.0,
+      "cumulative_high": 12410.0
+    },
+    {
+      "day": 10,
+      "label": "Crete - Samaria Gorge (5am start)",
+      "dest": "crete",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 95,
+      "lump_high": 124,
+      "lump_items": [
+        "Gas + tolls (Crete driving)",
+        "Samaria Gorge entry fee (cash, on trail)"
+      ],
+      "day_total_low": 145.0,
+      "day_total_high": 204,
+      "cumulative_low": 7890.0,
+      "cumulative_high": 12614.0
+    },
+    {
+      "day": 11,
+      "label": "Crete full day",
+      "dest": "crete",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 7940.0,
+      "cumulative_high": 12694.0
+    },
+    {
+      "day": 12,
+      "label": "Crete full day",
+      "dest": "crete",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 7990.0,
+      "cumulative_high": 12774.0
+    },
+    {
+      "day": 13,
+      "label": "Crete full day (last night)",
+      "dest": "crete",
+      "food_low": 50.0,
+      "food_high": 80,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 50.0,
+      "day_total_high": 80,
+      "cumulative_low": 8040.0,
+      "cumulative_high": 12854.0
+    },
+    {
+      "day": 14,
+      "label": "Crete -> Athens (flight)",
+      "dest": "transfer_athens",
+      "food_low": 60,
+      "food_high": 90.0,
+      "lump_low": 60,
+      "lump_high": 90,
+      "lump_items": [
+        "Airport transfer (Athens leg)"
+      ],
+      "day_total_low": 120,
+      "day_total_high": 180.0,
+      "cumulative_low": 8160.0,
+      "cumulative_high": 13034.0
+    },
+    {
+      "day": 15,
+      "label": "Athens full day (last night)",
+      "dest": "athens",
+      "food_low": 60,
+      "food_high": 90.0,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 60,
+      "day_total_high": 90.0,
+      "cumulative_low": 8220.0,
+      "cumulative_high": 13124.0
+    },
+    {
+      "day": 16,
+      "label": "Athens -> depart RDU (overnight flight)",
+      "dest": "travel_back",
+      "food_low": 30.0,
+      "food_high": 40,
+      "lump_low": 0,
+      "lump_high": 0,
+      "lump_items": [],
+      "day_total_low": 30.0,
+      "day_total_high": 40,
+      "cumulative_low": 8250.0,
+      "cumulative_high": 13164.0
+    }
+  ],
+  "grand_total_low": 8250.0,
+  "grand_total_high": 13164.0,
+  "family_of_2": {
+    "pretrip_timeline": [
+      {
+        "day_offset": -70,
+        "weeks_before": 10,
+        "item": "Transatlantic flights (RDU <-> Rome / Athens)",
+        "amount_low": 1750.0,
+        "amount_high": 2750.0,
+        "cumulative_low": 1750.0,
+        "cumulative_high": 2750.0,
+        "source": "flights_transatlantic"
+      },
+      {
+        "day_offset": -56,
+        "weeks_before": 8,
+        "item": "Intra-Europe flights (Rome-Athens, Athens<->Crete)",
+        "amount_low": 260.0,
+        "amount_high": 460.0,
+        "cumulative_low": 2010.0,
+        "cumulative_high": 3210.0,
+        "source": "flights_intra_europe"
+      },
+      {
+        "day_offset": -42,
+        "weeks_before": 6,
+        "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
+        "amount_low": 1332.5,
+        "amount_high": 2223.0,
+        "cumulative_low": 3342.5,
+        "cumulative_high": 5433.0,
+        "source": "accommodation"
+      },
+      {
+        "day_offset": -21,
+        "weeks_before": 3,
+        "item": "Pre-bookable activities & entry tickets (Colosseum, Vatican, etc.)",
+        "amount_low": 300.0,
+        "amount_high": 450.0,
+        "cumulative_low": 3642.5,
+        "cumulative_high": 5883.0,
+        "source": "rome_activities"
+      }
+    ],
+    "intrip_burn": [
+      {
+        "day": 1,
+        "label": "Depart RDU (overnight flight)",
+        "dest": "travel_out",
+        "food_low": 15.0,
+        "food_high": 20.0,
+        "lump_low": 30.0,
+        "lump_high": 45.0,
+        "lump_items": [
+          "Airport transfer (arrival Rome)"
+        ],
+        "day_total_low": 45.0,
+        "day_total_high": 65.0,
+        "cumulative_low": 3687.5,
+        "cumulative_high": 5948.0
+      },
+      {
+        "day": 2,
+        "label": "Arrive Rome, settle in",
+        "dest": "rome",
+        "food_low": 40.0,
+        "food_high": 60.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 40.0,
+        "day_total_high": 60.0,
+        "cumulative_low": 3727.5,
+        "cumulative_high": 6008.0
+      },
+      {
+        "day": 3,
+        "label": "Rome full day",
+        "dest": "rome",
+        "food_low": 40.0,
+        "food_high": 60.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 40.0,
+        "day_total_high": 60.0,
+        "cumulative_low": 3767.5,
+        "cumulative_high": 6068.0
+      },
+      {
+        "day": 4,
+        "label": "Rome full day (last night)",
+        "dest": "rome",
+        "food_low": 40.0,
+        "food_high": 60.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 40.0,
+        "day_total_high": 60.0,
+        "cumulative_low": 3807.5,
+        "cumulative_high": 6128.0
+      },
+      {
+        "day": 5,
+        "label": "Rome -> Peloponnese (flight + drive)",
+        "dest": "transfer_pelo",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 304.5,
+        "lump_high": 483.0,
+        "lump_items": [
+          "Car rental (full charge at Peloponnese pickup)",
+          "Gas + tolls (Peloponnese driving)",
+          "Airport transfer (Peloponnese leg)"
+        ],
+        "day_total_low": 329.5,
+        "day_total_high": 523.0,
+        "cumulative_low": 4137.0,
+        "cumulative_high": 6651.0
+      },
+      {
+        "day": 6,
+        "label": "Peloponnese full day",
+        "dest": "pelo",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4162.0,
+        "cumulative_high": 6691.0
+      },
+      {
+        "day": 7,
+        "label": "Peloponnese full day",
+        "dest": "pelo",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4187.0,
+        "cumulative_high": 6731.0
+      },
+      {
+        "day": 8,
+        "label": "Peloponnese full day (last night)",
+        "dest": "pelo",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4212.0,
+        "cumulative_high": 6771.0
+      },
+      {
+        "day": 9,
+        "label": "Peloponnese -> Crete (drive + flight)",
+        "dest": "transfer_crete",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 30.0,
+        "lump_high": 45.0,
+        "lump_items": [
+          "Airport transfer (Crete leg)"
+        ],
+        "day_total_low": 55.0,
+        "day_total_high": 85.0,
+        "cumulative_low": 4267.0,
+        "cumulative_high": 6856.0
+      },
+      {
+        "day": 10,
+        "label": "Crete - Samaria Gorge (5am start)",
+        "dest": "crete",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 47.5,
+        "lump_high": 62.0,
+        "lump_items": [
+          "Gas + tolls (Crete driving)",
+          "Samaria Gorge entry fee (cash, on trail)"
+        ],
+        "day_total_low": 72.5,
+        "day_total_high": 102.0,
+        "cumulative_low": 4339.5,
+        "cumulative_high": 6958.0
+      },
+      {
+        "day": 11,
+        "label": "Crete full day",
+        "dest": "crete",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4364.5,
+        "cumulative_high": 6998.0
+      },
+      {
+        "day": 12,
+        "label": "Crete full day",
+        "dest": "crete",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4389.5,
+        "cumulative_high": 7038.0
+      },
+      {
+        "day": 13,
+        "label": "Crete full day (last night)",
+        "dest": "crete",
+        "food_low": 25.0,
+        "food_high": 40.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 25.0,
+        "day_total_high": 40.0,
+        "cumulative_low": 4414.5,
+        "cumulative_high": 7078.0
+      },
+      {
+        "day": 14,
+        "label": "Crete -> Athens (flight)",
+        "dest": "transfer_athens",
+        "food_low": 30.0,
+        "food_high": 45.0,
+        "lump_low": 30.0,
+        "lump_high": 45.0,
+        "lump_items": [
+          "Airport transfer (Athens leg)"
+        ],
+        "day_total_low": 60.0,
+        "day_total_high": 90.0,
+        "cumulative_low": 4474.5,
+        "cumulative_high": 7168.0
+      },
+      {
+        "day": 15,
+        "label": "Athens full day (last night)",
+        "dest": "athens",
+        "food_low": 30.0,
+        "food_high": 45.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 30.0,
+        "day_total_high": 45.0,
+        "cumulative_low": 4504.5,
+        "cumulative_high": 7213.0
+      },
+      {
+        "day": 16,
+        "label": "Athens -> depart RDU (overnight flight)",
+        "dest": "travel_back",
+        "food_low": 15.0,
+        "food_high": 20.0,
+        "lump_low": 0.0,
+        "lump_high": 0.0,
+        "lump_items": [],
+        "day_total_low": 15.0,
+        "day_total_high": 20.0,
+        "cumulative_low": 4519.5,
+        "cumulative_high": 7233.0
+      }
+    ],
+    "grand_total_low": 4519.5,
+    "grand_total_high": 7233.0
+  },
+  "sources": {
+    "flights_transatlantic": [
+      {
+        "url": "https://www.expedia.com/lp/flights/rdu/fco/raleigh-to-rome",
+        "note": "RDU-FCO one-way/RT fare ranges"
+      },
+      {
+        "url": "https://www.kayak.com/flight-routes/Raleigh-Durham-RDU/Rome-ROM",
+        "note": "RDU-FCO average fares, layover cities"
+      },
+      {
+        "url": "https://www.skyscanner.com/routes/rdu/fco/raleigh-durham-to-rome-fiumicino.html",
+        "note": "RDU-FCO lowest one-way fare"
+      },
+      {
+        "url": "https://www.expedia.com/lp/flights/rdu/ath/raleigh-to-athens",
+        "note": "RDU-ATH fare ranges, cheapest month"
+      }
+    ],
+    "flights_intra_europe": [
+      {
+        "url": "https://www.expedia.com/lp/flights/fco/ath/rome-to-athens",
+        "note": "FCO-ATH fare range, weekly frequency"
+      },
+      {
+        "url": "https://www.kayak.com/flight-routes/Rome-Fiumicino-FCO/Athens-Eleftherios-V--ATH",
+        "note": "FCO-ATH lowest fares"
+      },
+      {
+        "url": "https://www.skyscanner.net/routes/ath/chq/athens-international-to-crete-chania.html",
+        "note": "ATH-CHQ one-way fares by date"
+      },
+      {
+        "url": "https://www.omio.com/flights/athens/crete",
+        "note": "ATH-Crete airline options and frequency"
+      }
+    ],
+    "airport_data": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Athens_International_Airport",
+        "note": "ATH annual passengers, terminal layout"
+      },
+      {
+        "url": "https://www.airportsdata.net/airport-FCO/",
+        "note": "FCO terminal count, annual traffic"
+      },
+      {
+        "url": "https://www.chq-airport.gr/en",
+        "note": "CHQ official site, EES processing notes"
+      },
+      {
+        "url": "https://flightqueue.com/airport/RDU",
+        "note": "RDU security wait time estimates"
+      },
+      {
+        "url": "https://airportmaphq.com/rome-fiumicino-airport-security-wait-times.html",
+        "note": "FCO peak vs off-peak security wait"
+      }
+    ],
+    "rome_activities": [
+      {
+        "url": "https://mamalovesrome.com/things-to-do-in-rome-with-kids-complete-guide/",
+        "note": "Colosseum/Domus Aurea/gladiator school pricing"
+      },
+      {
+        "url": "https://www.adventuroustastes.com/rome-with-teenagers/",
+        "note": "Teen-specific Rome activities and framing"
+      }
+    ],
+    "peloponnese_activities": [
+      {
+        "url": "https://www.tripadvisor.com/Attractions-g189483-Activities-Peloponnese.html",
+        "note": "Mycenae, Epidaurus, Palamidi entry costs"
+      },
+      {
+        "url": "https://www.discovergreece.com/peloponnese",
+        "note": "Regional overview, UNESCO sites, hiking trails"
+      }
+    ],
+    "crete_activities": [
+      {
+        "url": "https://www.easyjet.com/en/cheap-flights/greece/crete",
+        "note": "Samaria Gorge, Balos, Elafonisi overview"
+      },
+      {
+        "url": "https://www.cretanbeaches.com/en/sea-tourism/west-crete-beaches/elafonissi-beach",
+        "note": "Elafonisi access and cost detail"
+      }
+    ],
+    "naples_amalfi_activities": [
+      {
+        "url": "https://www.earthtrekkers.com/best-things-to-do-on-the-amalfi-coast/",
+        "note": "Path of the Gods, Ravello, Positano cost detail"
+      },
+      {
+        "url": "https://www.earthtrekkers.com/path-of-the-gods-hike/",
+        "note": "Path of the Gods logistics and difficulty"
+      }
+    ],
+    "riviera_activities": [
+      {
+        "url": "https://www.getyourguide.com/explorer/nice-ttd314/free-things-to-do-in-nice/",
+        "note": "Nice/Eze/Monaco free and paid activities"
+      },
+      {
+        "url": "https://www.arbaspaa.com/info-cinque-terre-2/best-airport-to-fly-into-for-cinque-terre",
+        "note": "Genoa/Pisa gateway options for Cinque Terre"
+      },
+      {
+        "url": "https://shippedaway.com/vernazza-monterosso-hike-cinque-terre/",
+        "note": "Cinque Terre trail fees and Cinque Terre Card pricing"
+      }
+    ],
+    "accommodation": [
+      {
+        "url": "https://www.airbnb.com",
+        "note": "General market-rate estimate for 2-3BR apartments in each region, no specific listing cited -- treat as rough estimate pending real search"
+      }
+    ]
+  }
+}
