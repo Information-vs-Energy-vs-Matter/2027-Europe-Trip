@@ -158,8 +158,16 @@ tr:last-child td{border-bottom:none}
     <img class="alt-photo" src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=300&q=80&auto=format&fit=crop" alt="Amalfi Coast">
     <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Amalfi Coast</div></div>
   </div>
+  <div class="alt-card" onclick="openDetail('frenchriviera')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=300&q=80&auto=format&fit=crop" alt="French Riviera">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · FRANCE</div><div class="alt-name">French Riviera</div></div>
+  </div>
+  <div class="alt-card" onclick="openDetail('italianriviera')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=300&q=80&auto=format&fit=crop" alt="Italian Riviera">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Italian Riviera</div></div>
+  </div>
 </div>
-<p style="font-size:11px;color:#888780;margin-bottom:1rem">Naples and the Amalfi Coast are different stops — Naples is a big historic city (Pompeii, street food), Amalfi Coast is cliffside towns south of Naples (Positano, Ravello, Path of the Gods hike). Could combine both or pick one.</p>
+<p style="font-size:11px;color:#888780;margin-bottom:1rem">Four distinct alternatives to Rome. Naples = big historic city + Pompeii. Amalfi Coast = cliffside towns south of Naples. French Riviera = Nice/Monaco/Eze, fly into Nice (NCE) — reroutes the trip through France instead of straight to Greece. Italian Riviera = Cinque Terre hiking villages, fly into Genoa (GOA) or Pisa (PSA).</p>
 
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-title" id="lb-title"></div>
@@ -223,7 +231,7 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
 <div class="tab-panel" id="tab-scores">
   <div class="card">
     <table>
-      <thead><tr><th style="width:26%">Objective (1–5)</th><th>Rome</th><th>Pelopon.</th><th>Crete</th><th>Naples</th><th>Amalfi</th></tr></thead>
+      <thead><tr><th style="width:18%">Objective (1–5)</th><th>Rome</th><th>Pelopon.</th><th>Crete</th><th>Naples</th><th>Amalfi</th><th>Fr.Riv.</th><th>It.Riv.</th></tr></thead>
       <tbody id="score-rows"></tbody>
     </table>
   </div>
@@ -282,6 +290,9 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
         <tr><td><span class="badge b-blue">3</span></td><td>Athens ATH → Chania CHQ</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Aegean (37/wk), Sky Express, Ryanair</td></tr>
         <tr><td><span class="badge b-blue">4</span></td><td>Chania CHQ → Athens ATH</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Same as above</td></tr>
         <tr><td><span class="badge b-blue">5</span></td><td>Athens ATH → RDU</td><td class="num">~16 hr<br><span class="muted">1–2 stops</span></td><td class="num">$380–900<br><span class="muted">one-way</span></td><td class="muted">Daily via JFK/CDG</td><td class="muted">Delta, BA, Air France, Lufthansa</td></tr>
+        <tr><td><span class="badge b-gray">alt</span></td><td>RDU → Nice NCE (French Riviera)</td><td class="num">~13–15 hr<br><span class="muted">1–2 stops</span></td><td class="num">$900–1,500<br><span class="muted">roundtrip split</span></td><td class="muted">Via Paris/Amsterdam/London</td><td class="muted">Air France, Delta, KLM</td></tr>
+        <tr><td><span class="badge b-gray">alt</span></td><td>RDU → Genoa GOA (Italian Riviera)</td><td class="num">~14–16 hr<br><span class="muted">2 stops</span></td><td class="num">$1,000–1,600<br><span class="muted">roundtrip split</span></td><td class="muted">No direct — via Rome/Milan/Paris</td><td class="muted">ITA, Lufthansa, Air France</td></tr>
+        <tr><td><span class="badge b-gray">alt</span></td><td>RDU → Pisa PSA (Italian Riviera)</td><td class="num">~14–16 hr<br><span class="muted">2 stops</span></td><td class="num">$950–1,550<br><span class="muted">roundtrip split</span></td><td class="muted">No direct — via Rome/Frankfurt</td><td class="muted">ITA, Lufthansa, Ryanair last leg</td></tr>
       </tbody>
     </table>
   </div>
@@ -300,6 +311,10 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
         <tr><td>Chania → Knossos (Minoan palace)</td><td class="num">2.5 hr</td><td class="muted">Full day trip east</td></tr>
         <tr><td>Naples → Path of the Gods trailhead</td><td class="num">~1 hr</td><td class="muted">Bus or drive to Bomerano</td></tr>
         <tr><td>Naples → Positano (Amalfi Coast)</td><td class="num">~1.5 hr</td><td class="muted">Ferry is faster than driving in summer</td></tr>
+        <tr><td>Nice airport → Eze village</td><td class="num">30 min</td><td class="muted">Bus #82 or #112, scenic corniche road</td></tr>
+        <tr><td>Nice → Monaco</td><td class="num">25–35 min</td><td class="muted">Train, frequent departures</td></tr>
+        <tr><td>Genoa airport → Cinque Terre (La Spezia)</td><td class="num">~1.75 hr</td><td class="muted">Train via Genova Principe</td></tr>
+        <tr><td>Pisa airport → Cinque Terre</td><td class="num">~1.25 hr</td><td class="muted">Train via La Spezia, closer than Genoa</td></tr>
       </tbody>
     </table>
   </div>
@@ -370,7 +385,9 @@ const collages={
   crete:['https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=700&q=85','https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=500&q=85','https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=500&q=85','https://images.unsplash.com/photo-1548574505-5e239809ee19?w=500&q=85'],
   athens:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=700&q=85','https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=500&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=500&q=85','https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=500&q=85'],
   naples:['https://images.unsplash.com/photo-1529260830199-42c24126f198?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=500&q=85','https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=85'],
-  amalfi:['https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85']
+  amalfi:['https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85'],
+  frenchriviera:['https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=700&q=85','https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=500&q=85','https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=500&q=85','https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=500&q=85'],
+  italianriviera:['https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=700&q=85','https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=500&q=85','https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=500&q=85','https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&q=85']
 };
 
 const details = {
@@ -471,6 +488,38 @@ const details = {
     ],
     food: 'Fresh seafood, lemon everything (the coast is famous for enormous lemons — granita, limoncello), pasta alla Nerano. More expensive than Naples, still far below Rome prices for similar quality.',
     costNote: 'Positano and Ravello are pricier tourist towns — Amalfi town and Praiano are more budget-friendly bases. The coastal road (Amalfi Drive) has notorious summer traffic; ferries or early departures help.'
+  },
+  frenchriviera: {
+    title: 'French Riviera (Cote d\'Azur), France — alternative to Rome',
+    subtitle: 'Glamour, hilltop villages, and Mediterranean coastline',
+    overview: 'A bigger routing change than Naples/Amalfi — fly into Nice (NCE) instead of Rome, rerouting the whole first leg through France instead of Italy. Base in Nice; the whole coast (Monaco, Eze, Villefranche, Antibes) is reachable by train or short drives. Less ancient-history-dense than Rome, more coastal village hopping and hiking.',
+    attractions: [
+      {name:'Eze hilltop village', desc:'Medieval streets, botanical garden with panoramic coast views — go at opening to beat tour buses', cost:'$7/person garden'},
+      {name:'Monaco day trip', desc:'Royal Palace, Monte Carlo Casino exterior, Oceanographic Museum (great for teens)', cost:'$18–20/person museum'},
+      {name:'Nice to Villefranche coastal hike', desc:'Free cliffside path, ends at a golden sand beach — pack a picnic', cost:'free'},
+      {name:'Sentier Nietzsche (Eze to sea)', desc:'Steep 1-hour hike down through pine forest from Eze village to the coast', cost:'free'},
+      {name:'Nice Old Town + flower market', desc:'Vieux Nice, Cours Saleya market, Castle Hill viewpoint', cost:'free to wander'},
+      {name:'Antibes ramparts + old port', desc:'Less glitzy than Cannes, laid-back vibe, F. Scott Fitzgerald history', cost:'free to wander'},
+      {name:'Gorges du Loup + waterfall', desc:'4km deep gorge near Grasse — aquatic hiking option for teens 8+', cost:'$30–50/person guided'}
+    ],
+    food: 'Socca (chickpea flatbread, Nice specialty), pan bagnat, salade nicoise, bouillabaisse, French pastries. On par with Mediterranean vacation pricing generally.',
+    costNote: 'Priciest of the four Italy alternatives — France runs higher than Italy or Greece for food and lodging. Also the biggest logistical shift: reroutes the entire Europe entry through Nice instead of Rome.'
+  },
+  italianriviera: {
+    title: 'Italian Riviera (Cinque Terre), Italy — alternative to Rome',
+    subtitle: 'Five cliffside fishing villages connected by coastal hiking trails',
+    overview: 'Fly into Genoa (GOA) or Pisa (PSA) — no direct international flights from the US, so this connects through another European city first. Cinque Terre is a national park: five pastel villages (Riomaggiore, Manarola, Corniglia, Vernazza, Monterosso) linked by hiking trails and a local train. The most hiking-forward of all the Italy alternatives — genuinely rivals Crete for trail-based days.',
+    attractions: [
+      {name:'Monterosso to Vernazza hike', desc:'3.6km, ~2hrs, moderate difficulty — most scenic and most crowded section', cost:'$8/person trail fee'},
+      {name:'Vernazza to Corniglia hike', desc:'3.2km, ~2.5hrs, slightly easier, forested sections', cost:'included in Cinque Terre Card'},
+      {name:'Via dell\'Amore (Manarola to Riomaggiore)', desc:'Easiest, most level section — 20 min, good warm-up', cost:'timed-entry ticket required'},
+      {name:'Cinque Terre Card', desc:'Covers trail fees + local trains between all 5 villages for a day', cost:'$21–24/person/day'},
+      {name:'Swimming in Monterosso', desc:'The only real sand beach in Cinque Terre — reward after the hike', cost:'free (paid sunbeds extra)'},
+      {name:'Vernazza harbor + castle', desc:'Most photogenic village — boat-filled natural harbor, tiny beach', cost:'free to wander'},
+      {name:'Boat tour between villages', desc:'See the cliffside villages from the water, runs April–October', cost:'$25–35/person'}
+    ],
+    food: 'Focaccia and pesto alla Genovese (both invented in nearby Liguria/Genoa), fresh anchovies, seafood pasta. Reasonably priced — pricier than rural Greece, cheaper than Rome.',
+    costNote: 'Trail sections can close without notice due to landslides — build in flexibility. No direct international flight to Genoa or Pisa means an extra connection versus flying straight into Rome or Athens.'
   }
 };
 
@@ -511,26 +560,28 @@ function closeDetail(){ document.getElementById('detail').classList.remove('open
 function closeLb(){document.getElementById('lb').classList.remove('open');}
 
 const scores=[
-  {obj:'Exploration',rome:3,pelo:5,crete:5,naples:5,amalfi:5},
-  {obj:'History & culture',rome:5,pelo:5,crete:4,naples:5,amalfi:3},
-  {obj:'Outdoor / hiking',rome:2,pelo:4,crete:5,naples:3,amalfi:5},
-  {obj:'Mediterranean coast',rome:2,pelo:4,crete:5,naples:3,amalfi:5},
-  {obj:'Food quality',rome:5,pelo:4,crete:5,naples:5,amalfi:4},
-  {obj:'Cost efficiency',rome:2,pelo:5,crete:5,naples:4,amalfi:2},
-  {obj:'Travel simplicity',rome:3,pelo:3,crete:4,naples:3,amalfi:2},
-  {obj:'Teen engagement',rome:3,pelo:5,crete:5,naples:4,amalfi:4},
+  {obj:'Exploration',rome:3,pelo:5,crete:5,naples:5,amalfi:5,fr:4,it:4},
+  {obj:'History & culture',rome:5,pelo:5,crete:4,naples:5,amalfi:3,fr:3,it:2},
+  {obj:'Outdoor / hiking',rome:2,pelo:4,crete:5,naples:3,amalfi:5,fr:3,it:5},
+  {obj:'Mediterranean coast',rome:2,pelo:4,crete:5,naples:3,amalfi:5,fr:5,it:5},
+  {obj:'Food quality',rome:5,pelo:4,crete:5,naples:5,amalfi:4,fr:4,it:4},
+  {obj:'Cost efficiency',rome:2,pelo:5,crete:5,naples:4,amalfi:2,fr:1,it:3},
+  {obj:'Travel simplicity',rome:3,pelo:3,crete:4,naples:3,amalfi:2,fr:2,it:2},
+  {obj:'Teen engagement',rome:3,pelo:5,crete:5,naples:4,amalfi:4,fr:3,it:4},
 ];
-function bar(v,c){return`<div class="bar-wrap"><div class="bar" style="width:${Math.round(v/5*44)}px;background:${c}"></div><span class="bar-v">${v}</span></div>`;}
+function bar(v,c){return`<div class="bar-wrap"><div class="bar" style="width:${Math.round(v/5*28)}px;background:${c}"></div><span class="bar-v">${v}</span></div>`;}
 const sb=document.getElementById('score-rows');
-scores.forEach(r=>{sb.innerHTML+=`<tr><td>${r.obj}</td><td>${bar(r.rome,'#e34948')}</td><td>${bar(r.pelo,'#1baf7a')}</td><td>${bar(r.crete,'#1baf7a')}</td><td>${bar(r.naples,'#eda100')}</td><td>${bar(r.amalfi,'#eda100')}</td></tr>`;});
+scores.forEach(r=>{sb.innerHTML+=`<tr><td>${r.obj}</td><td>${bar(r.rome,'#e34948')}</td><td>${bar(r.pelo,'#1baf7a')}</td><td>${bar(r.crete,'#1baf7a')}</td><td>${bar(r.naples,'#eda100')}</td><td>${bar(r.amalfi,'#eda100')}</td><td>${bar(r.fr,'#7f77dd')}</td><td>${bar(r.it,'#7f77dd')}</td></tr>`;});
 
 const totals=[
   {name:'🏖️ Crete',t:38,badge:'b-green',v:'Best overall match'},
   {name:'🗺️ Peloponnese',t:35,badge:'b-green',v:'Excellent across the board'},
-  {name:'🌊 Amalfi Coast',t:30,badge:'b-amber',v:'Strong coastal/hiking alt to Rome'},
   {name:'🍕 Naples',t:32,badge:'b-amber',v:'Strong history alt to Rome'},
+  {name:'🌊 Amalfi Coast',t:30,badge:'b-amber',v:'Strong coastal/hiking alt'},
+  {name:'🥾 Italian Riviera',t:29,badge:'b-amber',v:'Best hiking-focused alt'},
   {name:'🏛️ Athens',t:27,badge:'b-gray',v:'Great 2-day bookend'},
   {name:'🏟️ Rome',t:25,badge:'b-amber',v:'History 5/5 — crowds + cost drag it'},
+  {name:'🇫🇷 French Riviera',t:25,badge:'b-gray',v:'Priciest, biggest reroute'},
 ];
 const tb=document.getElementById('total-rows');
 totals.forEach(r=>{tb.innerHTML+=`<tr><td>${r.name}</td><td class="num" style="font-weight:700">${r.t}/40</td><td><span class="badge ${r.badge}">${r.v}</span></td></tr>`;});
