@@ -1317,5 +1317,397 @@
   "itinerary_activities_total": {
     "low": 228.0,
     "high": 292.0
+  },
+  "time_budget": [
+    {
+      "day": 1,
+      "label": "Depart RDU (overnight flight)",
+      "dest": "travel_out",
+      "sleep": 5,
+      "travel": 13.0,
+      "eat": 2,
+      "visit": 4.0,
+      "travel_itemized": [
+        {
+          "label": "Pack and get ready",
+          "hours": 1.0,
+          "source": null
+        },
+        {
+          "label": "Transit to RDU airport (drive + park)",
+          "hours": 0.75,
+          "source": "airport_data"
+        },
+        {
+          "label": "Airport arrival buffer (check-in, security, gate wait)",
+          "hours": 3.0,
+          "source": "airport_data",
+          "note": "RDU recommends 3 hrs before international departure"
+        },
+        {
+          "label": "Flight RDU -> Rome (boarding + bulk of overnight flight)",
+          "hours": 8.25,
+          "source": "flights_transatlantic"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "label": "Arrive Rome, settle in",
+      "dest": "rome",
+      "sleep": 10,
+      "travel": 5.5,
+      "eat": 3,
+      "visit": 5.5,
+      "travel_itemized": [
+        {
+          "label": "Remaining flight time + descent",
+          "hours": 3.0,
+          "source": "flights_transatlantic"
+        },
+        {
+          "label": "Deplane + immigration/passport control (non-EU)",
+          "hours": 0.75,
+          "source": "airport_data",
+          "note": "FCO non-EU immigration ~37 min average"
+        },
+        {
+          "label": "Baggage claim",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Transit FCO -> Rome hotel (train or taxi)",
+          "hours": 0.75,
+          "source": "airport_data"
+        },
+        {
+          "label": "Hotel check-in",
+          "hours": 0.5,
+          "source": null
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "label": "Rome full day",
+      "dest": "rome",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 4,
+      "label": "Rome full day (last night)",
+      "dest": "rome",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 5,
+      "label": "Rome -> Peloponnese (flight + drive)",
+      "dest": "transfer_pelo",
+      "sleep": 10,
+      "travel": 8.75,
+      "eat": 2.5,
+      "visit": 2.75,
+      "travel_itemized": [
+        {
+          "label": "Hotel check-out, pack up",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Transit to FCO airport",
+          "hours": 0.75,
+          "source": "airport_data"
+        },
+        {
+          "label": "Airport arrival buffer (intra-Europe)",
+          "hours": 2.0,
+          "source": "airport_data"
+        },
+        {
+          "label": "Flight FCO -> ATH",
+          "hours": 2.0,
+          "source": "flights_intra_europe"
+        },
+        {
+          "label": "Deplane + baggage claim",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Rental car pickup",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Drive ATH airport -> Nafplio",
+          "hours": 2.0,
+          "source": "peloponnese_activities"
+        },
+        {
+          "label": "Check-in Nafplio accommodation",
+          "hours": 0.5,
+          "source": null
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "label": "Peloponnese full day",
+      "dest": "pelo",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 7,
+      "label": "Peloponnese full day",
+      "dest": "pelo",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 8,
+      "label": "Peloponnese full day (last night)",
+      "dest": "pelo",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 9,
+      "label": "Peloponnese -> Crete (drive + flight)",
+      "dest": "transfer_crete",
+      "sleep": 10,
+      "travel": 6.52,
+      "eat": 2.5,
+      "visit": 4.98,
+      "travel_itemized": [
+        {
+          "label": "Check-out, pack up",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Drive Nafplio -> ATH airport",
+          "hours": 2.0,
+          "source": "peloponnese_activities"
+        },
+        {
+          "label": "Return rental car",
+          "hours": 0.3,
+          "source": null
+        },
+        {
+          "label": "Airport arrival buffer (domestic)",
+          "hours": 1.5,
+          "source": "airport_data"
+        },
+        {
+          "label": "Flight ATH -> CHQ",
+          "hours": 0.92,
+          "source": "flights_intra_europe"
+        },
+        {
+          "label": "Deplane + baggage claim",
+          "hours": 0.4,
+          "source": null
+        },
+        {
+          "label": "Local car rental pickup (Chania)",
+          "hours": 0.4,
+          "source": null
+        },
+        {
+          "label": "Check-in Chania accommodation",
+          "hours": 0.5,
+          "source": null
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "label": "Crete - Samaria Gorge (5am start)",
+      "dest": "crete",
+      "sleep": 7,
+      "travel": 1.5,
+      "eat": 2,
+      "visit": 13.5,
+      "travel_itemized": [
+        {
+          "label": "Drive Chania -> Samaria trailhead",
+          "hours": 0.75,
+          "source": "crete_activities"
+        },
+        {
+          "label": "Drive/ferry return from Agia Roumeli",
+          "hours": 0.75,
+          "source": "crete_activities"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "label": "Crete full day",
+      "dest": "crete",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 12,
+      "label": "Crete full day",
+      "dest": "crete",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 13,
+      "label": "Crete full day (last night)",
+      "dest": "crete",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 14,
+      "label": "Crete -> Athens (flight)",
+      "dest": "transfer_athens",
+      "sleep": 10,
+      "travel": 5.54,
+      "eat": 2.5,
+      "visit": 5.96,
+      "travel_itemized": [
+        {
+          "label": "Check-out, return rental car",
+          "hours": 0.75,
+          "source": null
+        },
+        {
+          "label": "Transit to CHQ airport",
+          "hours": 0.3,
+          "source": "airport_data"
+        },
+        {
+          "label": "Airport arrival buffer (CHQ gets very busy in July)",
+          "hours": 2.0,
+          "source": "airport_data",
+          "note": "CHQ peak security waits 60-90 min in July"
+        },
+        {
+          "label": "Flight CHQ -> ATH",
+          "hours": 0.92,
+          "source": "flights_intra_europe"
+        },
+        {
+          "label": "Deplane + baggage claim",
+          "hours": 0.4,
+          "source": null
+        },
+        {
+          "label": "Transit ATH airport -> Athens hotel (metro)",
+          "hours": 0.67,
+          "source": "airport_data"
+        },
+        {
+          "label": "Hotel check-in",
+          "hours": 0.5,
+          "source": null
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "label": "Athens full day (last night)",
+      "dest": "athens",
+      "sleep": 10,
+      "travel": 1.0,
+      "eat": 3,
+      "visit": 10.0,
+      "travel_itemized": null
+    },
+    {
+      "day": 16,
+      "label": "Athens -> depart RDU (overnight flight)",
+      "dest": "travel_back",
+      "sleep": 1,
+      "travel": 20.47,
+      "eat": 1.5,
+      "visit": 1.03,
+      "travel_itemized": [
+        {
+          "label": "Check-out, get ready",
+          "hours": 0.5,
+          "source": null
+        },
+        {
+          "label": "Transit to ATH airport (metro/taxi)",
+          "hours": 0.67,
+          "source": "airport_data"
+        },
+        {
+          "label": "Airport arrival buffer (international)",
+          "hours": 3.0,
+          "source": "airport_data"
+        },
+        {
+          "label": "Flight ATH -> RDU (with connection)",
+          "hours": 15.0,
+          "source": "flights_transatlantic"
+        },
+        {
+          "label": "Deplane + immigration/customs at RDU",
+          "hours": 0.5,
+          "source": "airport_data"
+        },
+        {
+          "label": "Baggage claim",
+          "hours": 0.4,
+          "source": null
+        },
+        {
+          "label": "Drive home from RDU",
+          "hours": 0.4,
+          "source": "airport_data"
+        }
+      ]
+    }
+  ],
+  "time_budget_summary": {
+    "total_hours": 384,
+    "sleep_hours": 143,
+    "sleep_pct": 37.2,
+    "travel_hours": 70.3,
+    "travel_pct": 18.3,
+    "eat_hours": 43.0,
+    "eat_pct": 11.2,
+    "visit_hours": 127.7,
+    "visit_pct": 33.3,
+    "awake_hours": 241,
+    "travel_pct_of_awake": 29.2,
+    "eat_pct_of_awake": 17.8,
+    "visit_pct_of_awake": 53.0
   }
 }
