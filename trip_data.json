@@ -687,5 +687,60 @@
         "note": "General market-rate estimate for 2-3BR apartments in each region, no specific listing cited -- treat as rough estimate pending real search"
       }
     ]
-  }
+  },
+  "group_info": {
+    "group": "3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers",
+    "window": "Mid-June to late July",
+    "budget": "$10-15K per family of 4 (2 adults + 2 teens)"
+  },
+  "objectives": [
+    {
+      "num": 1,
+      "name": "Exploration index",
+      "desc": "Places none of us have been. Greece = high (first time). Rome = mixed (1 adult has been)."
+    },
+    {
+      "num": 2,
+      "name": "History & culture index",
+      "desc": "Real ruins, castles, archaeological sites -- walk through the story, not just photos."
+    },
+    {
+      "num": 3,
+      "name": "Outdoor / active index",
+      "desc": "Hiking, swimming, physical challenge. Teens want to move."
+    },
+    {
+      "num": 4,
+      "name": "Mediterranean coast index",
+      "desc": "Turquoise water, beaches, cliffs -- core pull of the whole trip."
+    },
+    {
+      "num": 5,
+      "name": "Food index",
+      "desc": "Eat like locals -- markets, tavernas, street food. No tourist traps."
+    },
+    {
+      "num": 6,
+      "name": "Cost efficiency index",
+      "desc": "Max experience per dollar. Rural Greece beats Rome badly here."
+    },
+    {
+      "num": 7,
+      "name": "Travel simplicity index",
+      "desc": "Minimize painful transit -- long waits and rushed city-to-city moves drain the trip."
+    },
+    {
+      "num": 8,
+      "name": "Group harmony index",
+      "desc": "Teens engaged + adults not bored. Mix of challenge and depth."
+    }
+  ],
+  "open_questions": [
+    "Rome vs Naples vs Amalfi Coast for the Italy stop?",
+    "Comfortable with narrow mountain driving in the Peloponnese?",
+    "Everyone in for the Samaria Gorge hike (16km, ~6hrs)?",
+    "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
+    "Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?"
+  ],
+  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time). Rome = mixed (1 adult has been).\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- core pull of the whole trip.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Rome vs Naples vs Amalfi Coast for the Italy stop?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing."
 }
