@@ -72,6 +72,86 @@ SOURCES = {
 
 
 # ============================================================
+# OBJECTIVES & CONSTRAINTS
+# Structured so the "Objectives & constraints" tab and the copy-paste
+# Signal text block are BOTH generated from this one Python structure --
+# never hand-typed twice. Edit here, rerun, both outputs update.
+# ============================================================
+
+GROUP_INFO = {
+    "group": "3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers",
+    "window": "Mid-June to late July",
+    "budget": "$10-15K per family of 4 (2 adults + 2 teens)",
+}
+
+OBJECTIVES = [
+    {
+        "num": 1, "name": "Exploration index",
+        "desc": "Places none of us have been. Greece = high (first time). Rome = mixed (1 adult has been).",
+    },
+    {
+        "num": 2, "name": "History & culture index",
+        "desc": "Real ruins, castles, archaeological sites -- walk through the story, not just photos.",
+    },
+    {
+        "num": 3, "name": "Outdoor / active index",
+        "desc": "Hiking, swimming, physical challenge. Teens want to move.",
+    },
+    {
+        "num": 4, "name": "Mediterranean coast index",
+        "desc": "Turquoise water, beaches, cliffs -- core pull of the whole trip.",
+    },
+    {
+        "num": 5, "name": "Food index",
+        "desc": "Eat like locals -- markets, tavernas, street food. No tourist traps.",
+    },
+    {
+        "num": 6, "name": "Cost efficiency index",
+        "desc": "Max experience per dollar. Rural Greece beats Rome badly here.",
+    },
+    {
+        "num": 7, "name": "Travel simplicity index",
+        "desc": "Minimize painful transit -- long waits and rushed city-to-city moves drain the trip.",
+    },
+    {
+        "num": 8, "name": "Group harmony index",
+        "desc": "Teens engaged + adults not bored. Mix of challenge and depth.",
+    },
+]
+
+OPEN_QUESTIONS = [
+    "Rome vs Naples vs Amalfi Coast for the Italy stop?",
+    "Comfortable with narrow mountain driving in the Peloponnese?",
+    "Everyone in for the Samaria Gorge hike (16km, ~6hrs)?",
+    "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
+    "Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?",
+]
+
+
+def build_crew_text():
+    """Assembles the copy-paste-to-Signal text block from the structured
+    data above. This is the ONLY place this text is generated -- the HTML
+    just displays whatever this function (via trip_data.json) produces."""
+    lines = []
+    lines.append("OUR TRIP OBJECTIVES -- REACT / ADD BELOW")
+    lines.append("")
+    lines.append(f"GROUP: {GROUP_INFO['group']}")
+    lines.append(f"WINDOW: {GROUP_INFO['window']}")
+    lines.append(f"BUDGET: {GROUP_INFO['budget']}")
+    lines.append("")
+    for o in OBJECTIVES:
+        lines.append(f"{o['num']}. {o['name'].upper()}")
+        lines.append(o['desc'])
+        lines.append("")
+    lines.append("OPEN QUESTIONS FOR THE GROUP:")
+    for q in OPEN_QUESTIONS:
+        lines.append(f"- {q}")
+    lines.append("")
+    lines.append("Reply with your top 3 priorities from the list above, or add anything missing.")
+    return "\n".join(lines)
+
+
+# ============================================================
 # ASSUMPTIONS
 # Every number below is editable. Ranges are (low, high) in USD unless noted.
 # Change these, rerun the script, and every downstream chart updates.
@@ -310,6 +390,10 @@ def main():
             "grand_total_high": f2_high,
         },
         "sources": SOURCES,
+        "group_info": GROUP_INFO,
+        "objectives": OBJECTIVES,
+        "open_questions": OPEN_QUESTIONS,
+        "crew_text": build_crew_text(),
     }
 
     with open("trip_data.json", "w") as f:
