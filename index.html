@@ -233,11 +233,11 @@ tr:last-child td{border-bottom:none}
         <tr><td>Athens↔Crete (ATH↔CHQ, both legs)</td><td class="num">$320</td><td class="num">$520</td><td class="muted">~60 flights/week July</td></tr>
         <tr class="subtotal"><td style="font-weight:700">Flights subtotal</td><td class="num" style="font-weight:700">$4,020</td><td class="num" style="font-weight:700">$6,420</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Airbnb Rome, 3 nts (2-bed Trastevere)</td><td class="num">$750</td><td class="num">$1,200</td><td class="muted">2 rooms = snoring solved ✓</td></tr>
-        <tr><td>Airbnb Peloponnese, 4 nts (Nafplio)</td><td class="num">$400</td><td class="num">$720</td><td class="muted">House w/ garden</td></tr>
-        <tr><td>Airbnb Crete, 5 nts (Chania)</td><td class="num">$600</td><td class="num">$1,000</td><td></td></tr>
-        <tr><td>Airbnb Athens, 2 nts (Monastiraki)</td><td class="num">$300</td><td class="num">$500</td><td></td></tr>
-        <tr class="subtotal"><td style="font-weight:700">Accommodation subtotal</td><td class="num" style="font-weight:700">$2,050</td><td class="num" style="font-weight:700">$3,420</td><td></td></tr>
+        <tr><td>Airbnb Rome, <span id="rome-nights">3</span> nts (2-bed Trastevere)</td><td class="num" id="rome-accom-low">$750</td><td class="num" id="rome-accom-high">$1,200</td><td class="muted">2 rooms = snoring solved ✓ · <a href="#" onclick="openDetail('rome');return false;" style="color:#185fa5">see detail page</a></td></tr>
+        <tr><td>Airbnb Peloponnese, <span id="pelo-nights">4</span> nts (Nafplio)</td><td class="num" id="pelo-accom-low">$400</td><td class="num" id="pelo-accom-high">$720</td><td class="muted">House w/ garden · <a href="#" onclick="openDetail('pelo');return false;" style="color:#185fa5">see detail page</a></td></tr>
+        <tr><td>Airbnb Crete, <span id="crete-nights">5</span> nts (Chania)</td><td class="num" id="crete-accom-low">$600</td><td class="num" id="crete-accom-high">$1,000</td><td class="muted"><a href="#" onclick="openDetail('crete');return false;" style="color:#185fa5">see detail page</a></td></tr>
+        <tr><td>Airbnb Athens, <span id="athens-nights">2</span> nts (Monastiraki)</td><td class="num" id="athens-accom-low">$300</td><td class="num" id="athens-accom-high">$500</td><td class="muted"><a href="#" onclick="openDetail('athens');return false;" style="color:#185fa5">see detail page</a></td></tr>
+        <tr class="subtotal"><td style="font-weight:700">Accommodation subtotal</td><td class="num" style="font-weight:700" id="accom-subtotal-low">$2,050</td><td class="num" style="font-weight:700" id="accom-subtotal-high">$3,420</td><td class="muted" style="font-size:10px">sum of rows above, from trip_model.py</td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
         <tr><td>Car rental ~8 days (Pelopon. + Crete)</td><td class="num">$300</td><td class="num">$500</td><td class="muted">Book ahead — July sells out</td></tr>
         <tr><td>Gas + tolls</td><td class="num">$150</td><td class="num">$200</td><td></td></tr>
@@ -250,7 +250,7 @@ tr:last-child td{border-bottom:none}
         <tr><td>Food — Athens (2 days · $60–90/day)</td><td class="num">$120</td><td class="num">$180</td><td></td></tr>
         <tr class="subtotal"><td style="font-weight:700">Food subtotal</td><td class="num" style="font-weight:700" id="food-subtotal-low">$810</td><td class="num" style="font-weight:700" id="food-subtotal-high">$1,260</td><td class="muted" style="font-size:10px">computed from trip_model.py</td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Entry fees + activities</td><td class="num">$600</td><td class="num">$900</td><td class="muted">Colosseum, ruins, Samaria Gorge, etc.</td></tr>
+        <tr><td>Entry fees + activities (pre-booked only)</td><td class="num" id="activities-subtotal-low">$220</td><td class="num" id="activities-subtotal-high">$272</td><td class="muted" style="font-size:10px">Colosseum+Forum, Acropolis+Museum — see each destination page for the full optional-extras list</td></tr>
         <tr class="total-row"><td>TOTAL (family of 4)</td><td class="num" id="grand-total-low-4">$8,220</td><td class="num" id="grand-total-high-4">$13,100</td><td style="font-size:11px" id="target-check-4">computed from trip_model.py</td></tr>
         <tr style="background:#eaf3de"><td style="font-weight:700;color:#3b6d11">TOTAL (family of 2, 2 adults)</td><td class="num" style="font-weight:700;color:#3b6d11" id="grand-total-low-2">$4,570</td><td class="num" style="font-weight:700;color:#3b6d11" id="grand-total-high-2">$7,280</td><td style="font-size:11px;color:#3b6d11">Flights/food/activities halve; lodging ~65%, car ~70% of family-of-4 cost (do not scale 1:1)</td></tr>
       </tbody>
@@ -615,19 +615,79 @@ const details = {
   }
 };
 
+function formatAtomCost(a){
+  if (a.per_person_low === 0 && a.per_person_high === 0) {
+    return a.note || 'free';
+  }
+  if (a.per_person_low === a.per_person_high) {
+    return '$' + a.per_person_low + '/person';
+  }
+  return '$' + a.per_person_low + '–$' + a.per_person_high + '/person';
+}
+
 function openDetail(key){
   const d = details[key];
   document.getElementById('detail-title').textContent = d.title;
   const imgs = collages[key];
-  let attractionsHtml = d.attractions.map(a=>`
+
+  // Attractions + costs come from tripData.destination_cost_breakdown --
+  // the exact same atoms summed into the Costs tab. If tripData hasn't
+  // loaded yet, fall back to showing descriptions without prices rather
+  // than guessing.
+  let attractionsHtml = '';
+  const cb = tripData && tripData.destination_cost_breakdown ? tripData.destination_cost_breakdown[key] : null;
+  const atomsByName = {};
+  if (cb) cb.activities.forEach(a => { atomsByName[a.name] = a; });
+
+  attractionsHtml = d.attractions.map(a=>{
+    const atom = atomsByName[a.name];
+    let costHtml, budgetTag = '';
+    if (atom) {
+      costHtml = formatAtomCost(atom);
+      budgetTag = atom.in_budget
+        ? '<span class="badge b-green" style="margin-left:6px;font-size:9px">in trip budget</span>'
+        : '<span class="badge b-gray" style="margin-left:6px;font-size:9px">optional extra</span>';
+    } else {
+      costHtml = a.cost; // fallback if no matching Python atom found
+    }
+    return `
     <div class="attraction-row">
       <div>
-        <div class="attraction-name">${a.name}</div>
+        <div class="attraction-name">${a.name}${budgetTag}</div>
         <div class="attraction-desc">${a.desc}</div>
       </div>
-      <div class="attraction-cost">${a.cost}</div>
+      <div class="attraction-cost">${costHtml}</div>
     </div>
-  `).join('');
+  `;}).join('');
+
+  // Accommodation section -- only shown for the 4 real itinerary stops,
+  // since alternatives don't have a booked nightly rate.
+  let accomHtml = '';
+  if (cb && ['rome','pelo','crete','athens'].includes(key)) {
+    accomHtml = `
+    <div class="detail-sec-title">Accommodation</div>
+    <div class="card">
+      <div class="attraction-row">
+        <div>
+          <div class="attraction-name">${cb.nights} nights</div>
+          <div class="attraction-desc">$${cb.accommodation_per_night_low}–$${cb.accommodation_per_night_high}/night for the whole group</div>
+        </div>
+        <div class="attraction-cost">$${Math.round(cb.accommodation_total_low)}–$${Math.round(cb.accommodation_total_high)}</div>
+      </div>
+    </div>`;
+  } else if (cb) {
+    accomHtml = `
+    <div class="detail-sec-title">Accommodation (illustrative — not part of the planned itinerary)</div>
+    <div class="card">
+      <div class="attraction-row">
+        <div>
+          <div class="attraction-name">${cb.nights} nights (if replacing Rome)</div>
+          <div class="attraction-desc">$${cb.accommodation_per_night_low}–$${cb.accommodation_per_night_high}/night for the whole group</div>
+        </div>
+        <div class="attraction-cost">$${Math.round(cb.accommodation_total_low)}–$${Math.round(cb.accommodation_total_high)}</div>
+      </div>
+    </div>`;
+  }
 
   document.getElementById('detail-body').innerHTML = `
     <div class="detail-collage">
@@ -637,6 +697,7 @@ function openDetail(key){
     </div>
     <p style="font-size:13px;color:#52514e;font-weight:600;margin-bottom:4px">${d.subtitle}</p>
     <p class="deep-note">${d.overview}</p>
+    ${accomHtml}
     <div class="detail-sec-title">Attractions & activities</div>
     <div class="card">${attractionsHtml}</div>
     <div class="detail-sec-title">Food</div>
@@ -829,9 +890,11 @@ const destLabelMap = {
   transfer_athens: 'Athens (arrival)', travel_out: 'Transit', travel_back: 'Transit'
 };
 
+let tripData = null;
 fetch('trip_data.json')
   .then(r => r.json())
   .then(data => {
+    tripData = data;
     // Each render function is isolated -- a Chart.js failure in one tab
     // (e.g. blocked CDN) must never prevent the others (like Objectives,
     // which has no chart dependency) from rendering.
@@ -862,12 +925,28 @@ function renderObjectives(data){
 
 function renderCostTotals(data){
   // Food subtotal: sum of food_low/food_high across every day in intrip_burn.
-  // This is the ONE place these numbers are computed for display -- they
-  // come straight from trip_model.py's output, never hand-typed.
   const foodLow = data.intrip_burn.reduce((s,d) => s + d.food_low, 0);
   const foodHigh = data.intrip_burn.reduce((s,d) => s + d.food_high, 0);
   document.getElementById('food-subtotal-low').textContent = '$' + Math.round(foodLow).toLocaleString();
   document.getElementById('food-subtotal-high').textContent = '$' + Math.round(foodHigh).toLocaleString();
+
+  // Accommodation: each destination's row comes straight from
+  // destination_cost_breakdown -- the SAME atoms shown on that
+  // destination's own detail page. Subtotal is their sum, not a
+  // separately-typed number.
+  const cb = data.destination_cost_breakdown;
+  ['rome','pelo','crete','athens'].forEach(dest => {
+    document.getElementById(dest + '-nights').textContent = cb[dest].nights;
+    document.getElementById(dest + '-accom-low').textContent = '$' + Math.round(cb[dest].accommodation_total_low).toLocaleString();
+    document.getElementById(dest + '-accom-high').textContent = '$' + Math.round(cb[dest].accommodation_total_high).toLocaleString();
+  });
+  document.getElementById('accom-subtotal-low').textContent = '$' + Math.round(data.itinerary_accommodation_total.low).toLocaleString();
+  document.getElementById('accom-subtotal-high').textContent = '$' + Math.round(data.itinerary_accommodation_total.high).toLocaleString();
+
+  // Activities: sum of only the "in_budget" (pre-bookable) atoms across
+  // Rome/Peloponnese/Crete/Athens -- same source as each detail page.
+  document.getElementById('activities-subtotal-low').textContent = '$' + Math.round(data.itinerary_activities_total.low).toLocaleString();
+  document.getElementById('activities-subtotal-high').textContent = '$' + Math.round(data.itinerary_activities_total.high).toLocaleString();
 
   document.getElementById('grand-total-low-4').textContent = '$' + Math.round(data.grand_total_low).toLocaleString();
   document.getElementById('grand-total-high-4').textContent = '$' + Math.round(data.grand_total_high).toLocaleString();
