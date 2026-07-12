@@ -68,6 +68,9 @@ SOURCES = {
     "accommodation": [
         {"url": "https://www.airbnb.com", "note": "General market-rate estimate for 2-3BR apartments in each region, no specific listing cited -- treat as rough estimate pending real search"},
     ],
+    "athens_activities": [
+        {"url": "https://www.discovergreece.com", "note": "Acropolis, Acropolis Museum entry pricing"},
+    ],
 }
 
 
@@ -225,6 +228,173 @@ def compute_destination_totals():
 
 
 # ============================================================
+# DESTINATION COST ATOMS
+# The verifiable ground truth. Every dollar shown on a destination's detail
+# page comes from here, AND every dollar in the Costs tab's accommodation
+# and activities lines is a SUM of these same atoms -- never a separately
+# guessed lump number. If a destination page and the Costs tab ever
+# disagree, one of them has a bug; they can't both be "roughly right"
+# independently anymore.
+#
+# accommodation_per_night: (low, high) USD for the whole group's rental
+# activities: list of {name, per_person_low, per_person_high, source,
+#             in_budget} -- in_budget=True means its cost is counted in
+#             the trip's pre-booked activities total; False means it's
+#             an optional extra shown for planning but not pre-costed
+#             (usually because it's cheap/paid cash on the day, or truly
+#             optional and not everyone will do it).
+# ============================================================
+
+DESTINATION_COST_ATOMS = {
+    "rome": {
+        "nights": 3,
+        "accommodation_per_night": (250, 400),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Colosseum + Arena Floor", "per_person_low": 25, "per_person_high": 35, "source": "rome_activities", "in_budget": True},
+            {"name": "Roman Forum + Palatine Hill", "per_person_low": 0, "per_person_high": 0, "source": "rome_activities", "in_budget": False, "note": "included on Colosseum ticket"},
+            {"name": "Vatican Museums + Sistine Chapel", "per_person_low": 30, "per_person_high": 35, "source": "rome_activities", "in_budget": False},
+            {"name": "Domus Aurea", "per_person_low": 16, "per_person_high": 20, "source": "rome_activities", "in_budget": False},
+            {"name": "Gladiator school", "per_person_low": 60, "per_person_high": 100, "source": "rome_activities", "in_budget": False},
+            {"name": "Pizza or pasta making class in Trastevere", "per_person_low": 50, "per_person_high": 75, "source": "rome_activities", "in_budget": False},
+            {"name": "Catacombs of San Callisto", "per_person_low": 12, "per_person_high": 15, "source": "rome_activities", "in_budget": False},
+            {"name": "Capuchin Crypt", "per_person_low": 10, "per_person_high": 10, "source": "rome_activities", "in_budget": False},
+            {"name": "Janiculum Hill sunset walk", "per_person_low": 0, "per_person_high": 0, "source": "rome_activities", "in_budget": False, "note": "free"},
+        ],
+    },
+    "pelo": {
+        "nights": 4,
+        "accommodation_per_night": (100, 180),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Palamidi Fortress", "per_person_low": 5, "per_person_high": 8, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Ancient Mycenae", "per_person_low": 8, "per_person_high": 12, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Epidaurus theater", "per_person_low": 8, "per_person_high": 12, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Ancient Corinth + Canal", "per_person_low": 8, "per_person_high": 10, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Lousios Gorge hike", "per_person_low": 0, "per_person_high": 0, "source": "peloponnese_activities", "in_budget": False, "note": "free"},
+            {"name": "Mani Peninsula", "per_person_low": 0, "per_person_high": 0, "source": "peloponnese_activities", "in_budget": False, "note": "free to explore"},
+            {"name": "Diros Caves", "per_person_low": 15, "per_person_high": 18, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Voidokilia Beach", "per_person_low": 0, "per_person_high": 0, "source": "peloponnese_activities", "in_budget": False, "note": "free"},
+            {"name": "Mystras Byzantine ruins", "per_person_low": 8, "per_person_high": 8, "source": "peloponnese_activities", "in_budget": False},
+        ],
+    },
+    "crete": {
+        "nights": 5,
+        "accommodation_per_night": (120, 200),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Samaria Gorge hike", "per_person_low": 6, "per_person_high": 6, "source": "crete_activities", "in_budget": False, "note": "cash on trail, not pre-booked"},
+            {"name": "Imbros Gorge", "per_person_low": 4, "per_person_high": 4, "source": "crete_activities", "in_budget": False},
+            {"name": "Balos Lagoon", "per_person_low": 20, "per_person_high": 20, "source": "crete_activities", "in_budget": False, "note": "boat from Kissamos"},
+            {"name": "Elafonisi Beach", "per_person_low": 0, "per_person_high": 0, "source": "crete_activities", "in_budget": False, "note": "free"},
+            {"name": "Chania Old Town", "per_person_low": 0, "per_person_high": 0, "source": "crete_activities", "in_budget": False, "note": "free"},
+            {"name": "Knossos Minoan palace", "per_person_low": 18, "per_person_high": 20, "source": "crete_activities", "in_budget": False},
+            {"name": "Aptera ruins", "per_person_low": 6, "per_person_high": 6, "source": "crete_activities", "in_budget": False},
+            {"name": "Seitan Limania cove", "per_person_low": 0, "per_person_high": 0, "source": "crete_activities", "in_budget": False, "note": "free"},
+        ],
+    },
+    "athens": {
+        "nights": 2,
+        "accommodation_per_night": (150, 250),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Acropolis + Parthenon", "per_person_low": 22, "per_person_high": 25, "source": "athens_activities", "in_budget": True},
+            {"name": "Acropolis Museum", "per_person_low": 10, "per_person_high": 13, "source": "athens_activities", "in_budget": True},
+            {"name": "Plaka neighborhood", "per_person_low": 0, "per_person_high": 0, "source": "athens_activities", "in_budget": False, "note": "free"},
+            {"name": "Monastiraki flea market", "per_person_low": 0, "per_person_high": 0, "source": "athens_activities", "in_budget": False, "note": "free to browse"},
+            {"name": "Changing of the Guard", "per_person_low": 0, "per_person_high": 0, "source": "athens_activities", "in_budget": False, "note": "free"},
+        ],
+    },
+    # Alternatives -- not part of the 16-day itinerary, so these do NOT
+    # roll into the main Costs tab total. Shown on their own detail pages
+    # as an "if you swapped Rome for this" illustrative estimate, using
+    # the same 3-night duration Rome would have occupied.
+    "naples": {
+        "nights": 3,
+        "accommodation_per_night": (150, 250),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Pompeii ruins entry", "per_person_low": 20, "per_person_high": 22, "source": "naples_amalfi_activities", "in_budget": True},
+            {"name": "Herculaneum entry", "per_person_low": 15, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Underground Naples tour", "per_person_low": 12, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "National Archaeological Museum", "per_person_low": 16, "per_person_high": 16, "source": "naples_amalfi_activities", "in_budget": False},
+        ],
+    },
+    "amalfi": {
+        "nights": 3,
+        "accommodation_per_night": (180, 320),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Path of the Gods guided hike", "per_person_low": 40, "per_person_high": 60, "source": "naples_amalfi_activities", "in_budget": True},
+            {"name": "Villa Cimbrone gardens (Ravello)", "per_person_low": 11, "per_person_high": 11, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Boat tour of the coast", "per_person_low": 60, "per_person_high": 90, "source": "naples_amalfi_activities", "in_budget": False},
+        ],
+    },
+    "fr": {
+        "nights": 3,
+        "accommodation_per_night": (200, 350),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Eze botanical garden entry", "per_person_low": 7, "per_person_high": 7, "source": "riviera_activities", "in_budget": True},
+            {"name": "Monaco Oceanographic Museum", "per_person_low": 18, "per_person_high": 20, "source": "riviera_activities", "in_budget": False},
+            {"name": "Gorges du Loup guided aquatic hike", "per_person_low": 30, "per_person_high": 50, "source": "riviera_activities", "in_budget": False},
+        ],
+    },
+    "it": {
+        "nights": 3,
+        "accommodation_per_night": (150, 260),
+        "accommodation_source": "accommodation",
+        "activities": [
+            {"name": "Cinque Terre Card (trails + trains, per day)", "per_person_low": 21, "per_person_high": 24, "source": "riviera_activities", "in_budget": True},
+            {"name": "Boat tour between villages", "per_person_low": 25, "per_person_high": 35, "source": "riviera_activities", "in_budget": False},
+        ],
+    },
+}
+
+
+def compute_destination_cost_breakdown(party_size):
+    """The single place accommodation + activities dollars get computed.
+    Returns a dict per destination AND the itinerary-wide totals that
+    feed straight into the pretrip cash timeline / Costs tab."""
+    breakdown = {}
+    itin_accom_low = itin_accom_high = 0.0
+    itin_activities_low = itin_activities_high = 0.0
+    itinerary_keys = ["rome", "pelo", "crete", "athens"]
+
+    for dest, info in DESTINATION_COST_ATOMS.items():
+        nights = info["nights"]
+        accom_low = info["accommodation_per_night"][0] * nights
+        accom_high = info["accommodation_per_night"][1] * nights
+
+        act_in_budget_low = sum(a["per_person_low"] for a in info["activities"] if a["in_budget"]) * party_size
+        act_in_budget_high = sum(a["per_person_high"] for a in info["activities"] if a["in_budget"]) * party_size
+        act_all_low = sum(a["per_person_low"] for a in info["activities"]) * party_size
+        act_all_high = sum(a["per_person_high"] for a in info["activities"]) * party_size
+
+        breakdown[dest] = {
+            "nights": nights,
+            "accommodation_per_night_low": info["accommodation_per_night"][0],
+            "accommodation_per_night_high": info["accommodation_per_night"][1],
+            "accommodation_total_low": round(accom_low, 2),
+            "accommodation_total_high": round(accom_high, 2),
+            "accommodation_source": info["accommodation_source"],
+            "activities": info["activities"],
+            "activities_in_budget_low": round(act_in_budget_low, 2),
+            "activities_in_budget_high": round(act_in_budget_high, 2),
+            "activities_all_low": round(act_all_low, 2),
+            "activities_all_high": round(act_all_high, 2),
+        }
+
+        if dest in itinerary_keys:
+            itin_accom_low += accom_low
+            itin_accom_high += accom_high
+            itin_activities_low += act_in_budget_low
+            itin_activities_high += act_in_budget_high
+
+    return breakdown, (round(itin_accom_low, 2), round(itin_accom_high, 2)), (round(itin_activities_low, 2), round(itin_activities_high, 2))
+
+
+# ============================================================
 # ASSUMPTIONS
 # Every number below is editable. Ranges are (low, high) in USD unless noted.
 # Change these, rerun the script, and every downstream chart updates.
@@ -250,14 +420,16 @@ ASSUMPTIONS = {
         {
             "weeks_before": 6,
             "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
-            "amount_low": 2050, "amount_high": 3420,
+            "amount_low": None, "amount_high": None,  # computed from DESTINATION_COST_ATOMS, see compute_pretrip_timeline
             "source": "accommodation",
+            "computed": "accommodation",
         },
         {
             "weeks_before": 3,
-            "item": "Pre-bookable activities & entry tickets (Colosseum, Vatican, etc.)",
-            "amount_low": 600, "amount_high": 900,
+            "item": "Pre-bookable activities & entry tickets (Colosseum, Acropolis)",
+            "amount_low": None, "amount_high": None,  # computed from DESTINATION_COST_ATOMS, see compute_pretrip_timeline
             "source": "rome_activities",
+            "computed": "activities",
         },
     ],
 
@@ -328,22 +500,36 @@ DEST_TO_FOOD_ZONE = {
 }
 
 
-def compute_pretrip_timeline(a):
+def compute_pretrip_timeline(a, party_size):
     """Returns milestones sorted furthest-out first, with running cumulative
     low/high totals. weeks_before is converted to a negative day-offset
-    (day 0 = trip start) so it can share an axis with the in-trip burn."""
+    (day 0 = trip start) so it can share an axis with the in-trip burn.
+    Milestones marked "computed" pull their amount from
+    compute_destination_cost_breakdown() -- the same atoms shown on each
+    destination's detail page -- instead of a separately hand-typed number."""
+    _, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size)
+    computed_amounts = {
+        "accommodation": itin_accom,
+        "activities": itin_activities,
+    }
+
     milestones = sorted(a["pretrip_milestones"], key=lambda m: -m["weeks_before"])
     out = []
     cum_low, cum_high = 0.0, 0.0
     for m in milestones:
-        cum_low += m["amount_low"]
-        cum_high += m["amount_high"]
+        if m.get("computed"):
+            amount_low, amount_high = computed_amounts[m["computed"]]
+        else:
+            amount_low, amount_high = m["amount_low"], m["amount_high"]
+
+        cum_low += amount_low
+        cum_high += amount_high
         out.append({
             "day_offset": -m["weeks_before"] * 7,
             "weeks_before": m["weeks_before"],
             "item": m["item"],
-            "amount_low": m["amount_low"],
-            "amount_high": m["amount_high"],
+            "amount_low": amount_low,
+            "amount_high": amount_high,
             "cumulative_low": round(cum_low, 2),
             "cumulative_high": round(cum_high, 2),
             "source": m["source"],
@@ -446,12 +632,14 @@ def compute_family_of_2(pretrip, intrip, grand_low, grand_high):
 
 def main():
     a = ASSUMPTIONS
-    pretrip, pre_cum_low, pre_cum_high = compute_pretrip_timeline(a)
+    party_size = a["party_size"]
+    dest_cost_breakdown, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size)
+    pretrip, pre_cum_low, pre_cum_high = compute_pretrip_timeline(a, party_size)
     intrip, grand_low, grand_high = compute_intrip_burn(a, pre_cum_low, pre_cum_high)
     f2_pretrip, f2_intrip, f2_low, f2_high = compute_family_of_2(pretrip, intrip, grand_low, grand_high)
 
     data = {
-        "party_size": a["party_size"],
+        "party_size": party_size,
         "pretrip_timeline": pretrip,
         "intrip_burn": intrip,
         "grand_total_low": round(grand_low, 2),
@@ -469,6 +657,9 @@ def main():
         "crew_text": build_crew_text(),
         "destination_totals": compute_destination_totals(),
         "prior_visits": PRIOR_VISITS,
+        "destination_cost_breakdown": dest_cost_breakdown,
+        "itinerary_accommodation_total": {"low": itin_accom[0], "high": itin_accom[1]},
+        "itinerary_activities_total": {"low": itin_activities[0], "high": itin_activities[1]},
     }
 
     with open("trip_data.json", "w") as f:
