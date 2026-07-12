@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italy + Greece Trip Planner 2025</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f1;color:#1a1a18;padding:16px}
+.wrap{max-width:740px;margin:0 auto}
+h1{font-size:22px;font-weight:700;color:#1a1a18;margin:1.2rem 0 3px}
+.sub{font-size:13px;color:#52514e;margin-bottom:1.25rem}
+.sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888780;margin:1.4rem 0 .6rem}
+.card{background:#fff;border:1px solid #e5e4dd;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
+
+/* MAP */
+#map{width:100%;height:380px;border-radius:12px;border:1px solid #e5e4dd;margin-bottom:.4rem}
+.map-note{font-size:11px;color:#888780;margin-bottom:1.2rem}
+.map-note a{color:#185fa5;text-decoration:none}
+
+/* CUSTOM MARKER */
+.marker-pin{width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+.marker-num{transform:rotate(45deg);font-size:13px;font-weight:700;color:#fff;line-height:1}
+
+/* CITY PHOTO GRID */
+.city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem}
+.city-card{border-radius:10px;overflow:hidden;border:1px solid #e5e4dd;background:#fff;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.city-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.city-photo{width:100%;height:88px;object-fit:cover;display:block;background:#ddd}
+.city-info{padding:6px 8px}
+.city-num{font-size:10px;font-weight:700;color:#185fa5;letter-spacing:.04em}
+.city-name{font-size:13px;font-weight:700;color:#1a1a18}
+.city-nights{font-size:11px;color:#52514e}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:10px;cursor:pointer}
+.lb.open{display:flex}
+.lb-title{color:#fff;font-size:15px;font-weight:700}
+.lb-sub{color:rgba(255,255,255,.6);font-size:12px}
+.lb-collage{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:88%;max-height:70vh}
+.lb-collage img{width:100%;height:155px;object-fit:cover;border-radius:8px}
+
+/* TABS */
+.tabs{display:flex;gap:3px;margin-bottom:.75rem;background:#ebebE6;padding:3px;border-radius:9px}
+.tab{flex:1;padding:7px 2px;border-radius:7px;border:none;background:transparent;font-size:12px;font-weight:600;color:#52514e;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab.active{background:#fff;color:#1a1a18;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:10px;font-weight:700;color:#888780;padding:5px 8px;border-bottom:1px solid #eee;letter-spacing:.03em;white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px solid #f5f4f0;color:#1a1a18;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.muted{color:#52514e;font-size:11px}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.b-green{background:#eaf3de;color:#3b6d11}
+.b-amber{background:#faeeda;color:#854f0b}
+.b-red{background:#fcebeb;color:#a32d2d}
+.b-blue{background:#e6f1fb;color:#185fa5}
+.b-gray{background:#f1efea;color:#52514e;border:1px solid #e5e4dd}
+.subtotal{background:#f8f7f4}
+.total-row td{background:#eaf3de;font-weight:700;font-size:13.5px;color:#3b6d11}
+
+/* SCORE BARS */
+.bar-wrap{display:flex;align-items:center;gap:5px}
+.bar{height:8px;border-radius:4px;flex-shrink:0;min-width:4px}
+.bar-v{font-size:11px;color:#52514e;min-width:14px;text-align:right}
+
+/* NOTE */
+.note{font-size:12px;color:#52514e;background:#fdf8ec;border:1px solid #f0d080;border-radius:8px;padding:9px 12px;margin-top:8px;line-height:1.5}
+
+@media(max-width:520px){
+  .city-grid{grid-template-columns:repeat(2,1fr)}
+  .lb-collage{grid-template-columns:1fr}
+  .lb-collage img{height:130px}
+  table{font-size:11px}
+  th,td{padding:5px 5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Italy + Greece — 2-week trip planner</h1>
+<p class="sub">RDU → Rome → Peloponnese → Crete → Athens → RDU &nbsp;·&nbsp; 6 people &nbsp;·&nbsp; Mid-June–Late July &nbsp;·&nbsp; $10–15K/family of 4</p>
+
+<!-- LEAFLET SATELLITE MAP -->
+<div class="sec">Satellite route map</div>
+<div id="map"></div>
+<p class="map-note">
+  Real satellite imagery · numbered stops in sequence · dashed lines show flight legs, solid lines show ground travel
+  &nbsp;·&nbsp;
+  <a href="https://www.google.com/maps/search/Rome+Italy/@41.9,12.5,8z" target="_blank">Rome ↗</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.google.com/maps/search/Nafplio+Greece/@37.57,22.8,10z" target="_blank">Nafplio ↗</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.google.com/maps/search/Chania+Crete/@35.51,24.02,10z" target="_blank">Chania ↗</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.google.com/maps/search/Athens+Greece/@37.98,23.73,11z" target="_blank">Athens ↗</a>
+</p>
+
+<!-- CITY CARDS -->
+<div class="sec">Destinations — tap any photo for collage</div>
+<div class="city-grid">
+  <div class="city-card" onclick="openLb('rome')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=300&q=80&auto=format&fit=crop" alt="Rome Colosseum" onerror="this.src='https://images.unsplash.com/photo-1529260830199-42c24126f198?w=300&q=80'">
+    <div class="city-info"><div class="city-num">STOP 1 · ITALY</div><div class="city-name">Rome</div><div class="city-nights">3 nights · FCO</div></div>
+  </div>
+  <div class="city-card" onclick="openLb('pelo')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop" alt="Peloponnese Greece" onerror="this.src='https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=300&q=80'">
+    <div class="city-info"><div class="city-num">STOP 2 · GREECE</div><div class="city-name">Peloponnese</div><div class="city-nights">4 nights · drive</div></div>
+  </div>
+  <div class="city-card" onclick="openLb('crete')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=300&q=80&auto=format&fit=crop" alt="Crete Greece" onerror="this.src='https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=300&q=80'">
+    <div class="city-info"><div class="city-num">STOP 3 · GREECE</div><div class="city-name">Crete</div><div class="city-nights">5 nights · CHQ</div></div>
+  </div>
+  <div class="city-card" onclick="openLb('athens')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=300&q=80&auto=format&fit=crop" alt="Athens Acropolis" onerror="this.src='https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=300&q=80'">
+    <div class="city-info"><div class="city-num">STOP 4 · GREECE</div><div class="city-name">Athens</div><div class="city-nights">2 nights · ATH</div></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <div class="lb-title" id="lb-title"></div>
+  <div class="lb-collage" id="lb-collage"></div>
+  <div class="lb-sub">tap anywhere to close</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('scores',this)">Scores</button>
+  <button class="tab" onclick="showTab('costs',this)">Costs</button>
+  <button class="tab" onclick="showTab('flights',this)">Flights & drives</button>
+  <button class="tab" onclick="showTab('airports',this)">Airports</button>
+</div>
+
+<!-- SCORES -->
+<div class="tab-panel active" id="tab-scores">
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:30%">Objective (1–5)</th><th>Rome</th><th>Pelopon.</th><th>Crete</th><th>Naples/Amalfi<br><span style="font-weight:400;font-size:9px">(alt. to Rome)</span></th></tr></thead>
+      <tbody id="score-rows"></tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:0">
+    <table>
+      <thead><tr><th>Destination</th><th class="num">Total /40</th><th>Verdict</th></tr></thead>
+      <tbody id="total-rows"></tbody>
+    </table>
+    <p class="muted" style="margin-top:8px">8 objectives × 5 max = 40 · scores reflect your priorities: exploration, active/hiking, coast, food, cost, teen engagement</p>
+  </div>
+</div>
+
+<!-- COSTS -->
+<div class="tab-panel" id="tab-costs">
+  <div class="card">
+    <p class="muted" style="margin-bottom:10px">Per family of 4 · estimates · book 8+ weeks ahead for low end · all USD</p>
+    <table>
+      <thead><tr><th>Category</th><th class="num">Low</th><th class="num">High</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Transatlantic flights (RDU↔FCO/ATH)</td><td class="num">$3,500</td><td class="num">$5,500</td><td class="muted">Book now; mid-week cheapest</td></tr>
+        <tr><td>Rome→Athens (FCO→ATH)</td><td class="num">$200</td><td class="num">$400</td><td class="muted">Ryanair vs Aegean</td></tr>
+        <tr><td>Athens↔Crete (ATH↔CHQ, both legs)</td><td class="num">$320</td><td class="num">$520</td><td class="muted">~60 flights/week July</td></tr>
+        <tr class="subtotal"><td style="font-weight:700">Flights subtotal</td><td class="num" style="font-weight:700">$4,020</td><td class="num" style="font-weight:700">$6,420</td><td></td></tr>
+        <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
+        <tr><td>Airbnb Rome, 3 nts (2-bed, Trastevere)</td><td class="num">$750</td><td class="num">$1,200</td><td class="muted">2 rooms = snoring solved ✓</td></tr>
+        <tr><td>Airbnb Peloponnese, 4 nts (near Nafplio)</td><td class="num">$400</td><td class="num">$720</td><td class="muted">House w/ garden</td></tr>
+        <tr><td>Airbnb Crete, 5 nts (near Chania)</td><td class="num">$600</td><td class="num">$1,000</td><td></td></tr>
+        <tr><td>Airbnb Athens, 2 nts (Monastiraki)</td><td class="num">$300</td><td class="num">$500</td><td></td></tr>
+        <tr class="subtotal"><td style="font-weight:700">Accommodation subtotal</td><td class="num" style="font-weight:700">$2,050</td><td class="num" style="font-weight:700">$3,420</td><td></td></tr>
+        <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
+        <tr><td>Car rental ~8 days (Pelopon. + Crete)</td><td class="num">$300</td><td class="num">$500</td><td class="muted">Book ahead — July sells out</td></tr>
+        <tr><td>Gas + tolls</td><td class="num">$150</td><td class="num">$200</td><td></td></tr>
+        <tr><td>Airport transfers (trains + taxis, all legs)</td><td class="num">$290</td><td class="num">$400</td><td class="muted">4 airports × 4 people</td></tr>
+        <tr class="subtotal"><td style="font-weight:700">Ground transport subtotal</td><td class="num" style="font-weight:700">$740</td><td class="num" style="font-weight:700">$1,100</td><td></td></tr>
+        <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
+        <tr><td>Food — Rome (3 days · $80–120/day)</td><td class="num">$240</td><td class="num">$360</td><td class="muted">Most expensive stop</td></tr>
+        <tr><td>Food — Peloponnese (4 days · $50–80/day)</td><td class="num">$200</td><td class="num">$320</td><td class="muted">Very cheap, rural Greece</td></tr>
+        <tr><td>Food — Crete (5 days · $50–80/day)</td><td class="num">$250</td><td class="num">$400</td><td></td></tr>
+        <tr><td>Food — Athens (2 days · $60–90/day)</td><td class="num">$120</td><td class="num">$180</td><td></td></tr>
+        <tr class="subtotal"><td style="font-weight:700">Food subtotal</td><td class="num" style="font-weight:700">$810</td><td class="num" style="font-weight:700">$1,260</td><td></td></tr>
+        <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
+        <tr><td>Entry fees + activities</td><td class="num">$600</td><td class="num">$900</td><td class="muted">Colosseum, ruins, Samaria Gorge, etc.</td></tr>
+        <tr class="total-row"><td>TOTAL (family of 4)</td><td class="num">$8,220</td><td class="num">$13,100</td><td style="font-size:11px">Within $10–15K target ✓</td></tr>
+      </tbody>
+    </table>
+    <div class="note">⚠️ Ryanair bag fees: +$30–50/bag/leg. For 2-week luggage × 4 people, budget an extra $300–500 if using budget carriers for intra-Europe legs. Factor this when comparing Ryanair vs Aegean pricing.</div>
+  </div>
+</div>
+
+<!-- FLIGHTS -->
+<div class="tab-panel" id="tab-flights">
+  <div class="card">
+    <table>
+      <thead><tr><th>#</th><th>Route</th><th class="num">Flight time</th><th class="num">Per person est.</th><th>Weekly freq.</th><th>Airlines</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-blue">1</span></td><td>RDU → Rome FCO</td><td class="num">~12 hr<br><span class="muted">1 stop required</span></td><td class="num">$875–1,375<br><span class="muted">roundtrip split</span></td><td class="muted">Daily (via JFK/ATL)</td><td class="muted">Delta, United, Lufthansa, Icelandair</td></tr>
+        <tr><td><span class="badge b-blue">2</span></td><td>Rome FCO → Athens ATH</td><td class="num">2 hr nonstop</td><td class="num">$50–130<br><span class="muted">one-way</span></td><td class="muted">~43×/week (July)</td><td class="muted">Ryanair, ITA, Aegean</td></tr>
+        <tr><td><span class="badge b-blue">3</span></td><td>Athens ATH → Chania CHQ</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Aegean (37/wk), Sky Express, Ryanair</td></tr>
+        <tr><td><span class="badge b-blue">4</span></td><td>Chania CHQ → Athens ATH</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Same as above</td></tr>
+        <tr><td><span class="badge b-blue">5</span></td><td>Athens ATH → RDU</td><td class="num">~16 hr<br><span class="muted">1–2 stops</span></td><td class="num">$380–900<br><span class="muted">one-way</span></td><td class="muted">Daily via JFK/CDG</td><td class="muted">Delta, BA, Air France, Lufthansa</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:0">
+    <p style="font-size:12px;font-weight:700;margin-bottom:8px">Key drives on the ground</p>
+    <table>
+      <thead><tr><th>Drive</th><th class="num">Time</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Athens airport → Nafplio base</td><td class="num">2 hr</td><td class="muted">Easy highway</td></tr>
+        <tr><td>Nafplio → Mycenae ruins</td><td class="num">30 min</td><td class="muted">Day trip</td></tr>
+        <tr><td>Nafplio → Epidaurus theater</td><td class="num">40 min</td><td class="muted">Day trip</td></tr>
+        <tr><td>Nafplio → Mani Peninsula</td><td class="num">2.5 hr</td><td class="muted">Narrow mountain roads</td></tr>
+        <tr><td>Chania → Samaria Gorge trailhead</td><td class="num">45 min</td><td class="muted">Start by 6am — intense heat by 10am</td></tr>
+        <tr><td>Chania → Elafonisi Beach</td><td class="num">1.5 hr</td><td class="muted">Scenic winding road; arrive early</td></tr>
+        <tr><td>Chania → Balos Lagoon</td><td class="num">1 hr + 4km dirt</td><td class="muted">Or €20 boat from Kissamos</td></tr>
+        <tr><td>Chania → Knossos (Minoan palace)</td><td class="num">2.5 hr</td><td class="muted">Worth a full day trip east</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- AIRPORTS -->
+<div class="tab-panel" id="tab-airports">
+  <div class="card">
+    <table>
+      <thead><tr><th>Airport</th><th class="num">Pax/yr</th><th class="num">Security avg</th><th class="num">Security peak (July)</th><th class="num">Immigration non-EU</th><th>Arrive by</th><th>Vibe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>RDU</strong> Raleigh-Durham</td><td class="num">~11M</td><td class="num">10–20 min</td><td class="num">30–45 min</td><td class="num">—</td><td>3 hr intl</td><td><span class="badge b-green">Easy</span></td></tr>
+        <tr><td><strong>FCO</strong> Rome Fiumicino</td><td class="num">51M</td><td class="num">10–25 min</td><td class="num">25–50 min</td><td class="num">~37 min</td><td>3 hr intl</td><td><span class="badge b-amber">Large hub</span></td></tr>
+        <tr><td><strong>ATH</strong> Athens Venizelos</td><td class="num">32M</td><td class="num">~22 min</td><td class="num">30–45 min</td><td class="num">~37 min</td><td>3 hr intl</td><td><span class="badge b-green">Well organized</span></td></tr>
+        <tr><td><strong>CHQ</strong> Chania, Crete</td><td class="num">~4M</td><td class="num">~9 min</td><td class="num">60–90 min</td><td class="num">~7 min</td><td>2.5 hr July</td><td><span class="badge b-red">Small + chaotic</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:0">
+    <p style="font-size:12px;font-weight:700;margin-bottom:8px">Airport → city transit</p>
+    <table>
+      <thead><tr><th>Airport</th><th>Mode</th><th class="num">Time</th><th class="num">Cost/person</th></tr></thead>
+      <tbody>
+        <tr><td>RDU — economy lot + shuttle</td><td>Free shuttle</td><td class="num">10–15 min</td><td class="num">$12/day</td></tr>
+        <tr><td>FCO → Rome center</td><td>Leonardo Express train</td><td class="num">32 min</td><td class="num">€14</td></tr>
+        <tr><td>FCO → Trastevere</td><td>FL1 regional train</td><td class="num">42 min</td><td class="num">€8</td></tr>
+        <tr><td>FCO → center</td><td>Taxi (fixed rate)</td><td class="num">~45 min</td><td class="num">€50 flat</td></tr>
+        <tr><td>ATH → Athens center</td><td>Metro Line 3</td><td class="num">40 min</td><td class="num">€9</td></tr>
+        <tr><td>ATH → Athens center</td><td>Taxi (fixed rate)</td><td class="num">~35 min</td><td class="num">€38 flat</td></tr>
+        <tr><td>CHQ → Chania city</td><td>Bus</td><td class="num">25 min</td><td class="num">€2.50</td></tr>
+        <tr><td>CHQ → Chania city</td><td>Taxi</td><td class="num">~15 min</td><td class="num">~€20</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// TAB SWITCHING
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// LIGHTBOX
+const collages={
+  rome:['https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=85','https://images.unsplash.com/photo-1529260830199-42c24126f198?w=600&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600&q=85','https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600&q=85'],
+  pelo:['https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=85'],
+  crete:['https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=600&q=85','https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=600&q=85','https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=600&q=85','https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=85'],
+  athens:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=85','https://images.unsplash.com/photo-1531564767163-63ebb5e32d0c?w=600&q=85','https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=85','https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=600&q=85']
+};
+const lbTitles={rome:'Rome & Lazio, Italy — 3 nights',pelo:'Peloponnese, Greece — 4 nights',crete:'Crete (Chania region) — 5 nights',athens:'Athens, Greece — 2 nights'};
+function openLb(k){
+  document.getElementById('lb-title').textContent=lbTitles[k];
+  document.getElementById('lb-collage').innerHTML=collages[k].map(u=>`<img src="${u}" loading="lazy" onerror="this.style.display='none'" alt="">`).join('');
+  document.getElementById('lb').classList.add('open');
+}
+function closeLb(){document.getElementById('lb').classList.remove('open');}
+
+// SCORE TABLE
+const scores=[
+  {obj:'Exploration',rome:3,pelo:5,crete:5,naples:5},
+  {obj:'History & culture',rome:5,pelo:5,crete:4,naples:4},
+  {obj:'Outdoor / hiking',rome:2,pelo:4,crete:5,naples:4},
+  {obj:'Mediterranean coast',rome:2,pelo:4,crete:5,naples:5},
+  {obj:'Food quality',rome:5,pelo:4,crete:5,naples:5},
+  {obj:'Cost efficiency',rome:2,pelo:5,crete:5,naples:3},
+  {obj:'Travel simplicity',rome:3,pelo:3,crete:4,naples:3},
+  {obj:'Teen engagement',rome:3,pelo:5,crete:5,naples:4},
+];
+function bar(v,c){return`<div class="bar-wrap"><div class="bar" style="width:${Math.round(v/5*64)}px;background:${c}"></div><span class="bar-v">${v}</span></div>`;}
+const sb=document.getElementById('score-rows');
+scores.forEach(r=>{sb.innerHTML+=`<tr><td>${r.obj}</td><td>${bar(r.rome,'#e34948')}</td><td>${bar(r.pelo,'#1baf7a')}</td><td>${bar(r.crete,'#1baf7a')}</td><td>${bar(r.naples,'#eda100')}</td></tr>`;});
+
+const totals=[
+  {name:'🏖️ Crete',t:38,badge:'b-green',v:'Best overall match'},
+  {name:'🗺️ Peloponnese',t:35,badge:'b-green',v:'Excellent across the board'},
+  {name:'🌊 Naples/Amalfi',t:33,badge:'b-amber',v:'Strong Rome alternative'},
+  {name:'🏛️ Athens',t:27,badge:'b-gray',v:'Great 2-day bookend'},
+  {name:'🏟️ Rome',t:25,badge:'b-amber',v:'History 5/5 — crowds + cost drag it'},
+];
+const tb=document.getElementById('total-rows');
+totals.forEach(r=>{tb.innerHTML+=`<tr><td>${r.name}</td><td class="num" style="font-weight:700">${r.t}/40</td><td><span class="badge ${r.badge}">${r.v}</span></td></tr>`;});
+
+// LEAFLET SATELLITE MAP
+const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([38.5, 18], 5);
+
+// Esri World Imagery (satellite, free, no key)
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution:'Esri, Maxar, Earthstar Geographics',
+  maxZoom:18
+}).addTo(map);
+
+// Esri labels overlay so cities are visible on satellite
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+  attribution:'',
+  maxZoom:18,
+  opacity:0.7
+}).addTo(map);
+
+// Stop coordinates
+const stops = [
+  {num:1, lat:41.9028, lng:12.4964, label:'Rome, Italy', sub:'3 nights · FCO', color:'#2a78d6'},
+  {num:2, lat:37.5679, lng:22.8027, label:'Peloponnese (Nafplio)', sub:'4 nights · drive from ATH', color:'#1baf7a'},
+  {num:3, lat:35.5138, lng:24.0180, label:'Crete (Chania)', sub:'5 nights · CHQ', color:'#1baf7a'},
+  {num:4, lat:37.9838, lng:23.7275, label:'Athens', sub:'2 nights · ATH', color:'#8b5cf6'},
+];
+
+// Alternative: Naples
+const altStops = [
+  {lat:40.8518, lng:14.2681, label:'Naples/Amalfi', sub:'(alternative to Rome)', color:'#e34948'},
+];
+
+// Draw flight route lines (dashed = air)
+const flightCoords = [
+  [41.9028, 12.4964], // Rome
+  [37.9838, 23.7275], // Athens
+  [35.5138, 24.0180], // Chania
+  [37.9838, 23.7275], // Athens (return)
+];
+L.polyline(flightCoords, {color:'#2a78d6', weight:2, dashArray:'8 5', opacity:0.8}).addTo(map);
+
+// Drive line: Athens → Nafplio (solid)
+L.polyline([[37.9838, 23.7275],[37.5679, 22.8027]], {color:'#1baf7a', weight:2.5, opacity:0.9}).addTo(map);
+
+// Custom numbered marker icon
+function makeIcon(num, color) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="background:${color};width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:13px;font-weight:700;color:#fff">${num}</div>`,
+    iconSize:[30,30],
+    iconAnchor:[15,15],
+    popupAnchor:[0,-18]
+  });
+}
+
+function makeAltIcon(letter, color) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="background:#fff;width:26px;height:26px;border-radius:50%;border:2.5px solid ${color};box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;color:${color}">A</div>`,
+    iconSize:[26,26],
+    iconAnchor:[13,13],
+    popupAnchor:[0,-16]
+  });
+}
+
+stops.forEach(s=>{
+  L.marker([s.lat,s.lng], {icon:makeIcon(s.num,s.color)})
+    .addTo(map)
+    .bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#52514e">${s.sub}</span>`);
+});
+
+altStops.forEach(s=>{
+  L.marker([s.lat,s.lng], {icon:makeAltIcon('A',s.color)})
+    .addTo(map)
+    .bindPopup(`<strong>${s.label}</strong><br><span style="font-size:12px;color:#e34948">${s.sub}</span>`);
+});
+
+// Legend
+const legend = L.control({position:'bottomleft'});
+legend.onAdd = function(){
+  const d = L.DomUtil.create('div','');
+  d.style.cssText = 'background:rgba(255,255,255,.92);padding:8px 12px;border-radius:8px;font-family:-apple-system,sans-serif;font-size:11px;line-height:1.9;box-shadow:0 1px 6px rgba(0,0,0,.2)';
+  d.innerHTML = '<strong style="font-size:11px">Route</strong><br>'
+    +'<span style="color:#2a78d6">━ ━</span> Flight leg<br>'
+    +'<span style="color:#1baf7a">───</span> Drive<br>'
+    +'<span style="background:#e34948;color:#fff;border-radius:50%;padding:1px 5px;font-size:10px;font-weight:700">A</span> Alternative stop';
+  return d;
+};
+legend.addTo(map);
+</script>
+</body>
+</html>
