@@ -464,6 +464,73 @@ ASSUMPTIONS = {
         # Listing them again here would double-count the same dollars.
     ],
 
+    # ---- Itemized sub-components of every travel-heavy day ----
+    # This is the ground truth behind the Time Budget tab's "Travel" hours.
+    # Nothing here is a single guessed lump -- each line is either sourced
+    # (airport arrival-early recommendations, immigration wait averages,
+    # known transit times) or flagged as a judgment call (packing time,
+    # baggage claim, hotel check-in buffer -- things no website publishes
+    # a number for). Summing these per day REPLACES the old single
+    # "travel hours" guess; sleep/eat/visit for that day are recomputed
+    # to still fit in 24 hours once the real travel total is known.
+    "travel_itemized": {
+        1: [  # RDU departure + majority of the overnight flight
+            {"label": "Pack and get ready", "hours": 1.0, "source": None},
+            {"label": "Transit to RDU airport (drive + park)", "hours": 0.75, "source": "airport_data"},
+            {"label": "Airport arrival buffer (check-in, security, gate wait)", "hours": 3.0, "source": "airport_data", "note": "RDU recommends 3 hrs before international departure"},
+            {"label": "Flight RDU -> Rome (boarding + bulk of overnight flight)", "hours": 8.25, "source": "flights_transatlantic"},
+        ],
+        2: [  # Remainder of flight + arrival into Rome
+            {"label": "Remaining flight time + descent", "hours": 3.0, "source": "flights_transatlantic"},
+            {"label": "Deplane + immigration/passport control (non-EU)", "hours": 0.75, "source": "airport_data", "note": "FCO non-EU immigration ~37 min average"},
+            {"label": "Baggage claim", "hours": 0.5, "source": None},
+            {"label": "Transit FCO -> Rome hotel (train or taxi)", "hours": 0.75, "source": "airport_data"},
+            {"label": "Hotel check-in", "hours": 0.5, "source": None},
+        ],
+        5: [  # Rome -> Peloponnese (flight + drive)
+            {"label": "Hotel check-out, pack up", "hours": 0.5, "source": None},
+            {"label": "Transit to FCO airport", "hours": 0.75, "source": "airport_data"},
+            {"label": "Airport arrival buffer (intra-Europe)", "hours": 2.0, "source": "airport_data"},
+            {"label": "Flight FCO -> ATH", "hours": 2.0, "source": "flights_intra_europe"},
+            {"label": "Deplane + baggage claim", "hours": 0.5, "source": None},
+            {"label": "Rental car pickup", "hours": 0.5, "source": None},
+            {"label": "Drive ATH airport -> Nafplio", "hours": 2.0, "source": "peloponnese_activities"},
+            {"label": "Check-in Nafplio accommodation", "hours": 0.5, "source": None},
+        ],
+        9: [  # Peloponnese -> Crete (drive + flight)
+            {"label": "Check-out, pack up", "hours": 0.5, "source": None},
+            {"label": "Drive Nafplio -> ATH airport", "hours": 2.0, "source": "peloponnese_activities"},
+            {"label": "Return rental car", "hours": 0.3, "source": None},
+            {"label": "Airport arrival buffer (domestic)", "hours": 1.5, "source": "airport_data"},
+            {"label": "Flight ATH -> CHQ", "hours": 0.92, "source": "flights_intra_europe"},
+            {"label": "Deplane + baggage claim", "hours": 0.4, "source": None},
+            {"label": "Local car rental pickup (Chania)", "hours": 0.4, "source": None},
+            {"label": "Check-in Chania accommodation", "hours": 0.5, "source": None},
+        ],
+        14: [  # Crete -> Athens (flight)
+            {"label": "Check-out, return rental car", "hours": 0.75, "source": None},
+            {"label": "Transit to CHQ airport", "hours": 0.3, "source": "airport_data"},
+            {"label": "Airport arrival buffer (CHQ gets very busy in July)", "hours": 2.0, "source": "airport_data", "note": "CHQ peak security waits 60-90 min in July"},
+            {"label": "Flight CHQ -> ATH", "hours": 0.92, "source": "flights_intra_europe"},
+            {"label": "Deplane + baggage claim", "hours": 0.4, "source": None},
+            {"label": "Transit ATH airport -> Athens hotel (metro)", "hours": 0.67, "source": "airport_data"},
+            {"label": "Hotel check-in", "hours": 0.5, "source": None},
+        ],
+        16: [  # Athens -> depart RDU
+            {"label": "Check-out, get ready", "hours": 0.5, "source": None},
+            {"label": "Transit to ATH airport (metro/taxi)", "hours": 0.67, "source": "airport_data"},
+            {"label": "Airport arrival buffer (international)", "hours": 3.0, "source": "airport_data"},
+            {"label": "Flight ATH -> RDU (with connection)", "hours": 15.0, "source": "flights_transatlantic"},
+            {"label": "Deplane + immigration/customs at RDU", "hours": 0.5, "source": "airport_data"},
+            {"label": "Baggage claim", "hours": 0.4, "source": None},
+            {"label": "Drive home from RDU", "hours": 0.4, "source": "airport_data"},
+        ],
+        10: [  # Samaria Gorge day -- lighter itemization, same principle
+            {"label": "Drive Chania -> Samaria trailhead", "hours": 0.75, "source": "crete_activities"},
+            {"label": "Drive/ferry return from Agia Roumeli", "hours": 0.75, "source": "crete_activities"},
+        ],
+    },
+
     # ---- The 16-day itinerary skeleton, shared with the Time Budget / Gantt tabs ----
     # dest values: rome, pelo, crete, athens, transfer_pelo, transfer_crete, transfer_athens, travel_out, travel_back
     "day_model": [
@@ -485,6 +552,49 @@ ASSUMPTIONS = {
         {"day": 16, "label": "Athens -> depart RDU (overnight flight)",   "dest": "travel_back"},
     ],
 }
+
+# ---- Baseline sleep and eating hours per day (judgment calls) ----
+# Assumes 10 hrs sleep/night unless the schedule genuinely doesn't allow
+# it. Eat hours are TIME spent eating (breakfast/lunch/dinner), separate
+# from the food dollar-cost model above. Travel hours are NOT listed here
+# -- they're computed from ASSUMPTIONS["travel_itemized"] where a day has
+# an entry, or default to 1.0h (local transit) otherwise.
+BASE_SLEEP_HOURS = {1:5, 2:10, 3:10, 4:10, 5:10, 6:10, 7:10, 8:10, 9:10, 10:7, 11:10, 12:10, 13:10, 14:10, 15:10, 16:1}
+BASE_EAT_HOURS =   {1:2,  2:3,  3:3,  4:3,  5:2.5,6:3,  7:3,  8:3,  9:2.5,10:2, 11:3,  12:3,  13:3,  14:2.5,15:3,  16:1.5}
+DEFAULT_LOCAL_TRAVEL_HOURS = 1.0
+
+
+def compute_time_budget(a):
+    """Travel hours per day = sum of ASSUMPTIONS['travel_itemized'][day] if
+    present, else a flat local-transit default. Visit hours = whatever's
+    left of the 24-hour day after sleep + travel + eat -- never a
+    separately guessed number, so an itemization correction here (e.g.
+    airport waits taking longer than expected) automatically eats into
+    visit time instead of silently breaking the day's total."""
+    itemized = a.get("travel_itemized", {})
+    out = []
+    for d in a["day_model"]:
+        day = d["day"]
+        sleep_h = BASE_SLEEP_HOURS[day]
+        eat_h = BASE_EAT_HOURS[day]
+        items = itemized.get(day)
+        if items:
+            travel_h = round(sum(i["hours"] for i in items), 2)
+        else:
+            travel_h = DEFAULT_LOCAL_TRAVEL_HOURS
+        visit_h = round(24 - sleep_h - travel_h - eat_h, 2)
+        out.append({
+            "day": day,
+            "label": d["label"],
+            "dest": d["dest"],
+            "sleep": sleep_h,
+            "travel": travel_h,
+            "eat": eat_h,
+            "visit": visit_h,
+            "travel_itemized": items,  # None if this day has no itemization
+        })
+    return out
+
 
 # Maps a day's "dest" tag to which food-cost zone applies that day
 DEST_TO_FOOD_ZONE = {
@@ -637,6 +747,31 @@ def main():
     pretrip, pre_cum_low, pre_cum_high = compute_pretrip_timeline(a, party_size)
     intrip, grand_low, grand_high = compute_intrip_burn(a, pre_cum_low, pre_cum_high)
     f2_pretrip, f2_intrip, f2_low, f2_high = compute_family_of_2(pretrip, intrip, grand_low, grand_high)
+    time_budget = compute_time_budget(a)
+
+    # sanity check: every day must sum to exactly 24 hours
+    for row in time_budget:
+        total = row["sleep"] + row["travel"] + row["eat"] + row["visit"]
+        assert abs(total - 24) < 0.01, f"Day {row['day']} sums to {total}, not 24!"
+
+    total_days = len(time_budget)
+    total_hours = total_days * 24
+    tb_sleep = sum(r["sleep"] for r in time_budget)
+    tb_travel = sum(r["travel"] for r in time_budget)
+    tb_eat = sum(r["eat"] for r in time_budget)
+    tb_visit = sum(r["visit"] for r in time_budget)
+    tb_awake = total_hours - tb_sleep
+    time_budget_summary = {
+        "total_hours": total_hours,
+        "sleep_hours": round(tb_sleep, 1), "sleep_pct": round(tb_sleep / total_hours * 100, 1),
+        "travel_hours": round(tb_travel, 1), "travel_pct": round(tb_travel / total_hours * 100, 1),
+        "eat_hours": round(tb_eat, 1), "eat_pct": round(tb_eat / total_hours * 100, 1),
+        "visit_hours": round(tb_visit, 1), "visit_pct": round(tb_visit / total_hours * 100, 1),
+        "awake_hours": round(tb_awake, 1),
+        "travel_pct_of_awake": round(tb_travel / tb_awake * 100, 1),
+        "eat_pct_of_awake": round(tb_eat / tb_awake * 100, 1),
+        "visit_pct_of_awake": round(tb_visit / tb_awake * 100, 1),
+    }
 
     data = {
         "party_size": party_size,
@@ -660,6 +795,8 @@ def main():
         "destination_cost_breakdown": dest_cost_breakdown,
         "itinerary_accommodation_total": {"low": itin_accom[0], "high": itin_accom[1]},
         "itinerary_activities_total": {"low": itin_activities[0], "high": itin_activities[1]},
+        "time_budget": time_budget,
+        "time_budget_summary": time_budget_summary,
     }
 
     with open("trip_data.json", "w") as f:
