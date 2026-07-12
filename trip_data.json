@@ -25,8 +25,8 @@
       "day_offset": -42,
       "weeks_before": 6,
       "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
-      "amount_low": 2050,
-      "amount_high": 3420,
+      "amount_low": 2050.0,
+      "amount_high": 3420.0,
       "cumulative_low": 6070.0,
       "cumulative_high": 9840.0,
       "source": "accommodation"
@@ -34,11 +34,11 @@
     {
       "day_offset": -21,
       "weeks_before": 3,
-      "item": "Pre-bookable activities & entry tickets (Colosseum, Vatican, etc.)",
-      "amount_low": 600,
-      "amount_high": 900,
-      "cumulative_low": 6670.0,
-      "cumulative_high": 10740.0,
+      "item": "Pre-bookable activities & entry tickets (Colosseum, Acropolis)",
+      "amount_low": 228.0,
+      "amount_high": 292.0,
+      "cumulative_low": 6298.0,
+      "cumulative_high": 10132.0,
       "source": "rome_activities"
     }
   ],
@@ -56,8 +56,8 @@
       ],
       "day_total_low": 90.0,
       "day_total_high": 130,
-      "cumulative_low": 6760.0,
-      "cumulative_high": 10870.0
+      "cumulative_low": 6388.0,
+      "cumulative_high": 10262.0
     },
     {
       "day": 2,
@@ -70,8 +70,8 @@
       "lump_items": [],
       "day_total_low": 80,
       "day_total_high": 120,
-      "cumulative_low": 6840.0,
-      "cumulative_high": 10990.0
+      "cumulative_low": 6468.0,
+      "cumulative_high": 10382.0
     },
     {
       "day": 3,
@@ -84,8 +84,8 @@
       "lump_items": [],
       "day_total_low": 80,
       "day_total_high": 120,
-      "cumulative_low": 6920.0,
-      "cumulative_high": 11110.0
+      "cumulative_low": 6548.0,
+      "cumulative_high": 10502.0
     },
     {
       "day": 4,
@@ -98,8 +98,8 @@
       "lump_items": [],
       "day_total_low": 80,
       "day_total_high": 120,
-      "cumulative_low": 7000.0,
-      "cumulative_high": 11230.0
+      "cumulative_low": 6628.0,
+      "cumulative_high": 10622.0
     },
     {
       "day": 5,
@@ -116,8 +116,8 @@
       ],
       "day_total_low": 485.0,
       "day_total_high": 770,
-      "cumulative_low": 7485.0,
-      "cumulative_high": 12000.0
+      "cumulative_low": 7113.0,
+      "cumulative_high": 11392.0
     },
     {
       "day": 6,
@@ -130,8 +130,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7535.0,
-      "cumulative_high": 12080.0
+      "cumulative_low": 7163.0,
+      "cumulative_high": 11472.0
     },
     {
       "day": 7,
@@ -144,8 +144,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7585.0,
-      "cumulative_high": 12160.0
+      "cumulative_low": 7213.0,
+      "cumulative_high": 11552.0
     },
     {
       "day": 8,
@@ -158,8 +158,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7635.0,
-      "cumulative_high": 12240.0
+      "cumulative_low": 7263.0,
+      "cumulative_high": 11632.0
     },
     {
       "day": 9,
@@ -174,8 +174,8 @@
       ],
       "day_total_low": 110.0,
       "day_total_high": 170,
-      "cumulative_low": 7745.0,
-      "cumulative_high": 12410.0
+      "cumulative_low": 7373.0,
+      "cumulative_high": 11802.0
     },
     {
       "day": 10,
@@ -191,8 +191,8 @@
       ],
       "day_total_low": 145.0,
       "day_total_high": 204,
-      "cumulative_low": 7890.0,
-      "cumulative_high": 12614.0
+      "cumulative_low": 7518.0,
+      "cumulative_high": 12006.0
     },
     {
       "day": 11,
@@ -205,8 +205,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7940.0,
-      "cumulative_high": 12694.0
+      "cumulative_low": 7568.0,
+      "cumulative_high": 12086.0
     },
     {
       "day": 12,
@@ -219,8 +219,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7990.0,
-      "cumulative_high": 12774.0
+      "cumulative_low": 7618.0,
+      "cumulative_high": 12166.0
     },
     {
       "day": 13,
@@ -233,8 +233,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 8040.0,
-      "cumulative_high": 12854.0
+      "cumulative_low": 7668.0,
+      "cumulative_high": 12246.0
     },
     {
       "day": 14,
@@ -249,8 +249,8 @@
       ],
       "day_total_low": 120,
       "day_total_high": 180.0,
-      "cumulative_low": 8160.0,
-      "cumulative_high": 13034.0
+      "cumulative_low": 7788.0,
+      "cumulative_high": 12426.0
     },
     {
       "day": 15,
@@ -263,8 +263,8 @@
       "lump_items": [],
       "day_total_low": 60,
       "day_total_high": 90.0,
-      "cumulative_low": 8220.0,
-      "cumulative_high": 13124.0
+      "cumulative_low": 7848.0,
+      "cumulative_high": 12516.0
     },
     {
       "day": 16,
@@ -277,12 +277,12 @@
       "lump_items": [],
       "day_total_low": 30.0,
       "day_total_high": 40,
-      "cumulative_low": 8250.0,
-      "cumulative_high": 13164.0
+      "cumulative_low": 7878.0,
+      "cumulative_high": 12556.0
     }
   ],
-  "grand_total_low": 8250.0,
-  "grand_total_high": 13164.0,
+  "grand_total_low": 7878.0,
+  "grand_total_high": 12556.0,
   "family_of_2": {
     "pretrip_timeline": [
       {
@@ -318,11 +318,11 @@
       {
         "day_offset": -21,
         "weeks_before": 3,
-        "item": "Pre-bookable activities & entry tickets (Colosseum, Vatican, etc.)",
-        "amount_low": 300.0,
-        "amount_high": 450.0,
-        "cumulative_low": 3642.5,
-        "cumulative_high": 5883.0,
+        "item": "Pre-bookable activities & entry tickets (Colosseum, Acropolis)",
+        "amount_low": 114.0,
+        "amount_high": 146.0,
+        "cumulative_low": 3456.5,
+        "cumulative_high": 5579.0,
         "source": "rome_activities"
       }
     ],
@@ -340,8 +340,8 @@
         ],
         "day_total_low": 45.0,
         "day_total_high": 65.0,
-        "cumulative_low": 3687.5,
-        "cumulative_high": 5948.0
+        "cumulative_low": 3501.5,
+        "cumulative_high": 5644.0
       },
       {
         "day": 2,
@@ -354,8 +354,8 @@
         "lump_items": [],
         "day_total_low": 40.0,
         "day_total_high": 60.0,
-        "cumulative_low": 3727.5,
-        "cumulative_high": 6008.0
+        "cumulative_low": 3541.5,
+        "cumulative_high": 5704.0
       },
       {
         "day": 3,
@@ -368,8 +368,8 @@
         "lump_items": [],
         "day_total_low": 40.0,
         "day_total_high": 60.0,
-        "cumulative_low": 3767.5,
-        "cumulative_high": 6068.0
+        "cumulative_low": 3581.5,
+        "cumulative_high": 5764.0
       },
       {
         "day": 4,
@@ -382,8 +382,8 @@
         "lump_items": [],
         "day_total_low": 40.0,
         "day_total_high": 60.0,
-        "cumulative_low": 3807.5,
-        "cumulative_high": 6128.0
+        "cumulative_low": 3621.5,
+        "cumulative_high": 5824.0
       },
       {
         "day": 5,
@@ -400,8 +400,8 @@
         ],
         "day_total_low": 329.5,
         "day_total_high": 523.0,
-        "cumulative_low": 4137.0,
-        "cumulative_high": 6651.0
+        "cumulative_low": 3951.0,
+        "cumulative_high": 6347.0
       },
       {
         "day": 6,
@@ -414,8 +414,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4162.0,
-        "cumulative_high": 6691.0
+        "cumulative_low": 3976.0,
+        "cumulative_high": 6387.0
       },
       {
         "day": 7,
@@ -428,8 +428,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4187.0,
-        "cumulative_high": 6731.0
+        "cumulative_low": 4001.0,
+        "cumulative_high": 6427.0
       },
       {
         "day": 8,
@@ -442,8 +442,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4212.0,
-        "cumulative_high": 6771.0
+        "cumulative_low": 4026.0,
+        "cumulative_high": 6467.0
       },
       {
         "day": 9,
@@ -458,8 +458,8 @@
         ],
         "day_total_low": 55.0,
         "day_total_high": 85.0,
-        "cumulative_low": 4267.0,
-        "cumulative_high": 6856.0
+        "cumulative_low": 4081.0,
+        "cumulative_high": 6552.0
       },
       {
         "day": 10,
@@ -475,8 +475,8 @@
         ],
         "day_total_low": 72.5,
         "day_total_high": 102.0,
-        "cumulative_low": 4339.5,
-        "cumulative_high": 6958.0
+        "cumulative_low": 4153.5,
+        "cumulative_high": 6654.0
       },
       {
         "day": 11,
@@ -489,8 +489,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4364.5,
-        "cumulative_high": 6998.0
+        "cumulative_low": 4178.5,
+        "cumulative_high": 6694.0
       },
       {
         "day": 12,
@@ -503,8 +503,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4389.5,
-        "cumulative_high": 7038.0
+        "cumulative_low": 4203.5,
+        "cumulative_high": 6734.0
       },
       {
         "day": 13,
@@ -517,8 +517,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4414.5,
-        "cumulative_high": 7078.0
+        "cumulative_low": 4228.5,
+        "cumulative_high": 6774.0
       },
       {
         "day": 14,
@@ -533,8 +533,8 @@
         ],
         "day_total_low": 60.0,
         "day_total_high": 90.0,
-        "cumulative_low": 4474.5,
-        "cumulative_high": 7168.0
+        "cumulative_low": 4288.5,
+        "cumulative_high": 6864.0
       },
       {
         "day": 15,
@@ -547,8 +547,8 @@
         "lump_items": [],
         "day_total_low": 30.0,
         "day_total_high": 45.0,
-        "cumulative_low": 4504.5,
-        "cumulative_high": 7213.0
+        "cumulative_low": 4318.5,
+        "cumulative_high": 6909.0
       },
       {
         "day": 16,
@@ -561,12 +561,12 @@
         "lump_items": [],
         "day_total_low": 15.0,
         "day_total_high": 20.0,
-        "cumulative_low": 4519.5,
-        "cumulative_high": 7233.0
+        "cumulative_low": 4333.5,
+        "cumulative_high": 6929.0
       }
     ],
-    "grand_total_low": 4519.5,
-    "grand_total_high": 7233.0
+    "grand_total_low": 4333.5,
+    "grand_total_high": 6929.0
   },
   "sources": {
     "flights_transatlantic": [
@@ -685,6 +685,12 @@
       {
         "url": "https://www.airbnb.com",
         "note": "General market-rate estimate for 2-3BR apartments in each region, no specific listing cited -- treat as rough estimate pending real search"
+      }
+    ],
+    "athens_activities": [
+      {
+        "url": "https://www.discovergreece.com",
+        "note": "Acropolis, Acropolis Museum entry pricing"
       }
     ]
   },
@@ -875,5 +881,441 @@
     "rome": "2 of 6 travelers (both adults in one family) have been before",
     "fr": "2 of 6 travelers (both adults in one family) have been before",
     "it": "2 of 6 travelers (both adults in one family) have been before"
+  },
+  "destination_cost_breakdown": {
+    "rome": {
+      "nights": 3,
+      "accommodation_per_night_low": 250,
+      "accommodation_per_night_high": 400,
+      "accommodation_total_low": 750,
+      "accommodation_total_high": 1200,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Colosseum + Arena Floor",
+          "per_person_low": 25,
+          "per_person_high": 35,
+          "source": "rome_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Roman Forum + Palatine Hill",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "rome_activities",
+          "in_budget": false,
+          "note": "included on Colosseum ticket"
+        },
+        {
+          "name": "Vatican Museums + Sistine Chapel",
+          "per_person_low": 30,
+          "per_person_high": 35,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Domus Aurea",
+          "per_person_low": 16,
+          "per_person_high": 20,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Gladiator school",
+          "per_person_low": 60,
+          "per_person_high": 100,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Pizza or pasta making class in Trastevere",
+          "per_person_low": 50,
+          "per_person_high": 75,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Catacombs of San Callisto",
+          "per_person_low": 12,
+          "per_person_high": 15,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Capuchin Crypt",
+          "per_person_low": 10,
+          "per_person_high": 10,
+          "source": "rome_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Janiculum Hill sunset walk",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "rome_activities",
+          "in_budget": false,
+          "note": "free"
+        }
+      ],
+      "activities_in_budget_low": 100,
+      "activities_in_budget_high": 140,
+      "activities_all_low": 812,
+      "activities_all_high": 1160
+    },
+    "pelo": {
+      "nights": 4,
+      "accommodation_per_night_low": 100,
+      "accommodation_per_night_high": 180,
+      "accommodation_total_low": 400,
+      "accommodation_total_high": 720,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Palamidi Fortress",
+          "per_person_low": 5,
+          "per_person_high": 8,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Ancient Mycenae",
+          "per_person_low": 8,
+          "per_person_high": 12,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Epidaurus theater",
+          "per_person_low": 8,
+          "per_person_high": 12,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Ancient Corinth + Canal",
+          "per_person_low": 8,
+          "per_person_high": 10,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Lousios Gorge hike",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "peloponnese_activities",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Mani Peninsula",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "peloponnese_activities",
+          "in_budget": false,
+          "note": "free to explore"
+        },
+        {
+          "name": "Diros Caves",
+          "per_person_low": 15,
+          "per_person_high": 18,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Voidokilia Beach",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "peloponnese_activities",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Mystras Byzantine ruins",
+          "per_person_low": 8,
+          "per_person_high": 8,
+          "source": "peloponnese_activities",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 0,
+      "activities_in_budget_high": 0,
+      "activities_all_low": 208,
+      "activities_all_high": 272
+    },
+    "crete": {
+      "nights": 5,
+      "accommodation_per_night_low": 120,
+      "accommodation_per_night_high": 200,
+      "accommodation_total_low": 600,
+      "accommodation_total_high": 1000,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Samaria Gorge hike",
+          "per_person_low": 6,
+          "per_person_high": 6,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "cash on trail, not pre-booked"
+        },
+        {
+          "name": "Imbros Gorge",
+          "per_person_low": 4,
+          "per_person_high": 4,
+          "source": "crete_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Balos Lagoon",
+          "per_person_low": 20,
+          "per_person_high": 20,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "boat from Kissamos"
+        },
+        {
+          "name": "Elafonisi Beach",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Chania Old Town",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Knossos Minoan palace",
+          "per_person_low": 18,
+          "per_person_high": 20,
+          "source": "crete_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Aptera ruins",
+          "per_person_low": 6,
+          "per_person_high": 6,
+          "source": "crete_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Seitan Limania cove",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "free"
+        }
+      ],
+      "activities_in_budget_low": 0,
+      "activities_in_budget_high": 0,
+      "activities_all_low": 216,
+      "activities_all_high": 224
+    },
+    "athens": {
+      "nights": 2,
+      "accommodation_per_night_low": 150,
+      "accommodation_per_night_high": 250,
+      "accommodation_total_low": 300,
+      "accommodation_total_high": 500,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Acropolis + Parthenon",
+          "per_person_low": 22,
+          "per_person_high": 25,
+          "source": "athens_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Acropolis Museum",
+          "per_person_low": 10,
+          "per_person_high": 13,
+          "source": "athens_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Plaka neighborhood",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "athens_activities",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Monastiraki flea market",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "athens_activities",
+          "in_budget": false,
+          "note": "free to browse"
+        },
+        {
+          "name": "Changing of the Guard",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "athens_activities",
+          "in_budget": false,
+          "note": "free"
+        }
+      ],
+      "activities_in_budget_low": 128,
+      "activities_in_budget_high": 152,
+      "activities_all_low": 128,
+      "activities_all_high": 152
+    },
+    "naples": {
+      "nights": 3,
+      "accommodation_per_night_low": 150,
+      "accommodation_per_night_high": 250,
+      "accommodation_total_low": 450,
+      "accommodation_total_high": 750,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Pompeii ruins entry",
+          "per_person_low": 20,
+          "per_person_high": 22,
+          "source": "naples_amalfi_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Herculaneum entry",
+          "per_person_low": 15,
+          "per_person_high": 15,
+          "source": "naples_amalfi_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Underground Naples tour",
+          "per_person_low": 12,
+          "per_person_high": 15,
+          "source": "naples_amalfi_activities",
+          "in_budget": false
+        },
+        {
+          "name": "National Archaeological Museum",
+          "per_person_low": 16,
+          "per_person_high": 16,
+          "source": "naples_amalfi_activities",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 80,
+      "activities_in_budget_high": 88,
+      "activities_all_low": 252,
+      "activities_all_high": 272
+    },
+    "amalfi": {
+      "nights": 3,
+      "accommodation_per_night_low": 180,
+      "accommodation_per_night_high": 320,
+      "accommodation_total_low": 540,
+      "accommodation_total_high": 960,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Path of the Gods guided hike",
+          "per_person_low": 40,
+          "per_person_high": 60,
+          "source": "naples_amalfi_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Villa Cimbrone gardens (Ravello)",
+          "per_person_low": 11,
+          "per_person_high": 11,
+          "source": "naples_amalfi_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Boat tour of the coast",
+          "per_person_low": 60,
+          "per_person_high": 90,
+          "source": "naples_amalfi_activities",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 160,
+      "activities_in_budget_high": 240,
+      "activities_all_low": 444,
+      "activities_all_high": 644
+    },
+    "fr": {
+      "nights": 3,
+      "accommodation_per_night_low": 200,
+      "accommodation_per_night_high": 350,
+      "accommodation_total_low": 600,
+      "accommodation_total_high": 1050,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Eze botanical garden entry",
+          "per_person_low": 7,
+          "per_person_high": 7,
+          "source": "riviera_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Monaco Oceanographic Museum",
+          "per_person_low": 18,
+          "per_person_high": 20,
+          "source": "riviera_activities",
+          "in_budget": false
+        },
+        {
+          "name": "Gorges du Loup guided aquatic hike",
+          "per_person_low": 30,
+          "per_person_high": 50,
+          "source": "riviera_activities",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 28,
+      "activities_in_budget_high": 28,
+      "activities_all_low": 220,
+      "activities_all_high": 308
+    },
+    "it": {
+      "nights": 3,
+      "accommodation_per_night_low": 150,
+      "accommodation_per_night_high": 260,
+      "accommodation_total_low": 450,
+      "accommodation_total_high": 780,
+      "accommodation_source": "accommodation",
+      "activities": [
+        {
+          "name": "Cinque Terre Card (trails + trains, per day)",
+          "per_person_low": 21,
+          "per_person_high": 24,
+          "source": "riviera_activities",
+          "in_budget": true
+        },
+        {
+          "name": "Boat tour between villages",
+          "per_person_low": 25,
+          "per_person_high": 35,
+          "source": "riviera_activities",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 84,
+      "activities_in_budget_high": 96,
+      "activities_all_low": 184,
+      "activities_all_high": 236
+    }
+  },
+  "itinerary_accommodation_total": {
+    "low": 2050.0,
+    "high": 3420.0
+  },
+  "itinerary_activities_total": {
+    "low": 228.0,
+    "high": 292.0
   }
 }
