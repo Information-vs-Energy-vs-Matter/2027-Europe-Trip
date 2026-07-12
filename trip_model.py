@@ -87,7 +87,7 @@ GROUP_INFO = {
 OBJECTIVES = [
     {
         "num": 1, "name": "Exploration index",
-        "desc": "Places none of us have been. Greece = high (first time). Rome = mixed (1 adult has been).",
+        "desc": "Places none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.",
     },
     {
         "num": 2, "name": "History & culture index",
@@ -149,6 +149,79 @@ def build_crew_text():
     lines.append("")
     lines.append("Reply with your top 3 priorities from the list above, or add anything missing.")
     return "\n".join(lines)
+
+
+# ============================================================
+# PRIOR VISITS
+# Who in the group has already been where -- drives the Exploration index
+# score below. Edit this when someone's travel history changes.
+# ============================================================
+
+PRIOR_VISITS = {
+    "rome": "2 of 6 travelers (both adults in one family) have been before",
+    "fr": "2 of 6 travelers (both adults in one family) have been before",
+    "it": "2 of 6 travelers (both adults in one family) have been before",
+}
+
+
+# ============================================================
+# DESTINATION SCORES
+# 1-5 per objective, per destination/alternative. This is the single
+# source of truth for the Scores tab -- edit a number here, rerun, and
+# the bar chart + verdict table both update. "naples"/"amalfi" are Italy
+# alternatives; "fr"/"it" are French Riviera / Italian Riviera alternatives.
+# ============================================================
+
+DESTINATION_SCORES = {
+    # dest_key: {objective_num: score}
+    "rome":    {1: 3, 2: 5, 3: 2, 4: 2, 5: 5, 6: 2, 7: 3, 8: 3},
+    "pelo":    {1: 5, 2: 5, 3: 4, 4: 4, 5: 4, 6: 5, 7: 3, 8: 5},
+    "crete":   {1: 5, 2: 4, 3: 5, 4: 5, 5: 5, 6: 5, 7: 4, 8: 5},
+    "naples":  {1: 5, 2: 5, 3: 3, 4: 3, 5: 5, 6: 4, 7: 3, 8: 4},
+    "amalfi":  {1: 5, 2: 3, 3: 5, 4: 5, 5: 4, 6: 2, 7: 2, 8: 4},
+    "fr":      {1: 3, 2: 3, 3: 3, 4: 5, 5: 4, 6: 1, 7: 2, 8: 3},  # exploration lowered: 2 of 6 have been
+    "it":      {1: 3, 2: 2, 3: 5, 4: 5, 5: 4, 6: 3, 7: 2, 8: 4},  # exploration lowered: 2 of 6 have been
+}
+
+DESTINATION_LABELS = {
+    "rome": "Rome", "pelo": "Peloponnese", "crete": "Crete",
+    "naples": "Naples", "amalfi": "Amalfi Coast",
+    "fr": "French Riviera", "it": "Italian Riviera",
+}
+
+DESTINATION_EMOJI = {
+    "rome": "🏟️", "pelo": "🗺️", "crete": "🏖️",
+    "naples": "🍕", "amalfi": "🌊", "fr": "🇫🇷", "it": "🇮🇹",
+}
+
+DESTINATION_VERDICTS = {
+    "crete": "Best overall match",
+    "pelo": "Excellent across the board",
+    "naples": "Strong history alt to Rome",
+    "amalfi": "Strong coastal/hiking alt",
+    "it": "Good hiking alt, less novel now",
+    "rome": "History 5/5 -- crowds, cost, and repeat-visit familiarity drag it",
+    "fr": "Priciest, biggest reroute, and less novel now",
+}
+
+
+def compute_destination_totals():
+    """Sums each destination's per-objective scores and attaches a verdict.
+    Sorted descending by total so the highest-scoring option leads."""
+    results = []
+    for dest, scores in DESTINATION_SCORES.items():
+        total = sum(scores.values())
+        results.append({
+            "dest": dest,
+            "label": DESTINATION_LABELS[dest],
+            "emoji": DESTINATION_EMOJI[dest],
+            "scores": scores,
+            "total": total,
+            "prior_visit_note": PRIOR_VISITS.get(dest),
+            "verdict": DESTINATION_VERDICTS.get(dest, ""),
+        })
+    results.sort(key=lambda r: -r["total"])
+    return results
 
 
 # ============================================================
@@ -394,6 +467,8 @@ def main():
         "objectives": OBJECTIVES,
         "open_questions": OPEN_QUESTIONS,
         "crew_text": build_crew_text(),
+        "destination_totals": compute_destination_totals(),
+        "prior_visits": PRIOR_VISITS,
     }
 
     with open("trip_data.json", "w") as f:
