@@ -181,6 +181,8 @@ tr:last-child td{border-bottom:none}
   <button class="tab" onclick="showTab('costs',this)">Costs</button>
   <button class="tab" onclick="showTab('flights',this)">Flights & drives</button>
   <button class="tab" onclick="showTab('airports',this)">Airports</button>
+  <button class="tab" onclick="showTab('time',this)">Time budget</button>
+  <button class="tab" onclick="showTab('gantt',this)">Gantt chart</button>
 </div>
 
 <div class="tab-panel active" id="tab-crew">
@@ -350,6 +352,75 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
   </div>
 </div>
 
+
+<div class="tab-panel" id="tab-time">
+  <div class="card">
+    <p style="font-size:12px;color:#52514e;margin-bottom:10px">Assumes 10 hrs sleep/night except where the schedule genuinely doesn't allow it (red-eye flights, 5am hike starts). Judgment calls on transfers, meals, and sightseeing are ours — flag anything that looks off.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem">
+      <div style="background:#f8f7f4;border-radius:8px;padding:10px 8px;text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#1a1a18">38%</div>
+        <div style="font-size:10px;color:#52514e;margin-top:2px">Sleeping<br>146 of 384 hrs</div>
+      </div>
+      <div style="background:#fcebeb;border-radius:8px;padding:10px 8px;text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#a32d2d">14%</div>
+        <div style="font-size:10px;color:#52514e;margin-top:2px">Traveling<br>55 of 384 hrs</div>
+      </div>
+      <div style="background:#faeeda;border-radius:8px;padding:10px 8px;text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#854f0b">11%</div>
+        <div style="font-size:10px;color:#52514e;margin-top:2px">Eating<br>43.5 of 384 hrs</div>
+      </div>
+      <div style="background:#eaf3de;border-radius:8px;padding:10px 8px;text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#3b6d11">36%</div>
+        <div style="font-size:10px;color:#52514e;margin-top:2px">Visiting/active<br>139.5 of 384 hrs</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:0">
+      <strong>Of waking hours (238 total):</strong> 23% is spent traveling, 18% eating, 59% actually visiting/active. Travel time is concentrated in just 4 of 16 days (the 2 transatlantic legs + 2 intra-Europe transfers) — those 4 days alone account for 39 of the 55 total travel hours. If the group wants to cut travel time, the two biggest levers are: (1) drop one destination to remove a transfer day, or (2) accept the current ratio since 3 of 4 heavy-travel days still leave 5+ hours for visiting.
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:12px;font-weight:700;margin-bottom:8px">Hour breakdown by day</p>
+    <div style="position:relative;height:340px;margin-bottom:12px">
+      <canvas id="timeChart" role="img" aria-label="Stacked bar chart showing sleep, travel, eating, and visiting hours for each of the 16 trip days"></canvas>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#52514e;margin-bottom:4px">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#7f77dd"></span>Sleep</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#e34948"></span>Travel</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#eda100"></span>Eat</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#1baf7a"></span>Visit</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0">
+    <table>
+      <thead><tr><th>Day</th><th>What's happening</th><th class="num">Sleep</th><th class="num">Travel</th><th class="num">Eat</th><th class="num">Visit</th></tr></thead>
+      <tbody id="time-rows"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-gantt">
+  <div class="card">
+    <p style="font-size:12px;color:#52514e;margin-bottom:12px">16-day timeline · each column is one day · travel-heavy days marked with ✈</p>
+    <div style="overflow-x:auto">
+      <div id="ganttChart" style="min-width:640px"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:0">
+    <table>
+      <thead><tr><th>Phase</th><th>Days</th><th class="num">Nights</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-blue">Transatlantic out</span></td><td>Day 1</td><td class="num">—</td><td class="muted">RDU → Rome, overnight flight</td></tr>
+        <tr><td><span class="badge b-red">Rome</span></td><td>Days 2–4</td><td class="num">3</td><td class="muted">Arrive day 2 afternoon</td></tr>
+        <tr><td><span class="badge b-green">Peloponnese</span></td><td>Days 5–8</td><td class="num">4</td><td class="muted">Day 5 is a transfer day (flight + 2hr drive)</td></tr>
+        <tr><td><span class="badge b-green">Crete</span></td><td>Days 9–13</td><td class="num">5</td><td class="muted">Day 9 transfer; day 10 is Samaria Gorge (early start)</td></tr>
+        <tr><td><span class="badge b-gray">Athens</span></td><td>Days 14–15</td><td class="num">2</td><td class="muted">Day 14 is a transfer day (flight from Crete)</td></tr>
+        <tr><td><span class="badge b-blue">Transatlantic back</span></td><td>Day 16</td><td class="num">—</td><td class="muted">Athens → RDU, overnight flight</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div><!-- /wrap -->
 
 <!-- FULL PAGE DETAIL OVERLAYS -->
@@ -362,6 +433,7 @@ Reply with your top 3 priorities from the list above, or add anything missing.</
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 function showTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -633,6 +705,82 @@ legend.onAdd = function(){
   return d;
 };
 legend.addTo(map);
+
+const dayModel = [
+  {day:1, label:'Depart RDU (overnight flight)', dest:'travel', sleep:5, travel:13, eat:2, visit:4},
+  {day:2, label:'Arrive Rome, settle in', dest:'rome', sleep:10, travel:1, eat:3, visit:10},
+  {day:3, label:'Rome full day', dest:'rome', sleep:10, travel:1, eat:3, visit:10},
+  {day:4, label:'Rome full day (last night)', dest:'rome', sleep:10, travel:1, eat:3, visit:10},
+  {day:5, label:'Rome → Peloponnese (flight + 2hr drive)', dest:'transfer', sleep:10, travel:6, eat:2.5, visit:5.5},
+  {day:6, label:'Peloponnese full day', dest:'pelo', sleep:10, travel:1.5, eat:3, visit:9.5},
+  {day:7, label:'Peloponnese full day', dest:'pelo', sleep:10, travel:1.5, eat:3, visit:9.5},
+  {day:8, label:'Peloponnese full day (last night)', dest:'pelo', sleep:10, travel:1.5, eat:3, visit:9.5},
+  {day:9, label:'Peloponnese → Crete (drive + flight)', dest:'transfer', sleep:10, travel:5, eat:2.5, visit:6.5},
+  {day:10, label:'Crete — Samaria Gorge (5am start)', dest:'crete', sleep:7, travel:1.5, eat:2, visit:13.5},
+  {day:11, label:'Crete full day', dest:'crete', sleep:10, travel:1, eat:3, visit:10},
+  {day:12, label:'Crete full day', dest:'crete', sleep:10, travel:1, eat:3, visit:10},
+  {day:13, label:'Crete full day (last night)', dest:'crete', sleep:10, travel:1, eat:3, visit:10},
+  {day:14, label:'Crete → Athens (flight)', dest:'transfer', sleep:10, travel:3, eat:2.5, visit:8.5},
+  {day:15, label:'Athens full day (last night)', dest:'athens', sleep:10, travel:1, eat:3, visit:10},
+  {day:16, label:'Athens → depart RDU (overnight flight)', dest:'travel', sleep:4, travel:15, eat:2, visit:3},
+];
+
+const timeTb = document.getElementById('time-rows');
+dayModel.forEach(d=>{
+  timeTb.innerHTML += `<tr><td>${d.day}</td><td class="muted">${d.label}</td><td class="num">${d.sleep}h</td><td class="num">${d.travel}h</td><td class="num">${d.eat}h</td><td class="num">${d.visit}h</td></tr>`;
+});
+
+new Chart(document.getElementById('timeChart'), {
+  type: 'bar',
+  data: {
+    labels: dayModel.map(d=>'D'+d.day),
+    datasets: [
+      {label:'Sleep', data: dayModel.map(d=>d.sleep), backgroundColor:'#7f77dd'},
+      {label:'Travel', data: dayModel.map(d=>d.travel), backgroundColor:'#e34948'},
+      {label:'Eat', data: dayModel.map(d=>d.eat), backgroundColor:'#eda100'},
+      {label:'Visit', data: dayModel.map(d=>d.visit), backgroundColor:'#1baf7a'}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{stacked:true, grid:{display:false}},
+      y:{stacked:true, max:24, title:{display:true,text:'hours'}}
+    }
+  }
+});
+
+const destColors = {rome:'#e34948', pelo:'#1baf7a', crete:'#1baf7a', athens:'#888780', transfer:null, travel:'#2a78d6'};
+const destLabels = {rome:'Rome', pelo:'Peloponnese', crete:'Crete', athens:'Athens', travel:'Transatlantic'};
+
+function buildGantt(){
+  const rows = ['travel','rome','pelo','crete','athens'];
+  let html = '<div style="display:grid;grid-template-columns:110px repeat(16,1fr);gap:2px;font-size:10px">';
+  html += '<div></div>';
+  for(let i=1;i<=16;i++){
+    html += `<div style="text-align:center;color:#888780;font-weight:600;padding-bottom:2px">${i}</div>`;
+  }
+  rows.forEach(r=>{
+    html += `<div style="font-size:11px;font-weight:600;color:#1a1a18;display:flex;align-items:center">${destLabels[r]}</div>`;
+    for(let i=1;i<=16;i++){
+      const d = dayModel[i-1];
+      let isThisRow = (d.dest === r) || (d.dest === 'transfer' && (
+        (r==='rome' && i===4) ? false :
+        (r==='pelo' && i===5) ? true :
+        (r==='crete' && i===9) ? true :
+        (r==='athens' && i===14) ? true : false
+      ));
+      const bg = isThisRow ? destColors[r] : 'transparent';
+      const isTravelDay = d.travel >= 3;
+      const icon = (isThisRow && isTravelDay) ? '<i class="ti" style="font-size:9px;color:#fff">&#9992;</i>' : '';
+      html += `<div style="height:26px;border-radius:3px;background:${bg};display:flex;align-items:center;justify-content:center">${icon}</div>`;
+    }
+  });
+  html += '</div>';
+  document.getElementById('ganttChart').innerHTML = html;
+}
+buildGantt();
 </script>
 </body>
 </html>
