@@ -224,10 +224,10 @@ tr:last-child td{border-bottom:none}
   </div>
   <div class="card" style="margin-top:0">
     <table>
-      <thead><tr><th>Destination</th><th class="num">Total /40</th><th>Verdict</th></tr></thead>
+      <thead><tr><th>Destination</th><th class="num">Total /40</th><th class="num">Cost (its nights, fam. of 4)</th><th>Verdict</th></tr></thead>
       <tbody id="total-rows"></tbody>
     </table>
-    <p class="muted" style="margin-top:8px">9 objectives × 5 max = 45</p>
+    <p class="muted" style="margin-top:8px">9 objectives × 5 max = 45 · cost = accommodation + food + must-book activities for that destination's own night count</p>
     <p class="muted" id="prior-visits-note" style="margin-top:6px"></p>
   </div>
 </div>
@@ -650,7 +650,9 @@ const details = {
 
 function formatAtomCost(a){
   if (a.per_person_low === 0 && a.per_person_high === 0) {
-    return a.note || 'free';
+    // Only show a short note (e.g. "free") in the cost column -- longer
+    // documentation notes belong in the description, not squeezed here.
+    return (a.note && a.note.length < 20) ? a.note : 'free';
   }
   if (a.per_person_low === a.per_person_high) {
     return '$' + a.per_person_low + '/person';
@@ -697,6 +699,22 @@ function openDetail(key){
     </div>
   `;}).join('');
 
+  // Total cost banner -- accommodation + food + only the "in_budget"
+  // must-do activities, for THIS destination's nights. Same formula for
+  // every destination (itinerary stop or alternative) so any two can be
+  // directly compared, e.g. Switzerland vs Naples for the same trip slot.
+  let totalCostHtml = '';
+  if (cb) {
+    totalCostHtml = `
+    <div style="background:#1a1a18;color:#fff;border-radius:10px;padding:14px 16px;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:11px;color:#b8b6ac;text-transform:uppercase;letter-spacing:.04em">Total cost — this stop (family of 4)</div>
+        <div style="font-size:11px;color:#b8b6ac;margin-top:2px">Accommodation + food + must-book activities, ${cb.nights} nights</div>
+      </div>
+      <div style="font-size:22px;font-weight:700;white-space:nowrap;margin-left:16px">$${Math.round(cb.total_cost_low).toLocaleString()}–$${Math.round(cb.total_cost_high).toLocaleString()}</div>
+    </div>`;
+  }
+
   // Accommodation section -- only shown for the 4 real itinerary stops,
   // since alternatives don't have a booked nightly rate.
   let accomHtml = '';
@@ -726,6 +744,21 @@ function openDetail(key){
     </div>`;
   }
 
+  let foodHtml = '';
+  if (cb) {
+    foodHtml = `
+    <div class="detail-sec-title">Food</div>
+    <div class="card">
+      <div class="attraction-row">
+        <div>
+          <div class="attraction-name">${cb.nights} nights, family of 4</div>
+          <div class="attraction-desc">$${cb.food_per_person_per_day_low}–$${cb.food_per_person_per_day_high}/person/day</div>
+        </div>
+        <div class="attraction-cost">$${Math.round(cb.food_total_low)}–$${Math.round(cb.food_total_high)}</div>
+      </div>
+    </div>`;
+  }
+
   document.getElementById('detail-body').innerHTML = `
     <div class="detail-collage">
       <img src="${imgs[0]}" alt="">
@@ -734,10 +767,12 @@ function openDetail(key){
     </div>
     <p style="font-size:13px;color:#52514e;font-weight:600;margin-bottom:4px">${d.subtitle}</p>
     <p class="deep-note">${d.overview}</p>
+    ${totalCostHtml}
     ${accomHtml}
+    ${foodHtml}
     <div class="detail-sec-title">Attractions & activities</div>
     <div class="card">${attractionsHtml}</div>
-    <div class="detail-sec-title">Food</div>
+    <div class="detail-sec-title">Food notes</div>
     <p class="deep-note">${d.food}</p>
     <div class="detail-sec-title">Cost notes</div>
     <p class="deep-note">${d.costNote}</p>
@@ -774,7 +809,9 @@ function renderScores(data){
   const badgeFor = t => t >= 33 ? 'b-green' : t >= 27 ? 'b-amber' : 'b-gray';
   const tb = document.getElementById('total-rows');
   data.destination_totals.forEach(d => {
-    tb.innerHTML += `<tr><td>${d.emoji} ${d.label}</td><td class="num" style="font-weight:700">${d.total}/40</td><td><span class="badge ${badgeFor(d.total)}">${d.verdict}</span></td></tr>`;
+    const cb = data.destination_cost_breakdown[d.dest];
+    const costStr = cb ? `$${Math.round(cb.total_cost_low).toLocaleString()}–$${Math.round(cb.total_cost_high).toLocaleString()}` : '—';
+    tb.innerHTML += `<tr><td>${d.emoji} ${d.label}</td><td class="num" style="font-weight:700">${d.total}/40</td><td class="num">${costStr}</td><td><span class="badge ${badgeFor(d.total)}">${d.verdict}</span></td></tr>`;
   });
 
   const visitNotes = data.destination_totals.filter(d => d.prior_visit_note).map(d => `${d.label}: ${d.prior_visit_note}`);
