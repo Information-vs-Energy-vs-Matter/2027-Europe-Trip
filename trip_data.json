@@ -792,7 +792,7 @@
     {
       "num": 4,
       "name": "Mediterranean coast index",
-      "desc": "Turquoise water, beaches, cliffs -- a significant goal for the trip overall, but not a requirement at every single stop."
+      "desc": "Refined: dramatic topology -- steep mountains/cliffs meeting the sea (Amalfi-style) -- is worth far more than flat resort beaches, which are easy to satisfy anywhere on this trip. A significant goal overall, but not a requirement at every single stop."
     },
     {
       "num": 5,
@@ -828,7 +828,7 @@
     "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
     "Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?"
   ],
-  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos. Note: teens ranked ancient ruins LOWEST of 5 priorities when asked what they'd miss most if cut -- adults may value this more than teens do.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- a significant goal for the trip overall, but not a requirement at every single stop.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth. Teens specifically ranked exploring a big city on their own as MORE exciting than swimming, glaciers, or hiking -- build in unstructured/independent time in Athens and Naples.\n\n9. VARIETY INDEX\nNot every stop should feel like the same Mediterranean postcard. Snow, mountains, and a modern city (like Switzerland offers) count as real trip value, distinct from coast/history/food.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Naples is now the baseline Italy stop (Rome lost group support) -- any objections?\n- Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
+  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos. Note: teens ranked ancient ruins LOWEST of 5 priorities when asked what they'd miss most if cut -- adults may value this more than teens do.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nRefined: dramatic topology -- steep mountains/cliffs meeting the sea (Amalfi-style) -- is worth far more than flat resort beaches, which are easy to satisfy anywhere on this trip. A significant goal overall, but not a requirement at every single stop.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth. Teens specifically ranked exploring a big city on their own as MORE exciting than swimming, glaciers, or hiking -- build in unstructured/independent time in Athens and Naples.\n\n9. VARIETY INDEX\nNot every stop should feel like the same Mediterranean postcard. Snow, mountains, and a modern city (like Switzerland offers) count as real trip value, distinct from coast/history/food.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Naples is now the baseline Italy stop (Rome lost group support) -- any objections?\n- Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
   "destination_totals": [
     {
       "dest": "crete",
@@ -859,18 +859,18 @@
         "1": 5,
         "2": 5,
         "3": 4,
-        "4": 4,
+        "4": 3,
         "5": 4,
         "6": 5,
         "7": 3,
         "8": 5,
         "9": 3
       },
-      "total": 38,
+      "total": 37,
       "prior_visit_note": null,
       "verdict": "Excellent across the board",
-      "cost_per_point_low": 15.79,
-      "cost_per_point_high": 27.37
+      "cost_per_point_low": 16.22,
+      "cost_per_point_high": 28.11
     },
     {
       "dest": "naples",
@@ -985,18 +985,18 @@
         "1": 3,
         "2": 3,
         "3": 3,
-        "4": 5,
+        "4": 4,
         "5": 4,
         "6": 1,
         "7": 2,
         "8": 3,
         "9": 3
       },
-      "total": 27,
+      "total": 26,
       "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
       "verdict": "Priciest reroute, and less novel now",
-      "cost_per_point_low": 34.37,
-      "cost_per_point_high": 56.81
+      "cost_per_point_low": 35.69,
+      "cost_per_point_high": 59.0
     }
   ],
   "prior_visits": {
@@ -1304,12 +1304,20 @@
           "source": "flea_markets",
           "in_budget": false,
           "note": "free to browse; vintage/retro goods, guided thrift walks available"
+        },
+        {
+          "name": "Sfakia + Loutro day trip",
+          "per_person_low": 10,
+          "per_person_high": 20,
+          "source": "crete_activities",
+          "in_budget": false,
+          "note": "1.5-2hr drive from Chania + ferry; this IS the Amalfi-style dramatic cliffs-meet-sea terrain, just wilder and car-free at Loutro"
         }
       ],
       "activities_in_budget_low": 0,
       "activities_in_budget_high": 0,
-      "activities_all_low": 216,
-      "activities_all_high": 224,
+      "activities_all_low": 256,
+      "activities_all_high": 304,
       "total_cost_low": 850.0,
       "total_cost_high": 1400
     },
