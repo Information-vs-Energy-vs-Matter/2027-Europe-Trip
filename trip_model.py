@@ -437,10 +437,14 @@ DESTINATION_COST_ATOMS = {
 }
 
 
-def compute_destination_cost_breakdown(party_size):
-    """The single place accommodation + activities dollars get computed.
-    Returns a dict per destination AND the itinerary-wide totals that
-    feed straight into the pretrip cash timeline / Costs tab."""
+def compute_destination_cost_breakdown(party_size, food_rates):
+    """The single place accommodation + food + activities dollars get
+    computed PER DESTINATION -- itinerary stops and alternatives alike.
+    Every destination gets a total_cost_low/high (accommodation + food +
+    only the "in_budget" must-do activities) so any two destinations,
+    including alternatives like Switzerland, can be directly compared
+    on the same basis. Returns the per-destination breakdown AND the
+    itinerary-wide totals that feed the pretrip cash timeline / Costs tab."""
     breakdown = {}
     itin_accom_low = itin_accom_high = 0.0
     itin_activities_low = itin_activities_high = 0.0
@@ -456,6 +460,13 @@ def compute_destination_cost_breakdown(party_size):
         act_all_low = sum(a["per_person_low"] for a in info["activities"]) * party_size
         act_all_high = sum(a["per_person_high"] for a in info["activities"]) * party_size
 
+        food_rate_low, food_rate_high = food_rates[dest]
+        food_low = food_rate_low * party_size * nights
+        food_high = food_rate_high * party_size * nights
+
+        total_low = accom_low + food_low + act_in_budget_low
+        total_high = accom_high + food_high + act_in_budget_high
+
         breakdown[dest] = {
             "nights": nights,
             "accommodation_per_night_low": info["accommodation_per_night"][0],
@@ -463,11 +474,17 @@ def compute_destination_cost_breakdown(party_size):
             "accommodation_total_low": round(accom_low, 2),
             "accommodation_total_high": round(accom_high, 2),
             "accommodation_source": info["accommodation_source"],
+            "food_per_person_per_day_low": food_rate_low,
+            "food_per_person_per_day_high": food_rate_high,
+            "food_total_low": round(food_low, 2),
+            "food_total_high": round(food_high, 2),
             "activities": info["activities"],
             "activities_in_budget_low": round(act_in_budget_low, 2),
             "activities_in_budget_high": round(act_in_budget_high, 2),
             "activities_all_low": round(act_all_low, 2),
             "activities_all_high": round(act_all_high, 2),
+            "total_cost_low": round(total_low, 2),
+            "total_cost_high": round(total_high, 2),
         }
 
         if dest in itinerary_keys:
@@ -529,6 +546,10 @@ ASSUMPTIONS = {
         "crete":    (12.5, 20),
         "athens":   (15, 22.5),
         "transit":  (7.5, 10),   # airport/in-flight food on travel days
+        "amalfi":   (22, 32),    # source: naples_amalfi_activities -- pricier than Naples
+        "fr":       (25, 38),    # source: riviera_activities -- French Riviera dining
+        "it":       (18, 26),    # source: riviera_activities -- cheaper than Rome, pricier than rural Greece
+        "switzerland": (50, 85), # source: switzerland_costs -- lunch special $20-35, dinner $35-50; ~2x every other option
     },
 
     "party_size": 4,  # family of 4; family-of-2 figures are derived, not re-typed
@@ -703,7 +724,7 @@ def compute_pretrip_timeline(a, party_size):
     Milestones marked "computed" pull their amount from
     compute_destination_cost_breakdown() -- the same atoms shown on each
     destination's detail page -- instead of a separately hand-typed number."""
-    _, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size)
+    _, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size, a["food_per_person_per_day"])
     computed_amounts = {
         "accommodation": itin_accom,
         "activities": itin_activities,
@@ -829,7 +850,7 @@ def compute_family_of_2(pretrip, intrip, grand_low, grand_high):
 def main():
     a = ASSUMPTIONS
     party_size = a["party_size"]
-    dest_cost_breakdown, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size)
+    dest_cost_breakdown, itin_accom, itin_activities = compute_destination_cost_breakdown(party_size, ASSUMPTIONS["food_per_person_per_day"])
     pretrip, pre_cum_low, pre_cum_high = compute_pretrip_timeline(a, party_size)
     intrip, grand_low, grand_high = compute_intrip_burn(a, pre_cum_low, pre_cum_high)
     f2_pretrip, f2_intrip, f2_low, f2_high = compute_family_of_2(pretrip, intrip, grand_low, grand_high)
