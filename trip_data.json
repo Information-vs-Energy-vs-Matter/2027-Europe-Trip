@@ -754,7 +754,7 @@
     {
       "num": 4,
       "name": "Mediterranean coast index",
-      "desc": "Turquoise water, beaches, cliffs -- core pull of the whole trip."
+      "desc": "Turquoise water, beaches, cliffs -- a significant goal for the trip overall, but not a requirement at every single stop."
     },
     {
       "num": 5,
@@ -775,6 +775,11 @@
       "num": 8,
       "name": "Group harmony index",
       "desc": "Teens engaged + adults not bored. Mix of challenge and depth."
+    },
+    {
+      "num": 9,
+      "name": "Variety index",
+      "desc": "Not every stop should feel like the same Mediterranean postcard. Snow, mountains, and a modern city (like Switzerland offers) count as real trip value, distinct from coast/history/food."
     }
   ],
   "open_questions": [
@@ -785,7 +790,7 @@
     "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
     "Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?"
   ],
-  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- core pull of the whole trip.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Naples is now the baseline Italy stop (Rome lost group support) -- any objections?\n- Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
+  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- a significant goal for the trip overall, but not a requirement at every single stop.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth.\n\n9. VARIETY INDEX\nNot every stop should feel like the same Mediterranean postcard. Snow, mountains, and a modern city (like Switzerland offers) count as real trip value, distinct from coast/history/food.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Naples is now the baseline Italy stop (Rome lost group support) -- any objections?\n- Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
   "destination_totals": [
     {
       "dest": "crete",
@@ -799,9 +804,10 @@
         "5": 5,
         "6": 5,
         "7": 4,
-        "8": 5
+        "8": 5,
+        "9": 3
       },
-      "total": 38,
+      "total": 41,
       "prior_visit_note": null,
       "verdict": "Best overall match"
     },
@@ -817,9 +823,10 @@
         "5": 4,
         "6": 5,
         "7": 3,
-        "8": 5
+        "8": 5,
+        "9": 3
       },
-      "total": 35,
+      "total": 38,
       "prior_visit_note": null,
       "verdict": "Excellent across the board"
     },
@@ -835,9 +842,10 @@
         "5": 5,
         "6": 4,
         "7": 3,
-        "8": 4
+        "8": 4,
+        "9": 3
       },
-      "total": 32,
+      "total": 35,
       "prior_visit_note": null,
       "verdict": "Current baseline plan -- primary Italy stop"
     },
@@ -853,29 +861,12 @@
         "5": 4,
         "6": 2,
         "7": 2,
-        "8": 4
+        "8": 4,
+        "9": 2
       },
-      "total": 30,
+      "total": 32,
       "prior_visit_note": null,
       "verdict": "Strong coastal/hiking alt"
-    },
-    {
-      "dest": "it",
-      "label": "Italian Riviera",
-      "emoji": "\ud83c\uddee\ud83c\uddf9",
-      "scores": {
-        "1": 3,
-        "2": 2,
-        "3": 5,
-        "4": 5,
-        "5": 4,
-        "6": 3,
-        "7": 2,
-        "8": 4
-      },
-      "total": 28,
-      "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
-      "verdict": "Good hiking alt, less novel now"
     },
     {
       "dest": "switzerland",
@@ -889,11 +880,31 @@
         "5": 4,
         "6": 1,
         "7": 3,
-        "8": 4
+        "8": 4,
+        "9": 5
       },
-      "total": 26,
+      "total": 31,
       "prior_visit_note": null,
       "verdict": "Stunning mountains/glaciers, by far the most expensive option"
+    },
+    {
+      "dest": "it",
+      "label": "Italian Riviera",
+      "emoji": "\ud83c\uddee\ud83c\uddf9",
+      "scores": {
+        "1": 3,
+        "2": 2,
+        "3": 5,
+        "4": 5,
+        "5": 4,
+        "6": 3,
+        "7": 2,
+        "8": 4,
+        "9": 2
+      },
+      "total": 30,
+      "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
+      "verdict": "Good hiking alt, less novel now"
     },
     {
       "dest": "rome",
@@ -907,9 +918,10 @@
         "5": 5,
         "6": 2,
         "7": 3,
-        "8": 3
+        "8": 3,
+        "9": 4
       },
-      "total": 25,
+      "total": 29,
       "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
       "verdict": "Losing group support -- crowds, cost, repeat visits"
     },
@@ -925,9 +937,10 @@
         "5": 4,
         "6": 1,
         "7": 2,
-        "8": 3
+        "8": 3,
+        "9": 3
       },
-      "total": 24,
+      "total": 27,
       "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
       "verdict": "Priciest reroute, and less novel now"
     }
