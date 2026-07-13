@@ -149,9 +149,18 @@ TEEN_FEEDBACK = {
     ],
     "switzerland_verdict": "Conditional yes -- only if kept to 2-3 nights max, not extended",
     "most_exciting_anticipated": "Clarified after follow-up: 'exploring a big city' specifically meant flea markets / junk shops / thrift shopping, not generic city wandering.",
+    "market_preferences": {
+        "what_theyre_looking_for": ["Weird old antiques/knick-knacks", "Vintage clothes", "Random one-of-a-kind junk, don't care what"],
+        "buy_or_browse": "Buy stuff -- worth the luggage space",
+        "time_wanted_per_city": "Half a day",
+        "naples_vs_athens": "Both equally -- try to hit whichever lines up with actual travel dates",
+    },
     "implications": [
         "Ancient ruins ranked LAST despite adults prioritizing history heavily (objective 2) -- worth checking whether ruin-heavy days need trimming or reframing for teen engagement.",
         "The #2 priority is specifically flea markets and junk shops, not generic city time -- Naples now has a real flea market attraction added (Mercatino dell'Antiquariato), and Athens' Monastiraki is exactly this kind of stop.",
+        "They want to BUY, not just browse -- pack an empty duffel or expect to buy a cheap bag abroad; factor this into Ryanair/budget-airline baggage fee math on the intra-Europe legs.",
+        "Half a day is a real time block -- this should show up as scheduled time in Naples and/or Athens, not squeezed into leftover hours.",
+        "Naples' market is only open specific weekends of the month -- MUST check actual travel dates against this before counting on it. If dates don't line up, Athens' daily Monastiraki becomes the reliable fallback.",
         "Switzerland's 3-night length is already at the edge of teen tolerance -- do not extend it if it's added.",
     ],
 }
