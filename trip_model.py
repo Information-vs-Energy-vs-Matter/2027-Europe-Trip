@@ -847,6 +847,22 @@ def compute_family_of_2(pretrip, intrip, grand_low, grand_high):
     return f2_pretrip, f2_intrip, round(cum_low, 2), round(cum_high, 2)
 
 
+def add_cost_per_point(destination_totals, dest_cost_breakdown):
+    """Value-for-money metric: $ spent per objective point earned. Lower
+    is better -- it directly answers "which option gives the most trip
+    value per dollar" instead of leaving cost and score as two separate
+    numbers the reader has to mentally combine themselves."""
+    for d in destination_totals:
+        cb = dest_cost_breakdown.get(d["dest"])
+        if cb and d["total"] > 0:
+            d["cost_per_point_low"] = round(cb["total_cost_low"] / d["total"], 2)
+            d["cost_per_point_high"] = round(cb["total_cost_high"] / d["total"], 2)
+        else:
+            d["cost_per_point_low"] = None
+            d["cost_per_point_high"] = None
+    return destination_totals
+
+
 def main():
     a = ASSUMPTIONS
     party_size = a["party_size"]
@@ -897,7 +913,7 @@ def main():
         "objectives": OBJECTIVES,
         "open_questions": OPEN_QUESTIONS,
         "crew_text": build_crew_text(),
-        "destination_totals": compute_destination_totals(),
+        "destination_totals": add_cost_per_point(compute_destination_totals(), dest_cost_breakdown),
         "prior_visits": PRIOR_VISITS,
         "teen_feedback": TEEN_FEEDBACK,
         "destination_cost_breakdown": dest_cost_breakdown,
