@@ -1028,6 +1028,10 @@
       "accommodation_total_low": 750,
       "accommodation_total_high": 1200,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 20,
+      "food_per_person_per_day_high": 30,
+      "food_total_low": 240,
+      "food_total_high": 360,
       "activities": [
         {
           "name": "Colosseum + Arena Floor",
@@ -1106,7 +1110,9 @@
       "activities_in_budget_low": 100,
       "activities_in_budget_high": 140,
       "activities_all_low": 812,
-      "activities_all_high": 1160
+      "activities_all_high": 1160,
+      "total_cost_low": 1090,
+      "total_cost_high": 1700
     },
     "pelo": {
       "nights": 4,
@@ -1115,6 +1121,10 @@
       "accommodation_total_low": 400,
       "accommodation_total_high": 720,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 12.5,
+      "food_per_person_per_day_high": 20,
+      "food_total_low": 200.0,
+      "food_total_high": 320,
       "activities": [
         {
           "name": "Palamidi Fortress",
@@ -1194,7 +1204,9 @@
       "activities_in_budget_low": 0,
       "activities_in_budget_high": 0,
       "activities_all_low": 208,
-      "activities_all_high": 272
+      "activities_all_high": 272,
+      "total_cost_low": 600.0,
+      "total_cost_high": 1040
     },
     "crete": {
       "nights": 5,
@@ -1203,6 +1215,10 @@
       "accommodation_total_low": 600,
       "accommodation_total_high": 1000,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 12.5,
+      "food_per_person_per_day_high": 20,
+      "food_total_low": 250.0,
+      "food_total_high": 400,
       "activities": [
         {
           "name": "Samaria Gorge hike",
@@ -1277,7 +1293,9 @@
       "activities_in_budget_low": 0,
       "activities_in_budget_high": 0,
       "activities_all_low": 216,
-      "activities_all_high": 224
+      "activities_all_high": 224,
+      "total_cost_low": 850.0,
+      "total_cost_high": 1400
     },
     "athens": {
       "nights": 2,
@@ -1286,6 +1304,10 @@
       "accommodation_total_low": 300,
       "accommodation_total_high": 500,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 15,
+      "food_per_person_per_day_high": 22.5,
+      "food_total_low": 120,
+      "food_total_high": 180.0,
       "activities": [
         {
           "name": "Acropolis + Parthenon",
@@ -1329,7 +1351,9 @@
       "activities_in_budget_low": 128,
       "activities_in_budget_high": 152,
       "activities_all_low": 128,
-      "activities_all_high": 152
+      "activities_all_high": 152,
+      "total_cost_low": 548,
+      "total_cost_high": 832.0
     },
     "naples": {
       "nights": 3,
@@ -1338,6 +1362,10 @@
       "accommodation_total_low": 450,
       "accommodation_total_high": 750,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 18,
+      "food_per_person_per_day_high": 27,
+      "food_total_low": 216,
+      "food_total_high": 324,
       "activities": [
         {
           "name": "Pompeii ruins",
@@ -1395,7 +1423,9 @@
       "activities_in_budget_low": 80,
       "activities_in_budget_high": 88,
       "activities_all_low": 324,
-      "activities_all_high": 360
+      "activities_all_high": 360,
+      "total_cost_low": 746,
+      "total_cost_high": 1162
     },
     "amalfi": {
       "nights": 3,
@@ -1404,6 +1434,10 @@
       "accommodation_total_low": 540,
       "accommodation_total_high": 960,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 22,
+      "food_per_person_per_day_high": 32,
+      "food_total_low": 264,
+      "food_total_high": 384,
       "activities": [
         {
           "name": "Path of the Gods guided hike",
@@ -1438,7 +1472,9 @@
       "activities_in_budget_low": 160,
       "activities_in_budget_high": 240,
       "activities_all_low": 444,
-      "activities_all_high": 644
+      "activities_all_high": 644,
+      "total_cost_low": 964,
+      "total_cost_high": 1584
     },
     "fr": {
       "nights": 3,
@@ -1447,6 +1483,10 @@
       "accommodation_total_low": 600,
       "accommodation_total_high": 1050,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 25,
+      "food_per_person_per_day_high": 38,
+      "food_total_low": 300,
+      "food_total_high": 456,
       "activities": [
         {
           "name": "Eze botanical garden entry",
@@ -1481,7 +1521,9 @@
       "activities_in_budget_low": 28,
       "activities_in_budget_high": 28,
       "activities_all_low": 220,
-      "activities_all_high": 308
+      "activities_all_high": 308,
+      "total_cost_low": 928,
+      "total_cost_high": 1534
     },
     "it": {
       "nights": 3,
@@ -1490,6 +1532,10 @@
       "accommodation_total_low": 450,
       "accommodation_total_high": 780,
       "accommodation_source": "accommodation",
+      "food_per_person_per_day_low": 18,
+      "food_per_person_per_day_high": 26,
+      "food_total_low": 216,
+      "food_total_high": 312,
       "activities": [
         {
           "name": "Cinque Terre Card (trails + trains, per day)",
@@ -1517,7 +1563,9 @@
       "activities_in_budget_low": 84,
       "activities_in_budget_high": 96,
       "activities_all_low": 184,
-      "activities_all_high": 236
+      "activities_all_high": 236,
+      "total_cost_low": 750,
+      "total_cost_high": 1188
     },
     "switzerland": {
       "nights": 3,
@@ -1526,6 +1574,10 @@
       "accommodation_total_low": 1050,
       "accommodation_total_high": 1650,
       "accommodation_source": "switzerland_costs",
+      "food_per_person_per_day_low": 50,
+      "food_per_person_per_day_high": 85,
+      "food_total_low": 600,
+      "food_total_high": 1020,
       "activities": [
         {
           "name": "Jungfraujoch 'Top of Europe'",
@@ -1582,7 +1634,9 @@
       "activities_in_budget_low": 1000,
       "activities_in_budget_high": 1180,
       "activities_all_low": 2112,
-      "activities_all_high": 2572
+      "activities_all_high": 2572,
+      "total_cost_low": 2650,
+      "total_cost_high": 3850
     }
   },
   "itinerary_accommodation_total": {
