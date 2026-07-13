@@ -224,10 +224,10 @@ tr:last-child td{border-bottom:none}
   </div>
   <div class="card" style="margin-top:0">
     <table>
-      <thead><tr><th>Destination</th><th class="num">Total /40</th><th class="num">Cost (its nights, fam. of 4)</th><th>Verdict</th></tr></thead>
+      <thead><tr><th>Destination</th><th class="num">Total /40</th><th class="num">Cost (its nights, fam. of 4)</th><th class="num">$/point</th><th>Verdict</th></tr></thead>
       <tbody id="total-rows"></tbody>
     </table>
-    <p class="muted" style="margin-top:8px">9 objectives × 5 max = 45 · cost = accommodation + food + must-book activities for that destination's own night count</p>
+    <p class="muted" style="margin-top:8px">9 objectives × 5 max = 45 · cost = accommodation + food + must-book activities for that destination's own night count · $/point = cost ÷ score, lower is better value</p>
     <p class="muted" id="prior-visits-note" style="margin-top:6px"></p>
   </div>
 </div>
@@ -808,10 +808,14 @@ function renderScores(data){
 
   const badgeFor = t => t >= 33 ? 'b-green' : t >= 27 ? 'b-amber' : 'b-gray';
   const tb = document.getElementById('total-rows');
+  const bestValue = Math.min(...data.destination_totals.filter(d=>d.cost_per_point_low!=null).map(d=>d.cost_per_point_low));
   data.destination_totals.forEach(d => {
     const cb = data.destination_cost_breakdown[d.dest];
     const costStr = cb ? `$${Math.round(cb.total_cost_low).toLocaleString()}–$${Math.round(cb.total_cost_high).toLocaleString()}` : '—';
-    tb.innerHTML += `<tr><td>${d.emoji} ${d.label}</td><td class="num" style="font-weight:700">${d.total}/40</td><td class="num">${costStr}</td><td><span class="badge ${badgeFor(d.total)}">${d.verdict}</span></td></tr>`;
+    const perPointStr = d.cost_per_point_low != null ? `$${d.cost_per_point_low}–$${d.cost_per_point_high}` : '—';
+    const isBest = d.cost_per_point_low === bestValue;
+    const perPointCell = isBest ? `<strong style="color:#3b6d11">${perPointStr} ✓</strong>` : perPointStr;
+    tb.innerHTML += `<tr><td>${d.emoji} ${d.label}</td><td class="num" style="font-weight:700">${d.total}/40</td><td class="num">${costStr}</td><td class="num">${perPointCell}</td><td><span class="badge ${badgeFor(d.total)}">${d.verdict}</span></td></tr>`;
   });
 
   const visitNotes = data.destination_totals.filter(d => d.prior_visit_note).map(d => `${d.label}: ${d.prior_visit_note}`);
