@@ -106,7 +106,7 @@ OBJECTIVES = [
     },
     {
         "num": 2, "name": "History & culture index",
-        "desc": "Real ruins, castles, archaeological sites -- walk through the story, not just photos.",
+        "desc": "Real ruins, castles, archaeological sites -- walk through the story, not just photos. Note: teens ranked ancient ruins LOWEST of 5 priorities when asked what they'd miss most if cut -- adults may value this more than teens do.",
     },
     {
         "num": 3, "name": "Outdoor / active index",
@@ -130,13 +130,32 @@ OBJECTIVES = [
     },
     {
         "num": 8, "name": "Group harmony index",
-        "desc": "Teens engaged + adults not bored. Mix of challenge and depth.",
+        "desc": "Teens engaged + adults not bored. Mix of challenge and depth. Teens specifically ranked exploring a big city on their own as MORE exciting than swimming, glaciers, or hiking -- build in unstructured/independent time in Athens and Naples.",
     },
     {
         "num": 9, "name": "Variety index",
         "desc": "Not every stop should feel like the same Mediterranean postcard. Snow, mountains, and a modern city (like Switzerland offers) count as real trip value, distinct from coast/history/food.",
     },
 ]
+
+TEEN_FEEDBACK = {
+    "date_collected": "in-person, mid-planning",
+    "cut_priority_ranking": [
+        "Beach/swim day (would be missed MOST if cut)",
+        "Big modern city exploration (Athens/Naples)",
+        "Samaria Gorge hike",
+        "Switzerland snow/glaciers",
+        "Ancient ruins -- Pompeii/Acropolis/Mycenae (would be missed LEAST if cut)",
+    ],
+    "switzerland_verdict": "Conditional yes -- only if kept to 2-3 nights max, not extended",
+    "most_exciting_anticipated": "Exploring a big city on their own (independence/unstructured time), ranked above swimming, glaciers, and hiking",
+    "implications": [
+        "Ancient ruins ranked LAST despite adults prioritizing history heavily (objective 2) -- worth checking whether ruin-heavy days need trimming or reframing for teen engagement.",
+        "City exploration beat hiking and swimming as the most anticipated activity -- suggests building in unstructured/independent time in Athens and Naples specifically, not just guided sightseeing.",
+        "Switzerland's 3-night length is already at the edge of teen tolerance -- do not extend it if it's added.",
+    ],
+}
+
 
 OPEN_QUESTIONS = [
     "Naples is now the baseline Italy stop (Rome lost group support) -- any objections?",
@@ -829,6 +848,7 @@ def main():
         "crew_text": build_crew_text(),
         "destination_totals": compute_destination_totals(),
         "prior_visits": PRIOR_VISITS,
+        "teen_feedback": TEEN_FEEDBACK,
         "destination_cost_breakdown": dest_cost_breakdown,
         "itinerary_accommodation_total": {"low": itin_accom[0], "high": itin_accom[1]},
         "itinerary_activities_total": {"low": itin_activities[0], "high": itin_activities[1]},
