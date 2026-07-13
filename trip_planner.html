@@ -991,9 +991,21 @@ function renderObjectives(data){
     tf.cut_priority_ranking.forEach(item => {
       rankEl.innerHTML += `<li>${item}</li>`;
     });
+    let marketHtml = '';
+    if (tf.market_preferences) {
+      const mp = tf.market_preferences;
+      marketHtml = `<div style="background:#f8f7f4;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <strong>Follow-up: market/junk-shop specifics</strong><br>
+        <span style="font-size:11px">Looking for: ${mp.what_theyre_looking_for.join(', ')}</span><br>
+        <span style="font-size:11px">Buy vs browse: ${mp.buy_or_browse}</span><br>
+        <span style="font-size:11px">Time wanted: ${mp.time_wanted_per_city}</span><br>
+        <span style="font-size:11px">Naples vs Athens: ${mp.naples_vs_athens}</span>
+      </div>`;
+    }
     document.getElementById('teen-details').innerHTML =
       `<strong>Switzerland verdict:</strong> ${tf.switzerland_verdict}<br>` +
-      `<strong>Most exciting anticipated activity:</strong> ${tf.most_exciting_anticipated}<br><br>` +
+      `<strong>Most exciting anticipated activity:</strong> ${tf.most_exciting_anticipated}` +
+      marketHtml +
       `<strong>What this means for planning:</strong><ul style="margin:4px 0 0 18px;padding:0">` +
       tf.implications.map(i => `<li style="margin-bottom:4px">${i}</li>`).join('') +
       `</ul>`;
