@@ -207,6 +207,12 @@ tr:last-child td{border-bottom:none}
       <tbody id="objectives-rows"></tbody>
     </table>
   </div>
+  <div class="card" style="margin-top:0;border-color:#7f77dd">
+    <p style="font-size:12px;font-weight:700;margin-bottom:8px">🎤 Direct from the teens (collected in person)</p>
+    <p style="font-size:11px;color:#52514e;margin-bottom:8px">Ranked: what would disappoint them MOST if cut from the trip (1 = most missed, 5 = least missed)</p>
+    <ol id="teen-ranking" style="margin:0 0 10px 18px;padding:0;font-size:12.5px;line-height:1.9"></ol>
+    <div id="teen-details" style="font-size:12px;color:#52514e;line-height:1.7"></div>
+  </div>
 </div>
 
 <div class="tab-panel" id="tab-scores">
@@ -977,6 +983,20 @@ function renderObjectives(data){
   data.objectives.forEach(o => {
     tb.innerHTML += `<tr><td style="font-weight:600">${o.num}. ${o.name}</td><td class="muted">${o.desc}</td></tr>`;
   });
+
+  if (data.teen_feedback) {
+    const tf = data.teen_feedback;
+    const rankEl = document.getElementById('teen-ranking');
+    tf.cut_priority_ranking.forEach(item => {
+      rankEl.innerHTML += `<li>${item}</li>`;
+    });
+    document.getElementById('teen-details').innerHTML =
+      `<strong>Switzerland verdict:</strong> ${tf.switzerland_verdict}<br>` +
+      `<strong>Most exciting anticipated activity:</strong> ${tf.most_exciting_anticipated}<br><br>` +
+      `<strong>What this means for planning:</strong><ul style="margin:4px 0 0 18px;padding:0">` +
+      tf.implications.map(i => `<li style="margin-bottom:4px">${i}</li>`).join('') +
+      `</ul>`;
+  }
 }
 
 function renderCostTotals(data){
