@@ -110,7 +110,7 @@ tr:last-child td{border-bottom:none}
 <body>
 <div class="wrap">
 <h1>Italy + Greece — 2-week trip planner</h1>
-<p class="sub">RDU → Rome → Peloponnese → Crete → Athens → RDU &nbsp;·&nbsp; 6 people &nbsp;·&nbsp; Mid-June–Late July &nbsp;·&nbsp; $10–15K/family of 4</p>
+<p class="sub">RDU → Naples → Peloponnese → Crete → Athens → RDU &nbsp;·&nbsp; 6 people &nbsp;·&nbsp; Mid-June–Late July &nbsp;·&nbsp; $10–15K/family of 4</p>
 
 <div class="sec">Satellite route map</div>
 <div id="map"></div>
@@ -128,10 +128,10 @@ tr:last-child td{border-bottom:none}
 
 <div class="sec">Destinations — tap for full deep dive</div>
 <div class="city-grid">
-  <div class="city-card" onclick="openDetail('rome')">
-    <img class="city-photo" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=300&q=80&auto=format&fit=crop" alt="Rome">
+  <div class="city-card" onclick="openDetail('naples')">
+    <img class="city-photo" src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=300&q=80&auto=format&fit=crop" alt="Naples">
     <div class="city-tap-hint">tap for details</div>
-    <div class="city-info"><div class="city-num">STOP 1 · ITALY</div><div class="city-name">Rome</div><div class="city-nights">3 nights · FCO</div></div>
+    <div class="city-info"><div class="city-num">STOP 1 · ITALY</div><div class="city-name">Naples</div><div class="city-nights">3 nights · NAP</div></div>
   </div>
   <div class="city-card" onclick="openDetail('pelo')">
     <img class="city-photo" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop" alt="Peloponnese">
@@ -150,11 +150,11 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<div class="sec">Alternative stops — instead of Rome</div>
+<div class="sec">Alternative stops — instead of Naples</div>
 <div class="alt-grid">
-  <div class="alt-card" onclick="openDetail('naples')">
-    <img class="alt-photo" src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=300&q=80&auto=format&fit=crop" alt="Naples">
-    <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Naples</div></div>
+  <div class="alt-card" onclick="openDetail('rome')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=300&q=80&auto=format&fit=crop" alt="Rome">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Rome</div></div>
   </div>
   <div class="alt-card" onclick="openDetail('amalfi')">
     <img class="alt-photo" src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=300&q=80&auto=format&fit=crop" alt="Amalfi Coast">
@@ -168,8 +168,12 @@ tr:last-child td{border-bottom:none}
     <img class="alt-photo" src="https://images.unsplash.com/photo-PQdRJfkGsQw?w=300&q=80&auto=format&fit=crop" alt="Italian Riviera" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&q=80&auto=format&fit=crop'">
     <div class="alt-info"><div class="alt-label">ALTERNATIVE · ITALY</div><div class="alt-name">Italian Riviera</div></div>
   </div>
+  <div class="alt-card" onclick="openDetail('switzerland')">
+    <img class="alt-photo" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=300&q=80&auto=format&fit=crop" alt="Switzerland" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=300&q=80&auto=format&fit=crop'">
+    <div class="alt-info"><div class="alt-label">ALTERNATIVE · SWITZERLAND</div><div class="alt-name">Switzerland</div></div>
+  </div>
 </div>
-<p style="font-size:11px;color:#888780;margin-bottom:1rem">Four distinct alternatives to Rome. Naples = big historic city + Pompeii. Amalfi Coast = cliffside towns south of Naples. French Riviera = Nice/Monaco/Eze, fly into Nice (NCE) — reroutes the trip through France instead of straight to Greece. Italian Riviera = Cinque Terre hiking villages, fly into Genoa (GOA) or Pisa (PSA).</p>
+<p style="font-size:11px;color:#888780;margin-bottom:1rem">Rome lost group support (crowds, cost, 2 of 6 already visited) — Naples is now the baseline. Amalfi Coast = cliffside towns south of Naples. French Riviera = Nice/Monaco/Eze, fly into Nice (NCE). Italian Riviera = Cinque Terre hiking villages, fly into Genoa (GOA) or Pisa (PSA). Switzerland = Jungfrau Region mountains/glaciers, fly into Zurich (ZRH) — stunning but roughly double the cost of every other option.</p>
 
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-title" id="lb-title"></div>
@@ -228,12 +232,12 @@ tr:last-child td{border-bottom:none}
     <table>
       <thead><tr><th>Category</th><th class="num">Low</th><th class="num">High</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Transatlantic flights (RDU↔FCO/ATH)</td><td class="num">$3,500</td><td class="num">$5,500</td><td class="muted">Book now; mid-week cheapest</td></tr>
-        <tr><td>Rome→Athens (FCO→ATH)</td><td class="num">$200</td><td class="num">$400</td><td class="muted">Ryanair vs Aegean</td></tr>
+        <tr><td>Transatlantic flights (RDU↔NAP/ATH)</td><td class="num">$3,500</td><td class="num">$5,500</td><td class="muted">Book now; mid-week cheapest; no direct RDU-NAP route</td></tr>
+        <tr><td>Naples→Athens (NAP→ATH)</td><td class="num">$200</td><td class="num">$400</td><td class="muted">Ryanair vs Aegean</td></tr>
         <tr><td>Athens↔Crete (ATH↔CHQ, both legs)</td><td class="num">$320</td><td class="num">$520</td><td class="muted">~60 flights/week July</td></tr>
         <tr class="subtotal"><td style="font-weight:700">Flights subtotal</td><td class="num" style="font-weight:700">$4,020</td><td class="num" style="font-weight:700">$6,420</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Airbnb Rome, <span id="rome-nights">3</span> nts (2-bed Trastevere)</td><td class="num" id="rome-accom-low">$750</td><td class="num" id="rome-accom-high">$1,200</td><td class="muted">2 rooms = snoring solved ✓ · <a href="#" onclick="openDetail('rome');return false;" style="color:#185fa5">see detail page</a></td></tr>
+        <tr><td>Airbnb Naples, <span id="naples-nights">3</span> nts</td><td class="num" id="naples-accom-low">$450</td><td class="num" id="naples-accom-high">$750</td><td class="muted">2 rooms = snoring solved ✓ · <a href="#" onclick="openDetail('naples');return false;" style="color:#185fa5">see detail page</a></td></tr>
         <tr><td>Airbnb Peloponnese, <span id="pelo-nights">4</span> nts (Nafplio)</td><td class="num" id="pelo-accom-low">$400</td><td class="num" id="pelo-accom-high">$720</td><td class="muted">House w/ garden · <a href="#" onclick="openDetail('pelo');return false;" style="color:#185fa5">see detail page</a></td></tr>
         <tr><td>Airbnb Crete, <span id="crete-nights">5</span> nts (Chania)</td><td class="num" id="crete-accom-low">$600</td><td class="num" id="crete-accom-high">$1,000</td><td class="muted"><a href="#" onclick="openDetail('crete');return false;" style="color:#185fa5">see detail page</a></td></tr>
         <tr><td>Airbnb Athens, <span id="athens-nights">2</span> nts (Monastiraki)</td><td class="num" id="athens-accom-low">$300</td><td class="num" id="athens-accom-high">$500</td><td class="muted"><a href="#" onclick="openDetail('athens');return false;" style="color:#185fa5">see detail page</a></td></tr>
@@ -244,13 +248,13 @@ tr:last-child td{border-bottom:none}
         <tr><td>Airport transfers (all legs)</td><td class="num">$290</td><td class="num">$400</td><td class="muted">4 airports × 4 people</td></tr>
         <tr class="subtotal"><td style="font-weight:700">Ground transport subtotal</td><td class="num" style="font-weight:700">$740</td><td class="num" style="font-weight:700">$1,100</td><td></td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Food — Rome (3 days · $80–120/day)</td><td class="num">$240</td><td class="num">$360</td><td class="muted">Most expensive stop</td></tr>
+        <tr><td>Food — Naples (3 days · $72–108/day)</td><td class="num">$216</td><td class="num">$324</td><td class="muted">Cheaper than Rome</td></tr>
         <tr><td>Food — Peloponnese (4 days · $50–80/day)</td><td class="num">$200</td><td class="num">$320</td><td class="muted">Very cheap, rural Greece</td></tr>
         <tr><td>Food — Crete (5 days · $50–80/day)</td><td class="num">$250</td><td class="num">$400</td><td></td></tr>
         <tr><td>Food — Athens (2 days · $60–90/day)</td><td class="num">$120</td><td class="num">$180</td><td></td></tr>
         <tr class="subtotal"><td style="font-weight:700">Food subtotal</td><td class="num" style="font-weight:700" id="food-subtotal-low">$810</td><td class="num" style="font-weight:700" id="food-subtotal-high">$1,260</td><td class="muted" style="font-size:10px">computed from trip_model.py</td></tr>
         <tr><td colspan="4" style="height:6px;border:none;padding:0"></td></tr>
-        <tr><td>Entry fees + activities (pre-booked only)</td><td class="num" id="activities-subtotal-low">$220</td><td class="num" id="activities-subtotal-high">$272</td><td class="muted" style="font-size:10px">Colosseum+Forum, Acropolis+Museum — see each destination page for the full optional-extras list</td></tr>
+        <tr><td>Entry fees + activities (pre-booked only)</td><td class="num" id="activities-subtotal-low">$220</td><td class="num" id="activities-subtotal-high">$272</td><td class="muted" style="font-size:10px">Pompeii, Acropolis+Museum — see each destination page for the full optional-extras list</td></tr>
         <tr class="total-row"><td>TOTAL (family of 4)</td><td class="num" id="grand-total-low-4">$8,220</td><td class="num" id="grand-total-high-4">$13,100</td><td style="font-size:11px" id="target-check-4">computed from trip_model.py</td></tr>
         <tr style="background:#eaf3de"><td style="font-weight:700;color:#3b6d11">TOTAL (family of 2, 2 adults)</td><td class="num" style="font-weight:700;color:#3b6d11" id="grand-total-low-2">$4,570</td><td class="num" style="font-weight:700;color:#3b6d11" id="grand-total-high-2">$7,280</td><td style="font-size:11px;color:#3b6d11">Flights/food/activities halve; lodging ~65%, car ~70% of family-of-4 cost (do not scale 1:1)</td></tr>
       </tbody>
@@ -264,8 +268,8 @@ tr:last-child td{border-bottom:none}
     <table>
       <thead><tr><th>#</th><th>Route</th><th class="num">Flight time</th><th class="num">Per person est.</th><th>Weekly freq.</th><th>Airlines</th></tr></thead>
       <tbody>
-        <tr><td><span class="badge b-blue">1</span></td><td>RDU → Rome FCO</td><td class="num">~12 hr<br><span class="muted">1 stop req'd</span></td><td class="num">$875–1,375<br><span class="muted">roundtrip split</span></td><td class="muted">Daily (via JFK/ATL)</td><td class="muted">Delta, United, Lufthansa, Icelandair</td></tr>
-        <tr><td><span class="badge b-blue">2</span></td><td>Rome FCO → Athens ATH</td><td class="num">2 hr nonstop</td><td class="num">$50–130<br><span class="muted">one-way</span></td><td class="muted">~43×/week (July)</td><td class="muted">Ryanair, ITA, Aegean</td></tr>
+        <tr><td><span class="badge b-blue">1</span></td><td>RDU → Naples NAP</td><td class="num">~11–13 hr<br><span class="muted">1 stop req'd, no direct route</span></td><td class="num">$900–1,450<br><span class="muted">roundtrip split</span></td><td class="muted">Daily (via CDG/PHL/ATL); seasonal direct summer routes exist from ATL/PHL/ORD</td><td class="muted">Air France, Delta, American, Lufthansa</td></tr>
+        <tr><td><span class="badge b-blue">2</span></td><td>Naples NAP → Athens ATH</td><td class="num">~2 hr nonstop</td><td class="num">$60–150<br><span class="muted">one-way</span></td><td class="muted">Fewer weekly options than FCO-ATH</td><td class="muted">Ryanair, Aegean, Sky Express</td></tr>
         <tr><td><span class="badge b-blue">3</span></td><td>Athens ATH → Chania CHQ</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Aegean (37/wk), Sky Express, Ryanair</td></tr>
         <tr><td><span class="badge b-blue">4</span></td><td>Chania CHQ → Athens ATH</td><td class="num">55 min nonstop</td><td class="num">$40–100<br><span class="muted">one-way</span></td><td class="muted">~60×/week</td><td class="muted">Same as above</td></tr>
         <tr><td><span class="badge b-blue">5</span></td><td>Athens ATH → RDU</td><td class="num">~16 hr<br><span class="muted">1–2 stops</span></td><td class="num">$380–900<br><span class="muted">one-way</span></td><td class="muted">Daily via JFK/CDG</td><td class="muted">Delta, BA, Air France, Lufthansa</td></tr>
@@ -305,7 +309,7 @@ tr:last-child td{border-bottom:none}
       <thead><tr><th>Airport</th><th class="num">Pax/yr</th><th class="num">Security avg</th><th class="num">Security peak (July)</th><th class="num">Immigration non-EU</th><th>Arrive by</th><th>Vibe</th></tr></thead>
       <tbody>
         <tr><td><strong>RDU</strong> Raleigh-Durham</td><td class="num">~11M</td><td class="num">10–20 min</td><td class="num">30–45 min</td><td class="num">—</td><td>3 hr intl</td><td><span class="badge b-green">Easy</span></td></tr>
-        <tr><td><strong>FCO</strong> Rome Fiumicino</td><td class="num">51M</td><td class="num">10–25 min</td><td class="num">25–50 min</td><td class="num">~37 min</td><td>3 hr intl</td><td><span class="badge b-amber">Large hub</span></td></tr>
+        <tr><td><strong>NAP</strong> Naples Capodichino</td><td class="num">~13M</td><td class="num">15–22 min</td><td class="num">30–35 min</td><td class="num">~9 min</td><td>3 hr intl</td><td><span class="badge b-green">Compact, easy</span></td></tr>
         <tr><td><strong>ATH</strong> Athens Venizelos</td><td class="num">32M</td><td class="num">~22 min</td><td class="num">30–45 min</td><td class="num">~37 min</td><td>3 hr intl</td><td><span class="badge b-green">Well organized</span></td></tr>
         <tr><td><strong>CHQ</strong> Chania, Crete</td><td class="num">~4M</td><td class="num">~9 min</td><td class="num">60–90 min</td><td class="num">~7 min</td><td>2.5 hr July</td><td><span class="badge b-red">Small + chaotic</span></td></tr>
       </tbody>
@@ -317,9 +321,8 @@ tr:last-child td{border-bottom:none}
       <thead><tr><th>Airport</th><th>Mode</th><th class="num">Time</th><th class="num">Cost/person</th></tr></thead>
       <tbody>
         <tr><td>RDU — economy lot + shuttle</td><td>Free shuttle</td><td class="num">10–15 min</td><td class="num">$12/day</td></tr>
-        <tr><td>FCO → Rome center</td><td>Leonardo Express train</td><td class="num">32 min</td><td class="num">€14</td></tr>
-        <tr><td>FCO → Trastevere</td><td>FL1 regional train</td><td class="num">42 min</td><td class="num">€8</td></tr>
-        <tr><td>FCO → center</td><td>Taxi (fixed rate)</td><td class="num">~45 min</td><td class="num">€50 flat</td></tr>
+        <tr><td>NAP → Naples center</td><td>Alibus shuttle</td><td class="num">20–30 min</td><td class="num">€5</td></tr>
+        <tr><td>NAP → Naples center</td><td>Taxi (regulated fare)</td><td class="num">~20 min</td><td class="num">€20–30</td></tr>
         <tr><td>ATH → Athens center</td><td>Metro Line 3</td><td class="num">40 min</td><td class="num">€9</td></tr>
         <tr><td>ATH → Athens center</td><td>Taxi (fixed rate)</td><td class="num">~35 min</td><td class="num">€38 flat</td></tr>
         <tr><td>CHQ → Chania city</td><td>Bus</td><td class="num">25 min</td><td class="num">€2.50</td></tr>
@@ -388,8 +391,8 @@ tr:last-child td{border-bottom:none}
     <table>
       <thead><tr><th>Phase</th><th>Days</th><th class="num">Nights</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td><span class="badge b-blue">Transatlantic out</span></td><td>Day 1</td><td class="num">—</td><td class="muted">RDU → Rome, overnight flight</td></tr>
-        <tr><td><span class="badge b-red">Rome</span></td><td>Days 2–4</td><td class="num">3</td><td class="muted">Arrive day 2 afternoon</td></tr>
+        <tr><td><span class="badge b-blue">Transatlantic out</span></td><td>Day 1</td><td class="num">—</td><td class="muted">RDU → Naples, overnight flight + connection</td></tr>
+        <tr><td><span class="badge b-red">Naples</span></td><td>Days 2–4</td><td class="num">3</td><td class="muted">Arrive day 2 afternoon</td></tr>
         <tr><td><span class="badge b-green">Peloponnese</span></td><td>Days 5–8</td><td class="num">4</td><td class="muted">Day 5 is a transfer day (flight + 2hr drive)</td></tr>
         <tr><td><span class="badge b-green">Crete</span></td><td>Days 9–13</td><td class="num">5</td><td class="muted">Day 9 transfer; day 10 is Samaria Gorge (early start)</td></tr>
         <tr><td><span class="badge b-gray">Athens</span></td><td>Days 14–15</td><td class="num">2</td><td class="muted">Day 14 is a transfer day (flight from Crete)</td></tr>
@@ -479,14 +482,15 @@ const collages={
   naples:['https://images.unsplash.com/photo-1529260830199-42c24126f198?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=500&q=85','https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=85'],
   amalfi:['https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=700&q=85','https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&q=85','https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=85','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85'],
   frenchriviera:['https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=700&q=85','https://images.unsplash.com/photo-1533660357510-6a3a29b1dc44?w=500&q=85','https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=500&q=85','https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=500&q=85'],
-  italianriviera:['https://images.unsplash.com/photo-PQdRJfkGsQw?w=700&q=85','https://images.unsplash.com/photo-cYrMQA7a3Wc?w=500&q=85','https://images.unsplash.com/photo-DsS4q5L9llo?w=500&q=85','https://images.unsplash.com/photo-1B3FnDHu2Uk?w=500&q=85']
+  italianriviera:['https://images.unsplash.com/photo-PQdRJfkGsQw?w=700&q=85','https://images.unsplash.com/photo-cYrMQA7a3Wc?w=500&q=85','https://images.unsplash.com/photo-DsS4q5L9llo?w=500&q=85','https://images.unsplash.com/photo-1B3FnDHu2Uk?w=500&q=85'],
+  switzerland:['https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=700&q=85','https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=500&q=85','https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=500&q=85','https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=500&q=85']
 };
 
 const details = {
   rome: {
-    title: 'Rome & Lazio, Italy — 3 nights',
-    subtitle: 'High-energy history + world-class pasta',
-    overview: 'Rome is dense, ancient, and loud in the best way. No city on earth packs this much world-class history into a walkable center. July is peak crowd season — pre-booking everything is mandatory, and early mornings (7-9am) beat the heat and the lines.',
+    title: 'Rome & Lazio, Italy — alternative (losing group support)',
+    subtitle: 'High-energy history + world-class pasta, but the group is cooling on it',
+    overview: 'Rome is dense, ancient, and loud in the best way. No city on earth packs this much world-class history into a walkable center. But it\'s losing support: crowds, cost, and 2 of the 6 travelers have already been. Naples has replaced it as the baseline plan — this page stays for comparison if the group wants to revisit the decision.',
     attractions: [
       {name:'Colosseum + Arena Floor', desc:'Skip-the-line entry; night tours available', cost:'$25–35/person'},
       {name:'Roman Forum + Palatine Hill', desc:'Same ticket as Colosseum — ancient downtown Rome', cost:'included above'},
@@ -551,9 +555,9 @@ const details = {
     costNote: 'Budget $20–30/person/day for food — pricier than rural Greece, still well under Rome.'
   },
   naples: {
-    title: 'Naples, Italy — alternative to Rome',
+    title: 'Naples, Italy — Stop 1 (3 nights)',
     subtitle: 'Raw, gritty, and unforgettable — Italy\'s most authentic big city',
-    overview: 'Naples doesn\'t have Rome\'s polish, and that\'s the appeal — this is real Italy, chaotic and alive. Home to the best pizza in the world (it was literally invented here) and the gateway to Pompeii, arguably better preserved than the Roman Forum. Naples itself is a city stop; you\'d combine it with the Amalfi Coast or Path of the Gods hike for the outdoor/coastal component.',
+    overview: 'The current baseline Italy stop after Rome lost group support. Naples doesn\'t have Rome\'s polish, and that\'s the appeal — this is real Italy, chaotic and alive. Home to the best pizza in the world (it was literally invented here) and the gateway to Pompeii, arguably better preserved than the Roman Forum. Cheaper than Rome across the board, and nobody in the group has been.',
     attractions: [
       {name:'Pompeii ruins', desc:'Ancient Roman city frozen by Vesuvius eruption — extraordinarily preserved', cost:'$20–22/person'},
       {name:'Herculaneum', desc:'Smaller, less crowded, better-preserved sister site to Pompeii', cost:'$15/person'},
@@ -612,6 +616,21 @@ const details = {
     ],
     food: 'Focaccia and pesto alla Genovese (both invented in nearby Liguria/Genoa), fresh anchovies, seafood pasta. Reasonably priced — pricier than rural Greece, cheaper than Rome.',
     costNote: 'Trail sections can close without notice due to landslides — build in flexibility. No direct international flight to Genoa or Pisa means an extra connection versus flying straight into Rome or Athens.'
+  },
+  switzerland: {
+    title: 'Switzerland (Jungfrau Region) — alternative, mountains + glaciers',
+    subtitle: 'The most dramatic scenery of any option — and by far the most expensive',
+    overview: 'Fly into Zurich (ZRH) instead of Rome/Naples — the biggest reroute of any alternative, and roughly double the daily cost of every other option on this page. Base in Interlaken, gateway to the Jungfrau region: real glaciers, cable cars, and mountain trains through the Swiss Alps. If the group wants actual snow-capped peaks and glacier views rather than Mediterranean coastline, this is the one place that delivers it — at a real price.',
+    attractions: [
+      {name:'Jungfraujoch \'Top of Europe\'', desc:'Europe\'s highest railway station at 3,454m — glacier views, ice palace, Sphinx observatory. The signature Swiss experience', cost:'$250–295/person'},
+      {name:'Swiss Travel Pass (multi-day)', desc:'Unlimited trains/buses/boats + up to 50% off mountain railways — pays for itself with 3+ excursions', cost:'$150–220/person'},
+      {name:'Grindelwald First + cliff walk', desc:'Cable car to a mountain ridge with a suspended cliff walkway — dramatic, less crowded than Jungfraujoch', cost:'$90/person'},
+      {name:'Trummelbach Falls', desc:'Glacier waterfalls flowing inside the mountain — accessible by funicular', cost:'$14/person'},
+      {name:'Lauterbrunnen valley walk', desc:'72 waterfalls in one valley, free to explore on foot', cost:'free'},
+      {name:'Harder Kulm viewpoint (Interlaken)', desc:'Funicular to a panoramic ridge overlooking both lakes', cost:'$24/person'}
+    ],
+    food: 'Cheese fondue, raclette, rosti, zurcher geschnetzeltes. Genuinely excellent but expensive — a casual restaurant meal runs $30-50/person, more than double any other destination on this page. Supermarket meals (Coop/Migros) cut this by half.',
+    costNote: 'Switzerland is roughly 2x the cost of Italy or Greece for the same days — accommodation, food, and the marquee Jungfraujoch excursion are all priced well above every other option here. Stunning, but the group should go in with eyes open on budget impact before swapping it in.'
   }
 };
 
@@ -663,7 +682,7 @@ function openDetail(key){
   // Accommodation section -- only shown for the 4 real itinerary stops,
   // since alternatives don't have a booked nightly rate.
   let accomHtml = '';
-  if (cb && ['rome','pelo','crete','athens'].includes(key)) {
+  if (cb && ['naples','pelo','crete','athens'].includes(key)) {
     accomHtml = `
     <div class="detail-sec-title">Accommodation</div>
     <div class="card">
@@ -756,16 +775,17 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
 }).addTo(map);
 
 const stops = [
-  {num:1, lat:41.9028, lng:12.4964, label:'Rome, Italy', sub:'3 nights · FCO', color:'#2a78d6'},
+  {num:1, lat:40.8518, lng:14.2681, label:'Naples, Italy', sub:'3 nights · NAP', color:'#2a78d6'},
   {num:2, lat:37.5679, lng:22.8027, label:'Peloponnese (Nafplio)', sub:'4 nights · drive from ATH', color:'#1baf7a'},
   {num:3, lat:35.5138, lng:24.0180, label:'Crete (Chania)', sub:'5 nights · CHQ', color:'#1baf7a'},
   {num:4, lat:37.9838, lng:23.7275, label:'Athens', sub:'2 nights · ATH', color:'#8b5cf6'},
 ];
 const altStops = [
-  {lat:40.8518, lng:14.2681, label:'Naples', sub:'alternative — city + Pompeii', color:'#e34948'},
+  {lat:41.9028, lng:12.4964, label:'Rome', sub:'alternative — losing group support (crowds, cost, 2/6 already visited)', color:'#e34948'},
   {lat:40.6340, lng:14.6027, label:'Amalfi Coast (Positano)', sub:'alternative — coast + hiking', color:'#e34948'},
   {lat:43.7102, lng:7.2620, label:'French Riviera (Nice)', sub:'alternative — fly into Nice (NCE), reroutes via France', color:'#7f77dd'},
   {lat:44.1069, lng:9.7178, label:'Italian Riviera (Cinque Terre)', sub:'alternative — fly into Genoa (GOA) or Pisa (PSA)', color:'#7f77dd'},
+  {lat:46.6863, lng:7.8632, label:'Switzerland (Interlaken/Jungfrau)', sub:'alternative — mountains + glaciers, fly into Zurich (ZRH) — ~2x the cost', color:'#7f77dd'},
 ];
 
 const flightCoords = [[41.9028,12.4964],[37.9838,23.7275],[35.5138,24.0180],[37.9838,23.7275]];
@@ -971,7 +991,7 @@ function renderCostTotals(data){
   // destination's own detail page. Subtotal is their sum, not a
   // separately-typed number.
   const cb = data.destination_cost_breakdown;
-  ['rome','pelo','crete','athens'].forEach(dest => {
+  ['naples','pelo','crete','athens'].forEach(dest => {
     document.getElementById(dest + '-nights').textContent = cb[dest].nights;
     document.getElementById(dest + '-accom-low').textContent = '$' + Math.round(cb[dest].accommodation_total_low).toLocaleString();
     document.getElementById(dest + '-accom-high').textContent = '$' + Math.round(cb[dest].accommodation_total_high).toLocaleString();
