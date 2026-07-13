@@ -125,7 +125,7 @@ OBJECTIVES = [
     },
     {
         "num": 4, "name": "Mediterranean coast index",
-        "desc": "Turquoise water, beaches, cliffs -- a significant goal for the trip overall, but not a requirement at every single stop.",
+        "desc": "Refined: dramatic topology -- steep mountains/cliffs meeting the sea (Amalfi-style) -- is worth far more than flat resort beaches, which are easy to satisfy anywhere on this trip. A significant goal overall, but not a requirement at every single stop.",
     },
     {
         "num": 5, "name": "Food index",
@@ -236,11 +236,11 @@ PRIOR_VISITS = {
 DESTINATION_SCORES = {
     # dest_key: {objective_num: score}  -- objective 9 = Variety index (new)
     "rome":    {1: 3, 2: 5, 3: 2, 4: 2, 5: 5, 6: 2, 7: 3, 8: 3, 9: 4},
-    "pelo":    {1: 5, 2: 5, 3: 4, 4: 4, 5: 4, 6: 5, 7: 3, 8: 5, 9: 3},
+    "pelo":    {1: 5, 2: 5, 3: 4, 4: 3, 5: 4, 6: 5, 7: 3, 8: 5, 9: 3},  # coast lowered: Nafplio is a harbor town, not sheer cliffs; Mani's drama is a day-trip mention, not core itinerary
     "crete":   {1: 5, 2: 4, 3: 5, 4: 5, 5: 5, 6: 5, 7: 4, 8: 5, 9: 3},
     "naples":  {1: 5, 2: 5, 3: 3, 4: 3, 5: 5, 6: 4, 7: 3, 8: 4, 9: 3},
     "amalfi":  {1: 5, 2: 3, 3: 5, 4: 5, 5: 4, 6: 2, 7: 2, 8: 4, 9: 2},
-    "fr":      {1: 3, 2: 3, 3: 3, 4: 5, 5: 4, 6: 1, 7: 2, 8: 3, 9: 3},  # exploration lowered: 2 of 6 have been
+    "fr":      {1: 3, 2: 3, 3: 3, 4: 4, 5: 4, 6: 1, 7: 2, 8: 3, 9: 3},  # exploration lowered: 2 of 6 have been; coast lowered slightly: glamorous coastal drives, but less sheer-cliff-dramatic than Amalfi/Cinque Terre/Crete\'s south coast
     "it":      {1: 3, 2: 2, 3: 5, 4: 5, 5: 4, 6: 3, 7: 2, 8: 4, 9: 2},  # exploration lowered: 2 of 6 have been
     "switzerland": {1: 5, 2: 3, 3: 5, 4: 1, 5: 4, 6: 1, 7: 3, 8: 4, 9: 5},  # no coast (landlocked), cost efficiency lowest, but HIGHEST variety: snow + modern city
 }
@@ -356,6 +356,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Aptera ruins", "per_person_low": 6, "per_person_high": 6, "source": "crete_activities", "in_budget": False},
             {"name": "Seitan Limania cove", "per_person_low": 0, "per_person_high": 0, "source": "crete_activities", "in_budget": False, "note": "free"},
             {"name": "Chania flea market", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; vintage/retro goods, guided thrift walks available"},
+            {"name": "Sfakia + Loutro day trip", "per_person_low": 10, "per_person_high": 20, "source": "crete_activities", "in_budget": False, "note": "1.5-2hr drive from Chania + ferry; this IS the Amalfi-style dramatic cliffs-meet-sea terrain, just wilder and car-free at Loutro"},
         ],
     },
     "athens": {
