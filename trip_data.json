@@ -1687,8 +1687,13 @@
           "source": null
         },
         {
-          "label": "Transit to RDU airport (drive + park)",
-          "hours": 0.75,
+          "label": "Wait for ride to airport (own car/rideshare)",
+          "hours": 0.15,
+          "source": null
+        },
+        {
+          "label": "Drive to RDU airport + park",
+          "hours": 0.6,
           "source": "airport_data"
         },
         {
@@ -1731,8 +1736,13 @@
           "source": null
         },
         {
-          "label": "Transit NAP airport -> Naples hotel (taxi/shuttle)",
-          "hours": 0.4,
+          "label": "Wait for taxi/shuttle at NAP arrivals",
+          "hours": 0.1,
+          "source": null
+        },
+        {
+          "label": "Taxi/shuttle NAP airport -> Naples hotel",
+          "hours": 0.3,
           "source": "naples_flights"
         },
         {
@@ -1777,8 +1787,13 @@
           "source": null
         },
         {
-          "label": "Transit to FCO airport",
-          "hours": 0.75,
+          "label": "Wait for taxi to airport",
+          "hours": 0.15,
+          "source": null
+        },
+        {
+          "label": "Taxi to FCO airport",
+          "hours": 0.6,
           "source": "airport_data"
         },
         {
@@ -1960,8 +1975,13 @@
           "source": null
         },
         {
-          "label": "Transit to CHQ airport",
-          "hours": 0.3,
+          "label": "Wait for taxi to CHQ airport",
+          "hours": 0.1,
+          "source": null
+        },
+        {
+          "label": "Taxi to CHQ airport",
+          "hours": 0.2,
           "source": "airport_data"
         },
         {
@@ -1981,8 +2001,13 @@
           "source": null
         },
         {
-          "label": "Transit ATH airport -> Athens hotel (metro)",
-          "hours": 0.67,
+          "label": "Wait for metro/taxi at ATH arrivals",
+          "hours": 0.1,
+          "source": null
+        },
+        {
+          "label": "Metro/taxi ATH airport -> Athens hotel",
+          "hours": 0.57,
           "source": "airport_data"
         },
         {
@@ -2017,8 +2042,13 @@
           "source": null
         },
         {
-          "label": "Transit to ATH airport (metro/taxi)",
-          "hours": 0.67,
+          "label": "Wait for metro/taxi to ATH airport",
+          "hours": 0.1,
+          "source": null
+        },
+        {
+          "label": "Metro/taxi to ATH airport",
+          "hours": 0.57,
           "source": "airport_data"
         },
         {
