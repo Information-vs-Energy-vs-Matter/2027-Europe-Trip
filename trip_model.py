@@ -71,6 +71,18 @@ SOURCES = {
     "athens_activities": [
         {"url": "https://www.discovergreece.com", "note": "Acropolis, Acropolis Museum entry pricing"},
     ],
+    "switzerland_costs": [
+        {"url": "https://www.jungfraujochtickets.com/", "note": "Jungfraujoch round-trip ticket pricing by origin"},
+        {"url": "https://www.swissprivatetour.ch/en/switzerland-travel-cost-3/", "note": "Mountain resort hotel + food per-day cost breakdown"},
+        {"url": "https://simbye.com/blogs/blog/how-much-does-trip-to-switzerland-cost-2026-budget-breakdown", "note": "Restaurant meal costs, Swiss Travel Pass pricing"},
+        {"url": "https://www.swiss.com/lhg/us/en/o-d/cy-cy/raleigh-durham-zurich", "note": "RDU-ZRH direct flight pricing"},
+        {"url": "https://www.expedia.com/lp/flights/rdu/zrh/raleigh-to-zurich", "note": "RDU-ZRH fare range"},
+    ],
+    "naples_flights": [
+        {"url": "https://www.flightroutes.com/RDU-NAP", "note": "RDU-NAP routing, connections, flight time"},
+        {"url": "https://www.google.com/travel/flights/flights-from-raleigh-to-naples.html", "note": "RDU-NAP fare range by month"},
+        {"url": "https://www.flightconnections.com/flights-to-naples-nap", "note": "Seasonal direct summer flights from ATL/PHL/ORD/JFK"},
+    ],
 }
 
 
@@ -123,7 +135,8 @@ OBJECTIVES = [
 ]
 
 OPEN_QUESTIONS = [
-    "Rome vs Naples vs Amalfi Coast for the Italy stop?",
+    "Naples is now the baseline Italy stop (Rome lost group support) -- any objections?",
+    "Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?",
     "Comfortable with narrow mountain driving in the Peloponnese?",
     "Everyone in for the Samaria Gorge hike (16km, ~6hrs)?",
     "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
@@ -184,27 +197,31 @@ DESTINATION_SCORES = {
     "amalfi":  {1: 5, 2: 3, 3: 5, 4: 5, 5: 4, 6: 2, 7: 2, 8: 4},
     "fr":      {1: 3, 2: 3, 3: 3, 4: 5, 5: 4, 6: 1, 7: 2, 8: 3},  # exploration lowered: 2 of 6 have been
     "it":      {1: 3, 2: 2, 3: 5, 4: 5, 5: 4, 6: 3, 7: 2, 8: 4},  # exploration lowered: 2 of 6 have been
+    "switzerland": {1: 5, 2: 3, 3: 5, 4: 1, 5: 4, 6: 1, 7: 3, 8: 4},  # no coast (landlocked), cost efficiency lowest of any option
 }
 
 DESTINATION_LABELS = {
     "rome": "Rome", "pelo": "Peloponnese", "crete": "Crete",
     "naples": "Naples", "amalfi": "Amalfi Coast",
     "fr": "French Riviera", "it": "Italian Riviera",
+    "switzerland": "Switzerland (Jungfrau Region)",
 }
 
 DESTINATION_EMOJI = {
     "rome": "🏟️", "pelo": "🗺️", "crete": "🏖️",
     "naples": "🍕", "amalfi": "🌊", "fr": "🇫🇷", "it": "🇮🇹",
+    "switzerland": "🏔️",
 }
 
 DESTINATION_VERDICTS = {
     "crete": "Best overall match",
     "pelo": "Excellent across the board",
-    "naples": "Strong history alt to Rome",
+    "naples": "Current baseline plan -- primary Italy stop",
     "amalfi": "Strong coastal/hiking alt",
     "it": "Good hiking alt, less novel now",
-    "rome": "History 5/5 -- crowds, cost, and repeat-visit familiarity drag it",
-    "fr": "Priciest, biggest reroute, and less novel now",
+    "rome": "Losing group support -- crowds, cost, repeat visits",
+    "fr": "Priciest reroute, and less novel now",
+    "switzerland": "Stunning mountains/glaciers, by far the most expensive option",
 }
 
 
@@ -314,10 +331,12 @@ DESTINATION_COST_ATOMS = {
         "accommodation_per_night": (150, 250),
         "accommodation_source": "accommodation",
         "activities": [
-            {"name": "Pompeii ruins entry", "per_person_low": 20, "per_person_high": 22, "source": "naples_amalfi_activities", "in_budget": True},
-            {"name": "Herculaneum entry", "per_person_low": 15, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
-            {"name": "Underground Naples tour", "per_person_low": 12, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Pompeii ruins", "per_person_low": 20, "per_person_high": 22, "source": "naples_amalfi_activities", "in_budget": True},
+            {"name": "Herculaneum", "per_person_low": 15, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Naples historic center (UNESCO)", "per_person_low": 12, "per_person_high": 15, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Mount Vesuvius hike", "per_person_low": 12, "per_person_high": 12, "source": "naples_amalfi_activities", "in_budget": False, "note": "+ transport"},
             {"name": "National Archaeological Museum", "per_person_low": 16, "per_person_high": 16, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Pizza in the Spanish Quarter", "per_person_low": 6, "per_person_high": 10, "source": "naples_amalfi_activities", "in_budget": False, "note": "per pizza, not per person"},
         ],
     },
     "amalfi": {
@@ -349,6 +368,19 @@ DESTINATION_COST_ATOMS = {
             {"name": "Boat tour between villages", "per_person_low": 25, "per_person_high": 35, "source": "riviera_activities", "in_budget": False},
         ],
     },
+    "switzerland": {
+        "nights": 3,
+        "accommodation_per_night": (350, 550),
+        "accommodation_source": "switzerland_costs",
+        "activities": [
+            {"name": "Jungfraujoch 'Top of Europe'", "per_person_low": 250, "per_person_high": 295, "source": "switzerland_costs", "in_budget": True},
+            {"name": "Swiss Travel Pass (multi-day)", "per_person_low": 150, "per_person_high": 220, "source": "switzerland_costs", "in_budget": False},
+            {"name": "Grindelwald First + cliff walk", "per_person_low": 90, "per_person_high": 90, "source": "switzerland_costs", "in_budget": False},
+            {"name": "Trummelbach Falls", "per_person_low": 14, "per_person_high": 14, "source": "switzerland_costs", "in_budget": False},
+            {"name": "Lauterbrunnen valley walk", "per_person_low": 0, "per_person_high": 0, "source": "switzerland_costs", "in_budget": False, "note": "free"},
+            {"name": "Harder Kulm viewpoint (Interlaken)", "per_person_low": 24, "per_person_high": 24, "source": "switzerland_costs", "in_budget": False},
+        ],
+    },
 }
 
 
@@ -359,7 +391,7 @@ def compute_destination_cost_breakdown(party_size):
     breakdown = {}
     itin_accom_low = itin_accom_high = 0.0
     itin_activities_low = itin_activities_high = 0.0
-    itinerary_keys = ["rome", "pelo", "crete", "athens"]
+    itinerary_keys = ["naples", "pelo", "crete", "athens"]
 
     for dest, info in DESTINATION_COST_ATOMS.items():
         nights = info["nights"]
@@ -438,7 +470,8 @@ ASSUMPTIONS = {
     # party size at render time -- kept per-person here so party size is a
     # single editable knob, not baked into every number.
     "food_per_person_per_day": {
-        "rome":     (20, 30),
+        "naples":   (18, 27),    # lower cost than Rome, source: naples_amalfi_activities
+        "rome":     (20, 30),    # kept for Rome's alternative detail page
         "pelo":     (12.5, 20),
         "crete":    (12.5, 20),
         "athens":   (15, 22.5),
@@ -453,7 +486,7 @@ ASSUMPTIONS = {
         {"day": 5,  "item": "Car rental (full charge at Peloponnese pickup)", "amount_low": 300, "amount_high": 500, "source": "peloponnese_activities"},
         {"day": 5,  "item": "Gas + tolls (Peloponnese driving)", "amount_low": 75, "amount_high": 100, "source": "peloponnese_activities"},
         {"day": 10, "item": "Gas + tolls (Crete driving)", "amount_low": 75, "amount_high": 100, "source": "crete_activities"},
-        {"day": 1,  "item": "Airport transfer (arrival Rome)", "amount_low": 60, "amount_high": 90, "source": "airport_data"},
+        {"day": 1,  "item": "Airport transfer (arrival Naples)", "amount_low": 40, "amount_high": 70, "source": "naples_flights"},
         {"day": 5,  "item": "Airport transfer (Peloponnese leg)", "amount_low": 60, "amount_high": 90, "source": "airport_data"},
         {"day": 9,  "item": "Airport transfer (Crete leg)", "amount_low": 60, "amount_high": 90, "source": "airport_data"},
         {"day": 14, "item": "Airport transfer (Athens leg)", "amount_low": 60, "amount_high": 90, "source": "airport_data"},
@@ -478,13 +511,13 @@ ASSUMPTIONS = {
             {"label": "Pack and get ready", "hours": 1.0, "source": None},
             {"label": "Transit to RDU airport (drive + park)", "hours": 0.75, "source": "airport_data"},
             {"label": "Airport arrival buffer (check-in, security, gate wait)", "hours": 3.0, "source": "airport_data", "note": "RDU recommends 3 hrs before international departure"},
-            {"label": "Flight RDU -> Rome (boarding + bulk of overnight flight)", "hours": 8.25, "source": "flights_transatlantic"},
+            {"label": "Flight RDU -> Naples via connection (boarding + bulk of flight)", "hours": 8.25, "source": "naples_flights", "note": "No direct RDU-NAP route; connects via CDG/PHL/ATL, ~11-13 hrs total"},
         ],
-        2: [  # Remainder of flight + arrival into Rome
-            {"label": "Remaining flight time + descent", "hours": 3.0, "source": "flights_transatlantic"},
-            {"label": "Deplane + immigration/passport control (non-EU)", "hours": 0.75, "source": "airport_data", "note": "FCO non-EU immigration ~37 min average"},
+        2: [  # Remainder of flight + arrival into Naples
+            {"label": "Remaining flight time + connection + descent", "hours": 4.0, "source": "naples_flights"},
+            {"label": "Deplane + immigration/passport control (non-EU)", "hours": 0.75, "source": "airport_data", "note": "similar to other Italian airports, ~30-40 min average"},
             {"label": "Baggage claim", "hours": 0.5, "source": None},
-            {"label": "Transit FCO -> Rome hotel (train or taxi)", "hours": 0.75, "source": "airport_data"},
+            {"label": "Transit NAP airport -> Naples hotel (taxi/shuttle)", "hours": 0.4, "source": "naples_flights"},
             {"label": "Hotel check-in", "hours": 0.5, "source": None},
         ],
         5: [  # Rome -> Peloponnese (flight + drive)
@@ -535,10 +568,10 @@ ASSUMPTIONS = {
     # dest values: rome, pelo, crete, athens, transfer_pelo, transfer_crete, transfer_athens, travel_out, travel_back
     "day_model": [
         {"day": 1,  "label": "Depart RDU (overnight flight)",              "dest": "travel_out"},
-        {"day": 2,  "label": "Arrive Rome, settle in",                     "dest": "rome"},
-        {"day": 3,  "label": "Rome full day",                              "dest": "rome"},
-        {"day": 4,  "label": "Rome full day (last night)",                 "dest": "rome"},
-        {"day": 5,  "label": "Rome -> Peloponnese (flight + drive)",       "dest": "transfer_pelo"},
+        {"day": 2,  "label": "Arrive Naples, settle in",                   "dest": "naples"},
+        {"day": 3,  "label": "Naples full day",                            "dest": "naples"},
+        {"day": 4,  "label": "Naples full day (last night)",               "dest": "naples"},
+        {"day": 5,  "label": "Naples -> Peloponnese (flight + drive)",     "dest": "transfer_pelo"},
         {"day": 6,  "label": "Peloponnese full day",                       "dest": "pelo"},
         {"day": 7,  "label": "Peloponnese full day",                       "dest": "pelo"},
         {"day": 8,  "label": "Peloponnese full day (last night)",          "dest": "pelo"},
@@ -598,7 +631,7 @@ def compute_time_budget(a):
 
 # Maps a day's "dest" tag to which food-cost zone applies that day
 DEST_TO_FOOD_ZONE = {
-    "rome": "rome",
+    "naples": "naples",
     "pelo": "pelo",
     "crete": "crete",
     "athens": "athens",
