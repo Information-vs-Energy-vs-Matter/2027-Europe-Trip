@@ -148,10 +148,10 @@ TEEN_FEEDBACK = {
         "Ancient ruins -- Pompeii/Acropolis/Mycenae (would be missed LEAST if cut)",
     ],
     "switzerland_verdict": "Conditional yes -- only if kept to 2-3 nights max, not extended",
-    "most_exciting_anticipated": "Exploring a big city on their own (independence/unstructured time), ranked above swimming, glaciers, and hiking",
+    "most_exciting_anticipated": "Clarified after follow-up: 'exploring a big city' specifically meant flea markets / junk shops / thrift shopping, not generic city wandering.",
     "implications": [
         "Ancient ruins ranked LAST despite adults prioritizing history heavily (objective 2) -- worth checking whether ruin-heavy days need trimming or reframing for teen engagement.",
-        "City exploration beat hiking and swimming as the most anticipated activity -- suggests building in unstructured/independent time in Athens and Naples specifically, not just guided sightseeing.",
+        "The #2 priority is specifically flea markets and junk shops, not generic city time -- Naples now has a real flea market attraction added (Mercatino dell'Antiquariato), and Athens' Monastiraki is exactly this kind of stop.",
         "Switzerland's 3-night length is already at the edge of teen tolerance -- do not extend it if it's added.",
     ],
 }
@@ -360,6 +360,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Mount Vesuvius hike", "per_person_low": 12, "per_person_high": 12, "source": "naples_amalfi_activities", "in_budget": False, "note": "+ transport"},
             {"name": "National Archaeological Museum", "per_person_low": 16, "per_person_high": 16, "source": "naples_amalfi_activities", "in_budget": False},
             {"name": "Pizza in the Spanish Quarter", "per_person_low": 6, "per_person_high": 10, "source": "naples_amalfi_activities", "in_budget": False, "note": "per pizza, not per person"},
+            {"name": "Mercatino dell'Antiquariato flea market", "per_person_low": 0, "per_person_high": 0, "source": "naples_amalfi_activities", "in_budget": False, "note": "free to browse; Villa Comunale, 3rd/4th weekend of month -- furniture, prints, antiques, real junk-shop treasure hunting"},
         ],
     },
     "amalfi": {
