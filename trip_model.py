@@ -83,6 +83,17 @@ SOURCES = {
         {"url": "https://www.google.com/travel/flights/flights-from-raleigh-to-naples.html", "note": "RDU-NAP fare range by month"},
         {"url": "https://www.flightconnections.com/flights-to-naples-nap", "note": "Seasonal direct summer flights from ATL/PHL/ORD/JFK"},
     ],
+    "flea_markets": [
+        {"url": "https://www.discovernafplio.gr/en/articles/sightseeing/flea-market", "note": "Nafplio flea market -- Wed/Sat, base of Palamidi steps"},
+        {"url": "https://santorinidave.com/best-shopping-nafplio", "note": "Nafplio antique/vintage shops (Nostalgia Vintage, The Antique Shop)"},
+        {"url": "https://www.rental-center-crete.com/blog/chania-markets/", "note": "Chania flea market -- vintage, antiques, retro goods"},
+        {"url": "https://www.getyourguide.com/chania-l1807/chania-hidden-thrift-shops-vintage-finds-walk-t1281169/", "note": "Chania thrift/vintage shop walking tour confirms multiple real shops exist"},
+        {"url": "https://www.wantedinrome.com/yellowpage/porta-portese-sunday-flea-market-in-rome.html", "note": "Porta Portese -- Rome's largest flea market, Sundays since 1945"},
+        {"url": "https://www.fleamarketinsiders.com/flea-markets-rome/", "note": "Rome market closures in July/August -- Mercato Monti closes, Porta Portese and Via Sannio stay open"},
+        {"url": "https://niceandbeyond.com/cours-saleya-markets-nice/", "note": "Nice: Cours Saleya Brocante (Monday, year-round) and Les Puces de Nice (Tue-Sat, Port district)"},
+        {"url": "https://www.zuerich.com/en/visit/shopping/kanzlei-flea-market", "note": "Zurich Kanzlei Flohmarkt -- largest in Switzerland, 400+ vendors, year-round Saturdays"},
+        {"url": "https://www.zuerich.com/en/visit/shopping/flea-market-burkliplatz", "note": "Zurich Burkliplatz flea market -- May-October, Saturdays"},
+    ],
 }
 
 
@@ -161,6 +172,8 @@ TEEN_FEEDBACK = {
         "They want to BUY, not just browse -- pack an empty duffel or expect to buy a cheap bag abroad; factor this into Ryanair/budget-airline baggage fee math on the intra-Europe legs.",
         "Half a day is a real time block -- this should show up as scheduled time in Naples and/or Athens, not squeezed into leftover hours.",
         "Naples' market is only open specific weekends of the month -- MUST check actual travel dates against this before counting on it. If dates don't line up, Athens' daily Monastiraki becomes the reliable fallback.",
+        "Every destination now has a flea market / junk shop attraction added to its detail page. Amalfi Coast and the Italian Riviera are honestly the weakest options here (no real dedicated flea market at either) -- worth knowing if this is a real priority when comparing alternatives.",
+        "Many Italian outdoor flea markets close for July/August (e.g. Rome's Mercato Monti) -- Porta Portese (Rome) and Via Sannio stay open through summer, so check specific market calendars against actual travel dates once locked in.",
         "Switzerland's 3-night length is already at the edge of teen tolerance -- do not extend it if it's added.",
     ],
 }
@@ -309,6 +322,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Catacombs of San Callisto", "per_person_low": 12, "per_person_high": 15, "source": "rome_activities", "in_budget": False},
             {"name": "Capuchin Crypt", "per_person_low": 10, "per_person_high": 10, "source": "rome_activities", "in_budget": False},
             {"name": "Janiculum Hill sunset walk", "per_person_low": 0, "per_person_high": 0, "source": "rome_activities", "in_budget": False, "note": "free"},
+            {"name": "Porta Portese flea market", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; Rome's largest flea market since 1945 -- stays open through summer, unlike Mercato Monti which closes July/August"},
         ],
     },
     "pelo": {
@@ -325,6 +339,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Diros Caves", "per_person_low": 15, "per_person_high": 18, "source": "peloponnese_activities", "in_budget": False},
             {"name": "Voidokilia Beach", "per_person_low": 0, "per_person_high": 0, "source": "peloponnese_activities", "in_budget": False, "note": "free"},
             {"name": "Mystras Byzantine ruins", "per_person_low": 8, "per_person_high": 8, "source": "peloponnese_activities", "in_budget": False},
+            {"name": "Nafplio flea market (Wed/Sat, base of Palamidi steps)", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; plus antique/vintage shops in Old Town"},
         ],
     },
     "crete": {
@@ -340,6 +355,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Knossos Minoan palace", "per_person_low": 18, "per_person_high": 20, "source": "crete_activities", "in_budget": False},
             {"name": "Aptera ruins", "per_person_low": 6, "per_person_high": 6, "source": "crete_activities", "in_budget": False},
             {"name": "Seitan Limania cove", "per_person_low": 0, "per_person_high": 0, "source": "crete_activities", "in_budget": False, "note": "free"},
+            {"name": "Chania flea market", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; vintage/retro goods, guided thrift walks available"},
         ],
     },
     "athens": {
@@ -380,6 +396,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Path of the Gods guided hike", "per_person_low": 40, "per_person_high": 60, "source": "naples_amalfi_activities", "in_budget": True},
             {"name": "Villa Cimbrone gardens (Ravello)", "per_person_low": 11, "per_person_high": 11, "source": "naples_amalfi_activities", "in_budget": False},
             {"name": "Boat tour of the coast", "per_person_low": 60, "per_person_high": 90, "source": "naples_amalfi_activities", "in_budget": False},
+            {"name": "Positano/Amalfi antique & boutique shops (no dedicated flea market)", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "weakest stop for junk-shop hunting -- scattered antique shops only, no real flea market like the other destinations"},
         ],
     },
     "fr": {
@@ -390,6 +407,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Eze botanical garden entry", "per_person_low": 7, "per_person_high": 7, "source": "riviera_activities", "in_budget": True},
             {"name": "Monaco Oceanographic Museum", "per_person_low": 18, "per_person_high": 20, "source": "riviera_activities", "in_budget": False},
             {"name": "Gorges du Loup guided aquatic hike", "per_person_low": 30, "per_person_high": 50, "source": "riviera_activities", "in_budget": False},
+            {"name": "Cours Saleya Brocante", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; year-round, reliable even in summer -- antiques, vintage, bric-a-brac"},
         ],
     },
     "it": {
@@ -399,6 +417,7 @@ DESTINATION_COST_ATOMS = {
         "activities": [
             {"name": "Cinque Terre Card (trails + trains, per day)", "per_person_low": 21, "per_person_high": 24, "source": "riviera_activities", "in_budget": True},
             {"name": "Boat tour between villages", "per_person_low": 25, "per_person_high": 35, "source": "riviera_activities", "in_budget": False},
+            {"name": "No dedicated flea market in Cinque Terre villages", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "honest gap -- these are tiny fishing villages, no real flea market; closest options are in La Spezia or Genoa, outside the planned itinerary"},
         ],
     },
     "switzerland": {
@@ -412,6 +431,7 @@ DESTINATION_COST_ATOMS = {
             {"name": "Trummelbach Falls", "per_person_low": 14, "per_person_high": 14, "source": "switzerland_costs", "in_budget": False},
             {"name": "Lauterbrunnen valley walk", "per_person_low": 0, "per_person_high": 0, "source": "switzerland_costs", "in_budget": False, "note": "free"},
             {"name": "Harder Kulm viewpoint (Interlaken)", "per_person_low": 24, "per_person_high": 24, "source": "switzerland_costs", "in_budget": False},
+            {"name": "Zurich Kanzlei Flohmarkt", "per_person_low": 0, "per_person_high": 0, "source": "flea_markets", "in_budget": False, "note": "free to browse; Switzerland's largest flea market, 400+ vendors -- only if routing through Zurich (Interlaken itself has no real flea market, it's a small mountain town)"},
         ],
     },
 }
