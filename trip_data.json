@@ -25,20 +25,20 @@
       "day_offset": -42,
       "weeks_before": 6,
       "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
-      "amount_low": 2050.0,
-      "amount_high": 3420.0,
-      "cumulative_low": 6070.0,
-      "cumulative_high": 9840.0,
+      "amount_low": 1750.0,
+      "amount_high": 2970.0,
+      "cumulative_low": 5770.0,
+      "cumulative_high": 9390.0,
       "source": "accommodation"
     },
     {
       "day_offset": -21,
       "weeks_before": 3,
       "item": "Pre-bookable activities & entry tickets (Colosseum, Acropolis)",
-      "amount_low": 228.0,
-      "amount_high": 292.0,
-      "cumulative_low": 6298.0,
-      "cumulative_high": 10132.0,
+      "amount_low": 208.0,
+      "amount_high": 240.0,
+      "cumulative_low": 5978.0,
+      "cumulative_high": 9630.0,
       "source": "rome_activities"
     }
   ],
@@ -49,61 +49,61 @@
       "dest": "travel_out",
       "food_low": 30.0,
       "food_high": 40,
-      "lump_low": 60,
-      "lump_high": 90,
+      "lump_low": 40,
+      "lump_high": 70,
       "lump_items": [
-        "Airport transfer (arrival Rome)"
+        "Airport transfer (arrival Naples)"
       ],
-      "day_total_low": 90.0,
-      "day_total_high": 130,
-      "cumulative_low": 6388.0,
-      "cumulative_high": 10262.0
+      "day_total_low": 70.0,
+      "day_total_high": 110,
+      "cumulative_low": 6048.0,
+      "cumulative_high": 9740.0
     },
     {
       "day": 2,
-      "label": "Arrive Rome, settle in",
-      "dest": "rome",
-      "food_low": 80,
-      "food_high": 120,
+      "label": "Arrive Naples, settle in",
+      "dest": "naples",
+      "food_low": 72,
+      "food_high": 108,
       "lump_low": 0,
       "lump_high": 0,
       "lump_items": [],
-      "day_total_low": 80,
-      "day_total_high": 120,
-      "cumulative_low": 6468.0,
-      "cumulative_high": 10382.0
+      "day_total_low": 72,
+      "day_total_high": 108,
+      "cumulative_low": 6120.0,
+      "cumulative_high": 9848.0
     },
     {
       "day": 3,
-      "label": "Rome full day",
-      "dest": "rome",
-      "food_low": 80,
-      "food_high": 120,
+      "label": "Naples full day",
+      "dest": "naples",
+      "food_low": 72,
+      "food_high": 108,
       "lump_low": 0,
       "lump_high": 0,
       "lump_items": [],
-      "day_total_low": 80,
-      "day_total_high": 120,
-      "cumulative_low": 6548.0,
-      "cumulative_high": 10502.0
+      "day_total_low": 72,
+      "day_total_high": 108,
+      "cumulative_low": 6192.0,
+      "cumulative_high": 9956.0
     },
     {
       "day": 4,
-      "label": "Rome full day (last night)",
-      "dest": "rome",
-      "food_low": 80,
-      "food_high": 120,
+      "label": "Naples full day (last night)",
+      "dest": "naples",
+      "food_low": 72,
+      "food_high": 108,
       "lump_low": 0,
       "lump_high": 0,
       "lump_items": [],
-      "day_total_low": 80,
-      "day_total_high": 120,
-      "cumulative_low": 6628.0,
-      "cumulative_high": 10622.0
+      "day_total_low": 72,
+      "day_total_high": 108,
+      "cumulative_low": 6264.0,
+      "cumulative_high": 10064.0
     },
     {
       "day": 5,
-      "label": "Rome -> Peloponnese (flight + drive)",
+      "label": "Naples -> Peloponnese (flight + drive)",
       "dest": "transfer_pelo",
       "food_low": 50.0,
       "food_high": 80,
@@ -116,8 +116,8 @@
       ],
       "day_total_low": 485.0,
       "day_total_high": 770,
-      "cumulative_low": 7113.0,
-      "cumulative_high": 11392.0
+      "cumulative_low": 6749.0,
+      "cumulative_high": 10834.0
     },
     {
       "day": 6,
@@ -130,8 +130,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7163.0,
-      "cumulative_high": 11472.0
+      "cumulative_low": 6799.0,
+      "cumulative_high": 10914.0
     },
     {
       "day": 7,
@@ -144,8 +144,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7213.0,
-      "cumulative_high": 11552.0
+      "cumulative_low": 6849.0,
+      "cumulative_high": 10994.0
     },
     {
       "day": 8,
@@ -158,8 +158,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7263.0,
-      "cumulative_high": 11632.0
+      "cumulative_low": 6899.0,
+      "cumulative_high": 11074.0
     },
     {
       "day": 9,
@@ -174,8 +174,8 @@
       ],
       "day_total_low": 110.0,
       "day_total_high": 170,
-      "cumulative_low": 7373.0,
-      "cumulative_high": 11802.0
+      "cumulative_low": 7009.0,
+      "cumulative_high": 11244.0
     },
     {
       "day": 10,
@@ -191,8 +191,8 @@
       ],
       "day_total_low": 145.0,
       "day_total_high": 204,
-      "cumulative_low": 7518.0,
-      "cumulative_high": 12006.0
+      "cumulative_low": 7154.0,
+      "cumulative_high": 11448.0
     },
     {
       "day": 11,
@@ -205,8 +205,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7568.0,
-      "cumulative_high": 12086.0
+      "cumulative_low": 7204.0,
+      "cumulative_high": 11528.0
     },
     {
       "day": 12,
@@ -219,8 +219,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7618.0,
-      "cumulative_high": 12166.0
+      "cumulative_low": 7254.0,
+      "cumulative_high": 11608.0
     },
     {
       "day": 13,
@@ -233,8 +233,8 @@
       "lump_items": [],
       "day_total_low": 50.0,
       "day_total_high": 80,
-      "cumulative_low": 7668.0,
-      "cumulative_high": 12246.0
+      "cumulative_low": 7304.0,
+      "cumulative_high": 11688.0
     },
     {
       "day": 14,
@@ -249,8 +249,8 @@
       ],
       "day_total_low": 120,
       "day_total_high": 180.0,
-      "cumulative_low": 7788.0,
-      "cumulative_high": 12426.0
+      "cumulative_low": 7424.0,
+      "cumulative_high": 11868.0
     },
     {
       "day": 15,
@@ -263,8 +263,8 @@
       "lump_items": [],
       "day_total_low": 60,
       "day_total_high": 90.0,
-      "cumulative_low": 7848.0,
-      "cumulative_high": 12516.0
+      "cumulative_low": 7484.0,
+      "cumulative_high": 11958.0
     },
     {
       "day": 16,
@@ -277,12 +277,12 @@
       "lump_items": [],
       "day_total_low": 30.0,
       "day_total_high": 40,
-      "cumulative_low": 7878.0,
-      "cumulative_high": 12556.0
+      "cumulative_low": 7514.0,
+      "cumulative_high": 11998.0
     }
   ],
-  "grand_total_low": 7878.0,
-  "grand_total_high": 12556.0,
+  "grand_total_low": 7514.0,
+  "grand_total_high": 11998.0,
   "family_of_2": {
     "pretrip_timeline": [
       {
@@ -309,20 +309,20 @@
         "day_offset": -42,
         "weeks_before": 6,
         "item": "Accommodation (4 Airbnb bookings, full or majority prepaid)",
-        "amount_low": 1332.5,
-        "amount_high": 2223.0,
-        "cumulative_low": 3342.5,
-        "cumulative_high": 5433.0,
+        "amount_low": 1137.5,
+        "amount_high": 1930.5,
+        "cumulative_low": 3147.5,
+        "cumulative_high": 5140.5,
         "source": "accommodation"
       },
       {
         "day_offset": -21,
         "weeks_before": 3,
         "item": "Pre-bookable activities & entry tickets (Colosseum, Acropolis)",
-        "amount_low": 114.0,
-        "amount_high": 146.0,
-        "cumulative_low": 3456.5,
-        "cumulative_high": 5579.0,
+        "amount_low": 104.0,
+        "amount_high": 120.0,
+        "cumulative_low": 3251.5,
+        "cumulative_high": 5260.5,
         "source": "rome_activities"
       }
     ],
@@ -333,61 +333,61 @@
         "dest": "travel_out",
         "food_low": 15.0,
         "food_high": 20.0,
-        "lump_low": 30.0,
-        "lump_high": 45.0,
+        "lump_low": 20.0,
+        "lump_high": 35.0,
         "lump_items": [
-          "Airport transfer (arrival Rome)"
+          "Airport transfer (arrival Naples)"
         ],
-        "day_total_low": 45.0,
-        "day_total_high": 65.0,
-        "cumulative_low": 3501.5,
-        "cumulative_high": 5644.0
+        "day_total_low": 35.0,
+        "day_total_high": 55.0,
+        "cumulative_low": 3286.5,
+        "cumulative_high": 5315.5
       },
       {
         "day": 2,
-        "label": "Arrive Rome, settle in",
-        "dest": "rome",
-        "food_low": 40.0,
-        "food_high": 60.0,
+        "label": "Arrive Naples, settle in",
+        "dest": "naples",
+        "food_low": 36.0,
+        "food_high": 54.0,
         "lump_low": 0.0,
         "lump_high": 0.0,
         "lump_items": [],
-        "day_total_low": 40.0,
-        "day_total_high": 60.0,
-        "cumulative_low": 3541.5,
-        "cumulative_high": 5704.0
+        "day_total_low": 36.0,
+        "day_total_high": 54.0,
+        "cumulative_low": 3322.5,
+        "cumulative_high": 5369.5
       },
       {
         "day": 3,
-        "label": "Rome full day",
-        "dest": "rome",
-        "food_low": 40.0,
-        "food_high": 60.0,
+        "label": "Naples full day",
+        "dest": "naples",
+        "food_low": 36.0,
+        "food_high": 54.0,
         "lump_low": 0.0,
         "lump_high": 0.0,
         "lump_items": [],
-        "day_total_low": 40.0,
-        "day_total_high": 60.0,
-        "cumulative_low": 3581.5,
-        "cumulative_high": 5764.0
+        "day_total_low": 36.0,
+        "day_total_high": 54.0,
+        "cumulative_low": 3358.5,
+        "cumulative_high": 5423.5
       },
       {
         "day": 4,
-        "label": "Rome full day (last night)",
-        "dest": "rome",
-        "food_low": 40.0,
-        "food_high": 60.0,
+        "label": "Naples full day (last night)",
+        "dest": "naples",
+        "food_low": 36.0,
+        "food_high": 54.0,
         "lump_low": 0.0,
         "lump_high": 0.0,
         "lump_items": [],
-        "day_total_low": 40.0,
-        "day_total_high": 60.0,
-        "cumulative_low": 3621.5,
-        "cumulative_high": 5824.0
+        "day_total_low": 36.0,
+        "day_total_high": 54.0,
+        "cumulative_low": 3394.5,
+        "cumulative_high": 5477.5
       },
       {
         "day": 5,
-        "label": "Rome -> Peloponnese (flight + drive)",
+        "label": "Naples -> Peloponnese (flight + drive)",
         "dest": "transfer_pelo",
         "food_low": 25.0,
         "food_high": 40.0,
@@ -400,8 +400,8 @@
         ],
         "day_total_low": 329.5,
         "day_total_high": 523.0,
-        "cumulative_low": 3951.0,
-        "cumulative_high": 6347.0
+        "cumulative_low": 3724.0,
+        "cumulative_high": 6000.5
       },
       {
         "day": 6,
@@ -414,8 +414,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 3976.0,
-        "cumulative_high": 6387.0
+        "cumulative_low": 3749.0,
+        "cumulative_high": 6040.5
       },
       {
         "day": 7,
@@ -428,8 +428,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4001.0,
-        "cumulative_high": 6427.0
+        "cumulative_low": 3774.0,
+        "cumulative_high": 6080.5
       },
       {
         "day": 8,
@@ -442,8 +442,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4026.0,
-        "cumulative_high": 6467.0
+        "cumulative_low": 3799.0,
+        "cumulative_high": 6120.5
       },
       {
         "day": 9,
@@ -458,8 +458,8 @@
         ],
         "day_total_low": 55.0,
         "day_total_high": 85.0,
-        "cumulative_low": 4081.0,
-        "cumulative_high": 6552.0
+        "cumulative_low": 3854.0,
+        "cumulative_high": 6205.5
       },
       {
         "day": 10,
@@ -475,8 +475,8 @@
         ],
         "day_total_low": 72.5,
         "day_total_high": 102.0,
-        "cumulative_low": 4153.5,
-        "cumulative_high": 6654.0
+        "cumulative_low": 3926.5,
+        "cumulative_high": 6307.5
       },
       {
         "day": 11,
@@ -489,8 +489,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4178.5,
-        "cumulative_high": 6694.0
+        "cumulative_low": 3951.5,
+        "cumulative_high": 6347.5
       },
       {
         "day": 12,
@@ -503,8 +503,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4203.5,
-        "cumulative_high": 6734.0
+        "cumulative_low": 3976.5,
+        "cumulative_high": 6387.5
       },
       {
         "day": 13,
@@ -517,8 +517,8 @@
         "lump_items": [],
         "day_total_low": 25.0,
         "day_total_high": 40.0,
-        "cumulative_low": 4228.5,
-        "cumulative_high": 6774.0
+        "cumulative_low": 4001.5,
+        "cumulative_high": 6427.5
       },
       {
         "day": 14,
@@ -533,8 +533,8 @@
         ],
         "day_total_low": 60.0,
         "day_total_high": 90.0,
-        "cumulative_low": 4288.5,
-        "cumulative_high": 6864.0
+        "cumulative_low": 4061.5,
+        "cumulative_high": 6517.5
       },
       {
         "day": 15,
@@ -547,8 +547,8 @@
         "lump_items": [],
         "day_total_low": 30.0,
         "day_total_high": 45.0,
-        "cumulative_low": 4318.5,
-        "cumulative_high": 6909.0
+        "cumulative_low": 4091.5,
+        "cumulative_high": 6562.5
       },
       {
         "day": 16,
@@ -561,12 +561,12 @@
         "lump_items": [],
         "day_total_low": 15.0,
         "day_total_high": 20.0,
-        "cumulative_low": 4333.5,
-        "cumulative_high": 6929.0
+        "cumulative_low": 4106.5,
+        "cumulative_high": 6582.5
       }
     ],
-    "grand_total_low": 4333.5,
-    "grand_total_high": 6929.0
+    "grand_total_low": 4106.5,
+    "grand_total_high": 6582.5
   },
   "sources": {
     "flights_transatlantic": [
@@ -692,6 +692,42 @@
         "url": "https://www.discovergreece.com",
         "note": "Acropolis, Acropolis Museum entry pricing"
       }
+    ],
+    "switzerland_costs": [
+      {
+        "url": "https://www.jungfraujochtickets.com/",
+        "note": "Jungfraujoch round-trip ticket pricing by origin"
+      },
+      {
+        "url": "https://www.swissprivatetour.ch/en/switzerland-travel-cost-3/",
+        "note": "Mountain resort hotel + food per-day cost breakdown"
+      },
+      {
+        "url": "https://simbye.com/blogs/blog/how-much-does-trip-to-switzerland-cost-2026-budget-breakdown",
+        "note": "Restaurant meal costs, Swiss Travel Pass pricing"
+      },
+      {
+        "url": "https://www.swiss.com/lhg/us/en/o-d/cy-cy/raleigh-durham-zurich",
+        "note": "RDU-ZRH direct flight pricing"
+      },
+      {
+        "url": "https://www.expedia.com/lp/flights/rdu/zrh/raleigh-to-zurich",
+        "note": "RDU-ZRH fare range"
+      }
+    ],
+    "naples_flights": [
+      {
+        "url": "https://www.flightroutes.com/RDU-NAP",
+        "note": "RDU-NAP routing, connections, flight time"
+      },
+      {
+        "url": "https://www.google.com/travel/flights/flights-from-raleigh-to-naples.html",
+        "note": "RDU-NAP fare range by month"
+      },
+      {
+        "url": "https://www.flightconnections.com/flights-to-naples-nap",
+        "note": "Seasonal direct summer flights from ATL/PHL/ORD/JFK"
+      }
     ]
   },
   "group_info": {
@@ -742,13 +778,14 @@
     }
   ],
   "open_questions": [
-    "Rome vs Naples vs Amalfi Coast for the Italy stop?",
+    "Naples is now the baseline Italy stop (Rome lost group support) -- any objections?",
+    "Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?",
     "Comfortable with narrow mountain driving in the Peloponnese?",
     "Everyone in for the Samaria Gorge hike (16km, ~6hrs)?",
     "Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?",
     "Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?"
   ],
-  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- core pull of the whole trip.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Rome vs Naples vs Amalfi Coast for the Italy stop?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
+  "crew_text": "OUR TRIP OBJECTIVES -- REACT / ADD BELOW\n\nGROUP: 3 adults + 3 teens (13-15), able-bodied, good travel problem-solvers\nWINDOW: Mid-June to late July\nBUDGET: $10-15K per family of 4 (2 adults + 2 teens)\n\n1. EXPLORATION INDEX\nPlaces none of us have been. Greece = high (first time) for everyone. Rome, French Riviera, and Italian Riviera are all lower here since 2 of the 6 travelers have already been to all three.\n\n2. HISTORY & CULTURE INDEX\nReal ruins, castles, archaeological sites -- walk through the story, not just photos.\n\n3. OUTDOOR / ACTIVE INDEX\nHiking, swimming, physical challenge. Teens want to move.\n\n4. MEDITERRANEAN COAST INDEX\nTurquoise water, beaches, cliffs -- core pull of the whole trip.\n\n5. FOOD INDEX\nEat like locals -- markets, tavernas, street food. No tourist traps.\n\n6. COST EFFICIENCY INDEX\nMax experience per dollar. Rural Greece beats Rome badly here.\n\n7. TRAVEL SIMPLICITY INDEX\nMinimize painful transit -- long waits and rushed city-to-city moves drain the trip.\n\n8. GROUP HARMONY INDEX\nTeens engaged + adults not bored. Mix of challenge and depth.\n\nOPEN QUESTIONS FOR THE GROUP:\n- Naples is now the baseline Italy stop (Rome lost group support) -- any objections?\n- Worth swapping in Switzerland (mountains/glaciers) despite it being ~2x the cost of every other option?\n- Comfortable with narrow mountain driving in the Peloponnese?\n- Everyone in for the Samaria Gorge hike (16km, ~6hrs)?\n- Ryanair (cheaper, bag fees) vs full-service airlines for intra-Europe legs?\n- Exact dates -- mid-June (cooler, cheaper) vs July (hotter, pricier)?\n\nReply with your top 3 priorities from the list above, or add anything missing.",
   "destination_totals": [
     {
       "dest": "crete",
@@ -802,7 +839,7 @@
       },
       "total": 32,
       "prior_visit_note": null,
-      "verdict": "Strong history alt to Rome"
+      "verdict": "Current baseline plan -- primary Italy stop"
     },
     {
       "dest": "amalfi",
@@ -841,6 +878,24 @@
       "verdict": "Good hiking alt, less novel now"
     },
     {
+      "dest": "switzerland",
+      "label": "Switzerland (Jungfrau Region)",
+      "emoji": "\ud83c\udfd4\ufe0f",
+      "scores": {
+        "1": 5,
+        "2": 3,
+        "3": 5,
+        "4": 1,
+        "5": 4,
+        "6": 1,
+        "7": 3,
+        "8": 4
+      },
+      "total": 26,
+      "prior_visit_note": null,
+      "verdict": "Stunning mountains/glaciers, by far the most expensive option"
+    },
+    {
       "dest": "rome",
       "label": "Rome",
       "emoji": "\ud83c\udfdf\ufe0f",
@@ -856,7 +911,7 @@
       },
       "total": 25,
       "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
-      "verdict": "History 5/5 -- crowds, cost, and repeat-visit familiarity drag it"
+      "verdict": "Losing group support -- crowds, cost, repeat visits"
     },
     {
       "dest": "fr",
@@ -874,7 +929,7 @@
       },
       "total": 24,
       "prior_visit_note": "2 of 6 travelers (both adults in one family) have been before",
-      "verdict": "Priciest, biggest reroute, and less novel now"
+      "verdict": "Priciest reroute, and less novel now"
     }
   ],
   "prior_visits": {
@@ -1178,25 +1233,33 @@
       "accommodation_source": "accommodation",
       "activities": [
         {
-          "name": "Pompeii ruins entry",
+          "name": "Pompeii ruins",
           "per_person_low": 20,
           "per_person_high": 22,
           "source": "naples_amalfi_activities",
           "in_budget": true
         },
         {
-          "name": "Herculaneum entry",
+          "name": "Herculaneum",
           "per_person_low": 15,
           "per_person_high": 15,
           "source": "naples_amalfi_activities",
           "in_budget": false
         },
         {
-          "name": "Underground Naples tour",
+          "name": "Naples historic center (UNESCO)",
           "per_person_low": 12,
           "per_person_high": 15,
           "source": "naples_amalfi_activities",
           "in_budget": false
+        },
+        {
+          "name": "Mount Vesuvius hike",
+          "per_person_low": 12,
+          "per_person_high": 12,
+          "source": "naples_amalfi_activities",
+          "in_budget": false,
+          "note": "+ transport"
         },
         {
           "name": "National Archaeological Museum",
@@ -1204,12 +1267,20 @@
           "per_person_high": 16,
           "source": "naples_amalfi_activities",
           "in_budget": false
+        },
+        {
+          "name": "Pizza in the Spanish Quarter",
+          "per_person_low": 6,
+          "per_person_high": 10,
+          "source": "naples_amalfi_activities",
+          "in_budget": false,
+          "note": "per pizza, not per person"
         }
       ],
       "activities_in_budget_low": 80,
       "activities_in_budget_high": 88,
-      "activities_all_low": 252,
-      "activities_all_high": 272
+      "activities_all_low": 324,
+      "activities_all_high": 360
     },
     "amalfi": {
       "nights": 3,
@@ -1308,15 +1379,72 @@
       "activities_in_budget_high": 96,
       "activities_all_low": 184,
       "activities_all_high": 236
+    },
+    "switzerland": {
+      "nights": 3,
+      "accommodation_per_night_low": 350,
+      "accommodation_per_night_high": 550,
+      "accommodation_total_low": 1050,
+      "accommodation_total_high": 1650,
+      "accommodation_source": "switzerland_costs",
+      "activities": [
+        {
+          "name": "Jungfraujoch 'Top of Europe'",
+          "per_person_low": 250,
+          "per_person_high": 295,
+          "source": "switzerland_costs",
+          "in_budget": true
+        },
+        {
+          "name": "Swiss Travel Pass (multi-day)",
+          "per_person_low": 150,
+          "per_person_high": 220,
+          "source": "switzerland_costs",
+          "in_budget": false
+        },
+        {
+          "name": "Grindelwald First + cliff walk",
+          "per_person_low": 90,
+          "per_person_high": 90,
+          "source": "switzerland_costs",
+          "in_budget": false
+        },
+        {
+          "name": "Trummelbach Falls",
+          "per_person_low": 14,
+          "per_person_high": 14,
+          "source": "switzerland_costs",
+          "in_budget": false
+        },
+        {
+          "name": "Lauterbrunnen valley walk",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "switzerland_costs",
+          "in_budget": false,
+          "note": "free"
+        },
+        {
+          "name": "Harder Kulm viewpoint (Interlaken)",
+          "per_person_low": 24,
+          "per_person_high": 24,
+          "source": "switzerland_costs",
+          "in_budget": false
+        }
+      ],
+      "activities_in_budget_low": 1000,
+      "activities_in_budget_high": 1180,
+      "activities_all_low": 2112,
+      "activities_all_high": 2572
     }
   },
   "itinerary_accommodation_total": {
-    "low": 2050.0,
-    "high": 3420.0
+    "low": 1750.0,
+    "high": 2970.0
   },
   "itinerary_activities_total": {
-    "low": 228.0,
-    "high": 292.0
+    "low": 208.0,
+    "high": 240.0
   },
   "time_budget": [
     {
@@ -1345,31 +1473,32 @@
           "note": "RDU recommends 3 hrs before international departure"
         },
         {
-          "label": "Flight RDU -> Rome (boarding + bulk of overnight flight)",
+          "label": "Flight RDU -> Naples via connection (boarding + bulk of flight)",
           "hours": 8.25,
-          "source": "flights_transatlantic"
+          "source": "naples_flights",
+          "note": "No direct RDU-NAP route; connects via CDG/PHL/ATL, ~11-13 hrs total"
         }
       ]
     },
     {
       "day": 2,
-      "label": "Arrive Rome, settle in",
-      "dest": "rome",
+      "label": "Arrive Naples, settle in",
+      "dest": "naples",
       "sleep": 10,
-      "travel": 5.5,
+      "travel": 6.15,
       "eat": 3,
-      "visit": 5.5,
+      "visit": 4.85,
       "travel_itemized": [
         {
-          "label": "Remaining flight time + descent",
-          "hours": 3.0,
-          "source": "flights_transatlantic"
+          "label": "Remaining flight time + connection + descent",
+          "hours": 4.0,
+          "source": "naples_flights"
         },
         {
           "label": "Deplane + immigration/passport control (non-EU)",
           "hours": 0.75,
           "source": "airport_data",
-          "note": "FCO non-EU immigration ~37 min average"
+          "note": "similar to other Italian airports, ~30-40 min average"
         },
         {
           "label": "Baggage claim",
@@ -1377,9 +1506,9 @@
           "source": null
         },
         {
-          "label": "Transit FCO -> Rome hotel (train or taxi)",
-          "hours": 0.75,
-          "source": "airport_data"
+          "label": "Transit NAP airport -> Naples hotel (taxi/shuttle)",
+          "hours": 0.4,
+          "source": "naples_flights"
         },
         {
           "label": "Hotel check-in",
@@ -1390,8 +1519,8 @@
     },
     {
       "day": 3,
-      "label": "Rome full day",
-      "dest": "rome",
+      "label": "Naples full day",
+      "dest": "naples",
       "sleep": 10,
       "travel": 1.0,
       "eat": 3,
@@ -1400,8 +1529,8 @@
     },
     {
       "day": 4,
-      "label": "Rome full day (last night)",
-      "dest": "rome",
+      "label": "Naples full day (last night)",
+      "dest": "naples",
       "sleep": 10,
       "travel": 1.0,
       "eat": 3,
@@ -1410,7 +1539,7 @@
     },
     {
       "day": 5,
-      "label": "Rome -> Peloponnese (flight + drive)",
+      "label": "Naples -> Peloponnese (flight + drive)",
       "dest": "transfer_pelo",
       "sleep": 10,
       "travel": 8.75,
@@ -1699,15 +1828,15 @@
     "total_hours": 384,
     "sleep_hours": 143,
     "sleep_pct": 37.2,
-    "travel_hours": 70.3,
-    "travel_pct": 18.3,
+    "travel_hours": 70.9,
+    "travel_pct": 18.5,
     "eat_hours": 43.0,
     "eat_pct": 11.2,
-    "visit_hours": 127.7,
-    "visit_pct": 33.3,
+    "visit_hours": 127.1,
+    "visit_pct": 33.1,
     "awake_hours": 241,
-    "travel_pct_of_awake": 29.2,
+    "travel_pct_of_awake": 29.4,
     "eat_pct_of_awake": 17.8,
-    "visit_pct_of_awake": 53.0
+    "visit_pct_of_awake": 52.7
   }
 }
