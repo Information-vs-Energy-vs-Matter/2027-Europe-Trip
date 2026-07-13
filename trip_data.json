@@ -728,6 +728,44 @@
         "url": "https://www.flightconnections.com/flights-to-naples-nap",
         "note": "Seasonal direct summer flights from ATL/PHL/ORD/JFK"
       }
+    ],
+    "flea_markets": [
+      {
+        "url": "https://www.discovernafplio.gr/en/articles/sightseeing/flea-market",
+        "note": "Nafplio flea market -- Wed/Sat, base of Palamidi steps"
+      },
+      {
+        "url": "https://santorinidave.com/best-shopping-nafplio",
+        "note": "Nafplio antique/vintage shops (Nostalgia Vintage, The Antique Shop)"
+      },
+      {
+        "url": "https://www.rental-center-crete.com/blog/chania-markets/",
+        "note": "Chania flea market -- vintage, antiques, retro goods"
+      },
+      {
+        "url": "https://www.getyourguide.com/chania-l1807/chania-hidden-thrift-shops-vintage-finds-walk-t1281169/",
+        "note": "Chania thrift/vintage shop walking tour confirms multiple real shops exist"
+      },
+      {
+        "url": "https://www.wantedinrome.com/yellowpage/porta-portese-sunday-flea-market-in-rome.html",
+        "note": "Porta Portese -- Rome's largest flea market, Sundays since 1945"
+      },
+      {
+        "url": "https://www.fleamarketinsiders.com/flea-markets-rome/",
+        "note": "Rome market closures in July/August -- Mercato Monti closes, Porta Portese and Via Sannio stay open"
+      },
+      {
+        "url": "https://niceandbeyond.com/cours-saleya-markets-nice/",
+        "note": "Nice: Cours Saleya Brocante (Monday, year-round) and Les Puces de Nice (Tue-Sat, Port district)"
+      },
+      {
+        "url": "https://www.zuerich.com/en/visit/shopping/kanzlei-flea-market",
+        "note": "Zurich Kanzlei Flohmarkt -- largest in Switzerland, 400+ vendors, year-round Saturdays"
+      },
+      {
+        "url": "https://www.zuerich.com/en/visit/shopping/flea-market-burkliplatz",
+        "note": "Zurich Burkliplatz flea market -- May-October, Saturdays"
+      }
     ]
   },
   "group_info": {
@@ -977,6 +1015,8 @@
       "They want to BUY, not just browse -- pack an empty duffel or expect to buy a cheap bag abroad; factor this into Ryanair/budget-airline baggage fee math on the intra-Europe legs.",
       "Half a day is a real time block -- this should show up as scheduled time in Naples and/or Athens, not squeezed into leftover hours.",
       "Naples' market is only open specific weekends of the month -- MUST check actual travel dates against this before counting on it. If dates don't line up, Athens' daily Monastiraki becomes the reliable fallback.",
+      "Every destination now has a flea market / junk shop attraction added to its detail page. Amalfi Coast and the Italian Riviera are honestly the weakest options here (no real dedicated flea market at either) -- worth knowing if this is a real priority when comparing alternatives.",
+      "Many Italian outdoor flea markets close for July/August (e.g. Rome's Mercato Monti) -- Porta Portese (Rome) and Via Sannio stay open through summer, so check specific market calendars against actual travel dates once locked in.",
       "Switzerland's 3-night length is already at the edge of teen tolerance -- do not extend it if it's added."
     ]
   },
@@ -1053,6 +1093,14 @@
           "source": "rome_activities",
           "in_budget": false,
           "note": "free"
+        },
+        {
+          "name": "Porta Portese flea market",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "free to browse; Rome's largest flea market since 1945 -- stays open through summer, unlike Mercato Monti which closes July/August"
         }
       ],
       "activities_in_budget_low": 100,
@@ -1133,6 +1181,14 @@
           "per_person_high": 8,
           "source": "peloponnese_activities",
           "in_budget": false
+        },
+        {
+          "name": "Nafplio flea market (Wed/Sat, base of Palamidi steps)",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "free to browse; plus antique/vintage shops in Old Town"
         }
       ],
       "activities_in_budget_low": 0,
@@ -1208,6 +1264,14 @@
           "source": "crete_activities",
           "in_budget": false,
           "note": "free"
+        },
+        {
+          "name": "Chania flea market",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "free to browse; vintage/retro goods, guided thrift walks available"
         }
       ],
       "activities_in_budget_low": 0,
@@ -1361,6 +1425,14 @@
           "per_person_high": 90,
           "source": "naples_amalfi_activities",
           "in_budget": false
+        },
+        {
+          "name": "Positano/Amalfi antique & boutique shops (no dedicated flea market)",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "weakest stop for junk-shop hunting -- scattered antique shops only, no real flea market like the other destinations"
         }
       ],
       "activities_in_budget_low": 160,
@@ -1396,6 +1468,14 @@
           "per_person_high": 50,
           "source": "riviera_activities",
           "in_budget": false
+        },
+        {
+          "name": "Cours Saleya Brocante",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "free to browse; year-round, reliable even in summer -- antiques, vintage, bric-a-brac"
         }
       ],
       "activities_in_budget_low": 28,
@@ -1424,6 +1504,14 @@
           "per_person_high": 35,
           "source": "riviera_activities",
           "in_budget": false
+        },
+        {
+          "name": "No dedicated flea market in Cinque Terre villages",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "honest gap -- these are tiny fishing villages, no real flea market; closest options are in La Spezia or Genoa, outside the planned itinerary"
         }
       ],
       "activities_in_budget_low": 84,
@@ -1481,6 +1569,14 @@
           "per_person_high": 24,
           "source": "switzerland_costs",
           "in_budget": false
+        },
+        {
+          "name": "Zurich Kanzlei Flohmarkt",
+          "per_person_low": 0,
+          "per_person_high": 0,
+          "source": "flea_markets",
+          "in_budget": false,
+          "note": "free to browse; Switzerland's largest flea market, 400+ vendors -- only if routing through Zurich (Interlaken itself has no real flea market, it's a small mountain town)"
         }
       ],
       "activities_in_budget_low": 1000,
